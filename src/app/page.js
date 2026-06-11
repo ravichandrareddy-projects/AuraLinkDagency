@@ -1,0 +1,490 @@
+'use client'
+
+import { useRef } from 'react'
+import Link from 'next/link'
+import { motion, useMotionValue, useTransform, useSpring, useInView } from 'framer-motion'
+import {
+  ArrowRight, Play, Sparkles, Upload, Brain, Target, Bell,
+  CheckCircle2, TrendingUp, Briefcase, Zap, Bot, Code2, Globe, BarChart3,
+  MessageSquare
+} from 'lucide-react'
+import { staggerContainer, fadeInUp } from '@/lib/animations'
+import HoverText from '@/components/ui/HoverText'
+
+// ─── Data ───────────────────────────────────────────────────────────────────────
+const floatingBadges = [
+  { icon: CheckCircle2, text: 'Agent Deployed', color: 'text-emerald-400', bg: 'bg-emerald-400/10 border-emerald-400/20', x: '-8%', y: '20%' },
+  { icon: TrendingUp, text: '24/7 Operations', color: 'text-indigo-400', bg: 'bg-indigo-400/10 border-indigo-400/20', x: '90%', y: '15%' },
+  { icon: MessageSquare, text: 'Auto-Replies', color: 'text-violet-400', bg: 'bg-violet-400/10 border-violet-400/20', x: '85%', y: '70%' },
+]
+
+const features = [
+  {
+    id: 'ai-agents',
+    icon: Bot,
+    title: 'AI Agents',
+    description: 'Deploy intelligent AI agents that automate calls, messages, sales, onboarding, and more — working 24/7 so you don\'t have to.',
+    color: 'from-indigo-500 to-violet-500',
+    glow: 'rgba(99,102,241,0.25)',
+    border: 'rgba(99,102,241,0.2)',
+    tag: 'Automated Support',
+    stat: '24/7',
+    statLabel: 'Availability',
+  },
+  {
+    id: 'custom-software',
+    icon: Code2,
+    title: 'Custom Software',
+    description: 'Custom-built SaaS platforms, internal tools, and enterprise software engineered for scalability, performance, and growth.',
+    color: 'from-violet-500 to-purple-500',
+    glow: 'rgba(139,92,246,0.25)',
+    border: 'rgba(139,92,246,0.2)',
+    tag: 'Tailored Solutions',
+    stat: '100%',
+    statLabel: 'Custom Built',
+  },
+  {
+    id: 'web-dev',
+    icon: Globe,
+    title: 'Websites',
+    description: 'Modern, conversion-optimized business websites that establish authority, capture leads, and drive measurable revenue.',
+    color: 'from-cyan-500 to-blue-500',
+    glow: 'rgba(6,182,212,0.25)',
+    border: 'rgba(6,182,212,0.2)',
+    tag: 'High Conversion',
+    stat: '5x',
+    statLabel: 'More Leads',
+  },
+]
+
+// ─── Floating 3D Card ──────────────────────────────────────────────────────────
+function FloatingCard3D() {
+  const cardRef = useRef(null)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const rotateX = useSpring(useTransform(mouseY, [-150, 150], [15, -15]), { stiffness: 150, damping: 20 })
+  const rotateY = useSpring(useTransform(mouseX, [-150, 150], [-15, 15]), { stiffness: 150, damping: 20 })
+
+  const handleMouseMove = (e) => {
+    const rect = cardRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mouseX.set(e.clientX - rect.left - rect.width / 2)
+    mouseY.set(e.clientY - rect.top - rect.height / 2)
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0)
+    mouseY.set(0)
+  }
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 1000 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="w-full max-w-sm mx-auto"
+    >
+      <div className="glass-card p-6 relative overflow-hidden gradient-border">
+        {/* Card shimmer */}
+        <div className="absolute inset-0 animate-shimmer pointer-events-none" />
+
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
+              <Bot className="w-4 h-4 text-white" />
+            </div>
+            <div>
+              <p className="text-white text-xs font-semibold">AI Agent Status</p>
+              <p className="text-[#64748b] text-[10px]">Lead Generation Bot</p>
+            </div>
+          </div>
+          <span className="badge badge-emerald text-[10px]">Active</span>
+        </div>
+
+        {/* Skills/Capabilities */}
+        <p className="text-[#64748b] text-xs mb-2 font-medium">Capabilities</p>
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {['Voice Calls', 'WhatsApp', 'Email Auth', 'CRM Sync', '24/7'].map((skill) => (
+            <span
+              key={skill}
+              className="text-[10px] px-2 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 font-medium"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+
+        {/* Metric bar */}
+        <div className="mb-3">
+          <div className="flex justify-between text-xs mb-1">
+            <span className="text-[#94a3b8]">Lead Conversion Rate</span>
+            <span className="text-emerald-400 font-bold">42%</span>
+          </div>
+          <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full rounded-full gradient-cool"
+              initial={{ width: 0 }}
+              animate={{ width: '42%' }}
+              transition={{ duration: 1.5, delay: 0.5, ease: 'easeOut' }}
+            />
+          </div>
+        </div>
+
+        {/* Jobs found -> Leads Gen */}
+        <div className="flex items-center justify-between p-3 rounded-xl bg-white/3 border border-white/5">
+          <span className="text-[#64748b] text-xs">Leads Generated</span>
+          <div className="flex items-center gap-1">
+            <Target className="w-3.5 h-3.5 text-violet-400" />
+            <span className="text-white font-bold text-sm">847</span>
+            <span className="text-[#64748b] text-[10px]">this month</span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+// ─── Hero Section ───────────────────────────────────────────────────────────────
+function HeroSection() {
+  const stagger = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+    },
+  }
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+  }
+
+  return (
+    <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          {/* Left: Text */}
+          <motion.div variants={stagger} initial="hidden" animate="show" className="text-center lg:text-left">
+            {/* Badge */}
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 mb-6">
+              <span className="badge badge-indigo">
+                <Sparkles className="w-3 h-3" />
+                AI-Powered Digital Agency
+              </span>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              variants={fadeUp}
+              className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-white mb-6"
+            >
+              <HoverText text="Grow your " className="text-white" />
+              <HoverText text="business" className="gradient-text" highlightHover={false} />
+              <br />
+              <HoverText text="and scale " className="text-white" />
+              <span className="relative inline-block">
+                <HoverText text="faster" className="text-white" />
+                <motion.span
+                  className="absolute -bottom-1 left-0 right-0 h-1 rounded-full gradient-primary"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+                />
+              </span>
+            </motion.h1>
+
+            {/* Subheadline */}
+            <motion.p
+              variants={fadeUp}
+              className="text-[#94a3b8] text-lg sm:text-xl leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0"
+            >
+              We build AI-powered agents, custom software products, and modern business websites that automate operations and drive revenue.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 justify-center lg:justify-start">
+              <Link href="/contact" className="btn-primary text-base py-3.5 px-7 animate-pulse-glow">
+                <Sparkles className="w-5 h-5" />
+                Book Consultation
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/portfolio" className="btn-secondary text-base py-3.5 px-7 flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full gradient-primary flex items-center justify-center">
+                  <Play className="w-3 h-3 text-white fill-white translate-x-0.5" />
+                </div>
+                View Portfolio
+              </Link>
+            </motion.div>
+
+            {/* Social proof */}
+            <motion.div variants={fadeUp} className="mt-10 flex items-center gap-4 justify-center lg:justify-start">
+              <div className="flex -space-x-2">
+                {['A', 'T', 'I', 'S', 'D'].map((l, i) => (
+                  <div
+                    key={i}
+                    className="w-8 h-8 rounded-full border-2 border-[#08080f] flex items-center justify-center text-[10px] font-bold text-white"
+                    style={{ background: `hsl(${220 + i * 30}, 70%, 55%)` }}
+                  >
+                    {l}
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-amber-400 text-xs">★</span>
+                  ))}
+                </div>
+                <p className="text-[#64748b] text-xs mt-0.5">
+                  <span className="text-white font-semibold">150+</span> projects delivered
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right: 3D Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 60, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="relative"
+          >
+            {/* Floating badges */}
+            {floatingBadges.map((badge, i) => (
+              <motion.div
+                key={i}
+                className={`absolute z-10 flex items-center gap-2 px-3 py-2 rounded-xl border ${badge.bg} backdrop-blur-xl text-xs font-medium ${badge.color} shadow-lg`}
+                style={{ left: badge.x, top: badge.y }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1 + i * 0.2, duration: 0.5, ease: 'backOut' }}
+              >
+                <motion.div
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ duration: 3 + i, repeat: Infinity, delay: i * 0.5 }}
+                >
+                  <badge.icon className="w-3.5 h-3.5" />
+                </motion.div>
+                {badge.text}
+              </motion.div>
+            ))}
+
+            {/* Glow ring behind card */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-indigo-500/20 via-violet-500/10 to-transparent blur-3xl" />
+
+            <FloatingCard3D />
+
+            {/* Stats below card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.6 }}
+              className="mt-6 grid grid-cols-3 gap-3"
+            >
+              {[
+                { label: 'Time Saved', value: '70%', icon: Target, color: 'text-violet-400' },
+                { label: 'Revenue Growth', value: '3x', icon: TrendingUp, color: 'text-emerald-400' },
+                { label: 'Client Satisfaction', value: '98%', icon: Bell, color: 'text-cyan-400' },
+              ].map(({ label, value, icon: Icon, color }) => (
+                <div key={label} className="glass-card p-3 text-center">
+                  <Icon className={`w-4 h-4 ${color} mx-auto mb-1`} />
+                  <p className="text-white font-bold text-lg">{value}</p>
+                  <p className="text-[#64748b] text-[10px]">{label}</p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Features Card ──────────────────────────────────────────────────────────────
+function FeatureCard({ feature, index }) {
+  const cardRef = useRef(null)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const rotateX = useSpring(useTransform(mouseY, [-100, 100], [8, -8]), { stiffness: 200, damping: 25 })
+  const rotateY = useSpring(useTransform(mouseX, [-100, 100], [-8, 8]), { stiffness: 200, damping: 25 })
+
+  const handleMouseMove = (e) => {
+    const rect = cardRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mouseX.set(e.clientX - rect.left - rect.width / 2)
+    mouseY.set(e.clientY - rect.top - rect.height / 2)
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0)
+    mouseY.set(0)
+  }
+
+  const Icon = feature.icon
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="glass-card p-6 group relative overflow-hidden cursor-default"
+    >
+      {/* Glow on hover */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[20px]"
+        style={{ background: `radial-gradient(circle at 50% 0%, ${feature.glow} 0%, transparent 70%)` }}
+      />
+
+      {/* Icon */}
+      <div className="mb-4 relative z-10">
+        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-lg`}>
+          <Icon className="w-6 h-6 text-white" />
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-white font-semibold text-lg font-display">{feature.title}</h3>
+          <span
+            className="text-[10px] font-semibold px-2 py-0.5 rounded-full border"
+            style={{
+              color: `rgba(255,255,255,0.7)`,
+              borderColor: feature.border,
+              background: `${feature.glow}`,
+            }}
+          >
+            {feature.tag}
+          </span>
+        </div>
+        <p className="text-[#64748b] text-sm leading-relaxed mb-4">{feature.description}</p>
+
+        {/* Stat */}
+        <div className="flex items-center justify-between pt-4 border-t border-white/5">
+          <div>
+            <p className={`text-2xl font-bold bg-gradient-to-r ${feature.color} bg-clip-text text-transparent`}>
+              {feature.stat}
+            </p>
+            <p className="text-[#4b5563] text-[11px]">{feature.statLabel}</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-[#4b5563] group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+function ServicesSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <section id="services" className="section-pad relative z-10">
+      <div className="max-w-7xl mx-auto px-6" ref={ref}>
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <span className="badge badge-indigo">
+              <Zap className="w-3 h-3" />
+              Everything You Need
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-display font-bold text-4xl sm:text-5xl text-white mb-4"
+          >
+            End-to-end{' '}
+            <span className="gradient-text">digital solutions</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-[#64748b] text-lg max-w-xl mx-auto"
+          >
+            From custom AI agents to premium business websites. Built to cut operational costs and scale your growth.
+          </motion.p>
+        </div>
+
+        {/* Grid */}
+        <div className="grid md:grid-cols-3 gap-5">
+          {features.map((f, i) => (
+            <FeatureCard key={f.id} feature={f} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── CTA Section ───────────────────────────────────────────────────────────────
+function CTASection() {
+  return (
+    <section className="section-pad relative z-10">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="glass-strong p-12 rounded-[32px] relative overflow-hidden gradient-border">
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none" />
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-display font-bold text-3xl md:text-5xl text-white mb-6 relative z-10"
+          >
+            Ready to Transform Your Business?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-[#94a3b8] text-lg mb-8 relative z-10 max-w-2xl mx-auto"
+          >
+            Let&apos;s discuss how AI agents and custom software can automate and grow your business.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="relative z-10"
+          >
+            <Link href="/contact" className="btn-primary py-4 px-8 text-lg animate-pulse-glow">
+              <Sparkles className="w-5 h-5" />
+              Book Free Consultation
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Main Page ──────────────────────────────────────────────────────────────────
+export default function HomePage() {
+  return (
+    <>
+      <HeroSection />
+      <div className="divider max-w-7xl mx-auto px-6" />
+      <ServicesSection />
+      <div className="divider max-w-7xl mx-auto px-6" />
+      <CTASection />
+    </>
+  )
+}
