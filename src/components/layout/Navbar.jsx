@@ -82,8 +82,8 @@ export default function Navbar() {
                   priority
                 />
               </div>
-              <span className="font-display font-black text-xl tracking-wider uppercase text-white drop-shadow-md">
-                AURALINK
+              <span className="font-display font-black text-lg md:text-xl tracking-wider uppercase text-white drop-shadow-md">
+                AURALINK DIGITAL AGENCY
               </span>
             </Link>
 
@@ -175,8 +175,8 @@ export default function Navbar() {
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <span className="font-display font-black text-lg text-white">
-                    AuraLink
+                  <span className="font-display font-black text-sm uppercase tracking-wider text-white">
+                    AURALINK DIGITAL AGENCY
                   </span>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}

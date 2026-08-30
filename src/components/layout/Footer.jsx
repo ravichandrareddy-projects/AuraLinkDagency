@@ -38,8 +38,8 @@ export default function Footer() {
               <div className="relative w-9 h-9">
                 <Image src="/logo.png" alt="AuraLink" fill className="object-contain" />
               </div>
-              <span className="font-display font-bold text-lg bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] bg-clip-text text-transparent">
-                AuraLink
+              <span className="font-display font-black text-lg tracking-wider uppercase text-white">
+                AURALINK DIGITAL AGENCY
               </span>
             </Link>
             <p className="text-[hsl(230,15%,55%)] text-sm leading-relaxed mb-6">
