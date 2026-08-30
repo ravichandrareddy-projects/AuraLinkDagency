@@ -189,7 +189,10 @@ function HeroSection() {
               className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-white mb-6"
             >
               <HoverText text="Grow your " className="text-white" />
-              <HoverText text="business" className="gradient-text" highlightHover={false} />
+              <HoverText text="business " className="gradient-text" highlightHover={false} />
+              <span className="inline-block px-3.5 py-1 rounded-2xl bg-gradient-to-r from-purple-500/20 via-cyan-500/20 to-emerald-500/20 border border-cyan-400/40 text-cyan-300 font-black text-4xl sm:text-5xl lg:text-6xl mx-1 shadow-lg shadow-cyan-500/20 animate-pulse">
+                10x
+              </span>
               <br />
               <HoverText text="and scale " className="text-white" />
               <span className="relative inline-block">
