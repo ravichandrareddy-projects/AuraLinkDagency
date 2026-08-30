@@ -773,11 +773,11 @@ export default function HomePage() {
       <div className="divider max-w-7xl mx-auto px-6" />
       <RevenueCalculator />
       <div className="divider max-w-7xl mx-auto px-6" />
+      <WhyChooseSection />
+      <div className="divider max-w-7xl mx-auto px-6" />
       <HowItWorksSection />
       <div className="divider max-w-7xl mx-auto px-6" />
       <ServicesSection />
-      <div className="divider max-w-7xl mx-auto px-6" />
-      <WhyChooseSection />
       <div className="divider max-w-7xl mx-auto px-6" />
       <HomepagePricingSection />
       <div className="divider max-w-7xl mx-auto px-6" />

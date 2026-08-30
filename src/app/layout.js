@@ -2,6 +2,7 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import FloatingConsultationCard from '@/components/ui/FloatingConsultationCard';
 import { CurrencyProvider } from '@/lib/currency-context';
 import { ThemeProvider } from '@/lib/theme-context';
 import JsonLd from '@/components/seo/JsonLd';
@@ -97,6 +98,7 @@ export default function RootLayout({ children }) {
               <Navbar />
               <main className="flex-grow">{children}</main>
               <Footer />
+              <FloatingConsultationCard />
             </div>
           </CurrencyProvider>
         </ThemeProvider>
