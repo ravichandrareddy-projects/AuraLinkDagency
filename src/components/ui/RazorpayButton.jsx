@@ -1,88 +1,102 @@
 'use client';
 
-import { useState } from 'react';
-import { CreditCard, CheckCircle2, Loader2 } from 'lucide-react';
-import { initiateRazorpayCheckout } from '@/lib/razorpay';
-import { useCurrency } from '@/lib/currency-context';
+import React, { useState } from 'react';
+import { CreditCard, Loader2 } from 'lucide-react';
 
 export default function RazorpayButton({
-  amountMap, // e.g. { INR: 8000, USD: 199, EUR: 179 }
-  numericAmount, // e.g. 8000
-  serviceName = 'Digital Service',
-  className = '',
-  buttonText = 'Pay & Book Now (Razorpay)',
+  amount,
+  currency = 'INR',
+  planName = 'AuraLink Service Order',
+  userEmail = '',
+  userPhone = '',
+  onSuccess,
 }) {
-  const { currency } = useCurrency();
   const [loading, setLoading] = useState(false);
-  const [paymentSuccess, setPaymentSuccess] = useState(null);
 
-  // Determine numeric price based on current currency context
-  let finalAmount = numericAmount;
-  if (!finalAmount && amountMap) {
-    finalAmount = amountMap[currency.code] || amountMap['USD'] || amountMap['INR'] || 0;
-  }
-
-  const handlePayment = async () => {
-    if (!finalAmount || typeof finalAmount !== 'number') {
-      alert('This service requires a custom quote consultation. Please click "Get Quote" to contact us.');
-      return;
-    }
-
-    setLoading(true);
-
-    initiateRazorpayCheckout({
-      amount: finalAmount,
-      currency: currency.code,
-      serviceName: serviceName,
-      description: `Instant Booking for ${serviceName}`,
-      onSuccess: (details) => {
-        setLoading(false);
-        setPaymentSuccess(details);
-      },
-      onError: (err) => {
-        setLoading(false);
-      },
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      if (window.Razorpay) {
+        resolve(true);
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
     });
   };
 
-  if (paymentSuccess) {
-    return (
-      <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
-          <span>Payment Completed! ID: {paymentSuccess.paymentId.slice(0, 12)}...</span>
-        </div>
-        <button
-          onClick={() => setPaymentSuccess(null)}
-          className="text-[10px] underline text-white/70 hover:text-white"
-        >
-          Close
-        </button>
-      </div>
-    );
-  }
+  const handlePayment = async () => {
+    setLoading(true);
+    try {
+      const resScript = await loadRazorpayScript();
+      if (!resScript) {
+        alert('Failed to load Razorpay SDK. Please check your internet connection.');
+        setLoading(false);
+        return;
+      }
+
+      // Create Order on backend API
+      const res = await fetch('/api/razorpay', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount, currency }),
+      });
+
+      const data = await res.json();
+      if (!data.success) {
+        alert(data.error || 'Failed to create payment order. Please check Razorpay keys.');
+        setLoading(false);
+        return;
+      }
+
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: data.order.amount,
+        currency: data.order.currency,
+        name: 'AuraLink Digital Agency',
+        description: planName,
+        image: '/logo.png',
+        order_id: data.order.id,
+        prefill: {
+          email: userEmail || 'hello@auralinkdigitalagency.indevs.in',
+          contact: userPhone || '+91 9440336396',
+        },
+        theme: {
+          color: '#00d4ff',
+        },
+        handler: function (response) {
+          if (onSuccess) {
+            onSuccess(response);
+          } else {
+            alert('Payment Successful! Payment ID: ' + response.razorpay_payment_id);
+          }
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred during payment processing.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <button
       onClick={handlePayment}
-      disabled={loading || !finalAmount || typeof finalAmount !== 'number'}
-      className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs transition-all duration-300 ${
-        !finalAmount || typeof finalAmount !== 'number'
-          ? 'bg-white/[0.04] text-white/40 cursor-not-allowed border border-white/[0.06]'
-          : 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:scale-[1.02] active:scale-[0.98]'
-      } ${className}`}
+      disabled={loading}
+      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-extrabold text-sm hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 active:scale-95 disabled:opacity-50"
     >
       {loading ? (
-        <>
-          <Loader2 size={14} className="animate-spin" />
-          <span>Connecting Razorpay...</span>
-        </>
+        <Loader2 className="w-4 h-4 animate-spin" />
       ) : (
-        <>
-          <CreditCard size={14} />
-          <span>{buttonText}</span>
-        </>
+        <CreditCard className="w-4 h-4" />
       )}
+      <span>{loading ? 'Initiating Payment...' : `Pay ${currency === 'INR' ? '₹' : '$'}${amount} with Razorpay`}</span>
     </button>
   );
 }
