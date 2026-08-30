@@ -38,9 +38,10 @@ export default function Footer() {
               <div className="relative w-10 h-10 sm:w-11 sm:h-11">
                 <Image src="/logo.png" alt="AuraLink" fill className="object-contain filter drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
               </div>
-              <div className="font-display font-black text-xl sm:text-2xl tracking-wider uppercase flex items-center gap-2.5 leading-none">
-                <span className="logo-blue-shine-text font-black">AURALINK</span>
-                <span className="text-xs sm:text-sm font-mono font-extrabold tracking-[0.2em] text-cyan-200 uppercase border-l-2 border-cyan-400/50 pl-2.5 drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]">
+              <div className="font-display font-black text-xl sm:text-2xl tracking-wider uppercase flex items-center gap-0.5 leading-none">
+                <span className="aura-text-shine font-black">AURA</span>
+                <span className="link-text-shine font-black">LINK</span>
+                <span className="text-xs sm:text-sm font-mono font-extrabold tracking-[0.2em] text-cyan-200 uppercase border-l-2 border-cyan-400/50 pl-2.5 ml-2 drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]">
                   DIGITAL AGENCY
                 </span>
               </div>
