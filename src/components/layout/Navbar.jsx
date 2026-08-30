@@ -104,11 +104,7 @@ export default function Navbar() {
                     }`}
                   >
                     {isActive && (
-                      <motion.div
-                        layoutId="activeNavPill"
-                        className="absolute inset-0 bg-white/20 border border-white/30 rounded-full shadow-sm"
-                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                      />
+                      <div className="absolute inset-0 bg-white/20 border border-white/30 rounded-full shadow-sm" />
                     )}
                     <span className="relative z-10">{link.label}</span>
                   </Link>

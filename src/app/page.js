@@ -599,6 +599,51 @@ const whyChooseReasons = [
   },
 ]
 
+function WhyChooseCard({ item, index }) {
+  const cardRef = useRef(null)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const rotateX = useSpring(useTransform(mouseY, [-100, 100], [8, -8]), { stiffness: 200, damping: 25 })
+  const rotateY = useSpring(useTransform(mouseX, [-100, 100], [-8, 8]), { stiffness: 200, damping: 25 })
+
+  const handleMouseMove = (e) => {
+    if (window.innerWidth < 768) return
+    const rect = cardRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mouseX.set(e.clientX - rect.left - rect.width / 2)
+    mouseY.set(e.clientY - rect.top - rect.height / 2)
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0)
+    mouseY.set(0)
+  }
+
+  const Icon = item.icon
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.08 }}
+      className="glass-card p-6 rounded-2xl border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 flex flex-col justify-between cursor-pointer group"
+    >
+      <div>
+        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+          <Icon className="w-6 h-6 text-white" />
+        </div>
+        <h3 className="font-display font-bold text-xl text-white mb-3 group-hover:text-purple-300 transition-colors">{item.title}</h3>
+        <p className="text-[#94a3b8] text-sm leading-relaxed">{item.desc}</p>
+      </div>
+    </motion.div>
+  )
+}
+
 function WhyChooseSection() {
   return (
     <section className="py-20 px-6 relative z-10">
@@ -617,27 +662,9 @@ function WhyChooseSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {whyChooseReasons.map((item, i) => {
-            const Icon = item.icon
-            return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="glass-card p-6 rounded-2xl border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-5 shadow-lg`}>
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="font-display font-bold text-xl text-white mb-3">{item.title}</h3>
-                  <p className="text-[#94a3b8] text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            )
-          })}
+          {whyChooseReasons.map((item, i) => (
+            <WhyChooseCard key={item.title} item={item} index={i} />
+          ))}
         </div>
       </div>
     </section>
