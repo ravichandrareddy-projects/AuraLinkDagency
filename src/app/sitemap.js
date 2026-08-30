@@ -15,7 +15,6 @@ export default async function sitemap() {
     '/ai-agents',
     '/software',
     '/pricing',
-    '/portfolio',
     '/faq',
     '/contact',
     '/llms.txt',

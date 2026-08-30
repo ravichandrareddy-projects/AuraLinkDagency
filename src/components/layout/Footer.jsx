@@ -13,7 +13,6 @@ const serviceLinks = [
 ];
 
 const companyLinks = [
-  { href: '/portfolio', label: 'Portfolio' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
 ];

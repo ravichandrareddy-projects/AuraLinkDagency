@@ -16,7 +16,6 @@ const navLinks = [
   { href: '/software', label: 'Software' },
   { href: '/websites', label: 'Websites' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/portfolio', label: 'Portfolio' },
   { href: '/contact', label: 'Contact' },
 ];
 
