@@ -122,24 +122,21 @@ export default function Footer() {
               </button>
             </form>
 
-            <div className="mt-6 space-y-3 p-4 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-              <span className="text-[11px] font-mono text-[hsl(270,95%,65%)] font-bold uppercase tracking-wider block">
-                Official Order & Call Booking Support
-              </span>
+            <div className="mt-6 space-y-3">
               <a
                 href="mailto:hello@auralinkdigitalagency.indevs.in"
-                className="flex items-center gap-2 text-cyan-300 font-mono font-bold text-xs sm:text-sm hover:underline break-all"
+                className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm hover:text-white transition-colors"
               >
-                <Mail size={15} className="shrink-0 text-cyan-400" />
+                <Mail size={14} />
                 <span>hello@auralinkdigitalagency.indevs.in</span>
               </a>
-              <div className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-xs pt-1">
-                <Phone size={13} />
+              <div className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm">
+                <Phone size={14} />
                 <span>+91 98765 43210</span>
               </div>
-              <div className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-xs">
-                <MapPin size={13} />
-                <span>Bangalore, India (12-Hour Support Response)</span>
+              <div className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm">
+                <MapPin size={14} />
+                <span>Bangalore, India</span>
               </div>
             </div>
           </div>
@@ -147,17 +144,12 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/[0.06] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="space-y-1 text-center sm:text-left">
-            <p className="text-[hsl(230,10%,50%)] text-xs sm:text-sm">
-              © 2026 AuraLink Digital Agency. All rights reserved.
-            </p>
-            <p className="text-[hsl(230,10%,40%)] text-xs font-mono">
-              Booking Email Support: <a href="mailto:hello@auralinkdigitalagency.indevs.in" className="text-cyan-400 hover:underline">hello@auralinkdigitalagency.indevs.in</a>
-            </p>
-          </div>
+          <p className="text-[hsl(230,10%,40%)] text-sm">
+            © 2026 AuraLink Digital Agency. All rights reserved.
+          </p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-[hsl(230,10%,50%)] text-xs sm:text-sm hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-[hsl(230,10%,50%)] text-xs sm:text-sm hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
