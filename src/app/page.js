@@ -229,27 +229,17 @@ function HeroSection() {
               </Link>
             </motion.div>
 
-            {/* Social proof */}
-            <motion.div variants={fadeUp} className="mt-10 flex items-center gap-4 justify-center lg:justify-start">
-              <div className="flex -space-x-2">
-                {['A', 'T', 'I', 'S', 'D'].map((l, i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full border-2 border-[#08080f] flex items-center justify-center text-[10px] font-bold text-white"
-                    style={{ background: `hsl(${220 + i * 30}, 70%, 55%)` }}
-                  >
-                    {l}
-                  </div>
-                ))}
+            {/* Quality & Dedicated Development Guarantee */}
+            <motion.div variants={fadeUp} className="mt-10 flex items-center gap-3 justify-center lg:justify-start">
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
+                <CheckCircle2 size={16} />
               </div>
               <div>
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-amber-400 text-xs">★</span>
-                  ))}
-                </div>
+                <p className="text-white font-semibold text-xs sm:text-sm">
+                  100% Custom Engineering & Dedicated Support
+                </p>
                 <p className="text-[#64748b] text-xs mt-0.5">
-                  <span className="text-white font-semibold">150+</span> projects delivered
+                  Building next-generation solutions for modern growth
                 </p>
               </div>
             </motion.div>

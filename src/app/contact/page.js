@@ -505,21 +505,21 @@ export default function ContactPage() {
                 Ready to get started?
               </h2>
               <p className="text-[hsl(230,15%,65%)] text-lg max-w-xl mx-auto mb-12">
-                Join 150+ businesses that trust AuraLink for their digital growth.
+                Partner with AuraLink to scale your digital presence, software, and AI operations.
               </p>
 
-              {/* Stats Row */}
-              <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-12">
+              {/* Value Highlights Row */}
+              <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto mb-12">
                 {[
-                  { value: 150, suffix: '+', label: 'Projects' },
-                  { value: 98, suffix: '%', label: 'Satisfaction' },
-                  { value: 24, suffix: '/7', label: 'Support' },
+                  { value: '100%', label: 'Custom Engineered' },
+                  { value: '24/7', label: 'Dedicated Support' },
+                  { value: 'Fast', label: 'Turnaround Delivery' },
                 ].map((stat) => (
-                  <GlassCard key={stat.label} className="p-6 text-center" hover={false}>
-                    <div className="font-display text-3xl md:text-4xl font-bold bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] bg-clip-text text-transparent mb-1">
-                      <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+                  <GlassCard key={stat.label} className="p-4 sm:p-6 text-center" hover={false}>
+                    <div className="font-display text-xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent mb-1">
+                      {stat.value}
                     </div>
-                    <div className="text-[hsl(230,10%,45%)] text-sm">{stat.label}</div>
+                    <div className="text-[hsl(230,10%,55%)] text-xs font-medium">{stat.label}</div>
                   </GlassCard>
                 ))}
               </div>
