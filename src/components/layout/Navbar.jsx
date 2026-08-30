@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sparkles, Sun, Moon } from 'lucide-react';
 import CurrencySelector from '@/components/ui/CurrencySelector';
 import { useTheme } from '@/lib/theme-context';
+import LogoModal from '@/components/ui/LogoModal';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -24,6 +25,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLogoModalOpen, setIsLogoModalOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
 
@@ -72,23 +74,29 @@ export default function Navbar() {
         <div className="w-full px-4 sm:px-6">
           <div className="flex items-center justify-between gap-4">
             {/* Brand Logo - Aligned Far Left */}
-            <Link href="/" className="flex items-center gap-3.5 group shrink-0">
-              <div className="relative w-10 h-10 sm:w-12 sm:h-12 transition-transform duration-300 group-hover:scale-105">
+            <div className="flex items-center gap-3.5 group shrink-0">
+              <div
+                onClick={() => setIsLogoModalOpen(true)}
+                onContextMenu={(e) => e.preventDefault()}
+                className="relative w-10 h-10 sm:w-12 sm:h-12 cursor-pointer transition-transform duration-300 group-hover:scale-105 select-none"
+                title="Click to view protected emblem"
+              >
                 <Image
                   src="/logo.png"
                   alt="AuraLink Digital Agency"
                   fill
-                  className="object-contain filter drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]"
+                  className="object-contain filter drop-shadow-[0_0_10px_rgba(0,212,255,0.5)] select-none pointer-events-none"
                   priority
+                  draggable={false}
                 />
               </div>
-              <div className="font-display font-black text-2xl sm:text-3xl tracking-wider uppercase flex items-center gap-2.5 leading-none">
+              <Link href="/" className="font-display font-black text-2xl sm:text-3xl tracking-wider uppercase flex items-center gap-2.5 leading-none">
                 <span className="logo-blue-shine-text font-black">AURALINK</span>
                 <span className="text-sm sm:text-base font-mono font-extrabold tracking-[0.2em] text-cyan-200 uppercase border-l-2 border-cyan-400/50 pl-2.5 drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]">
                   DIGITAL AGENCY
                 </span>
-              </div>
-            </Link>
+              </Link>
+            </div>
 
             {/* Full Screen Desktop Navigation Links - Bigger Blue-White Font */}
             <nav className="hidden lg:flex items-center gap-1.5">
@@ -228,6 +236,9 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
+
+      {/* Protected Logo Modal */}
+      <LogoModal isOpen={isLogoModalOpen} onClose={() => setIsLogoModalOpen(false)} />
     </>
   );
 }
