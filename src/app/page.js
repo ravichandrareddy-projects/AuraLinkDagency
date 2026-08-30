@@ -559,6 +559,91 @@ function HomepagePricingSection() {
   );
 }
 
+// ─── Why Choose AuraLink Section ──────────────────────────────────────────────
+const whyChooseReasons = [
+  {
+    icon: Zap,
+    title: '24/7 AI Availability',
+    desc: 'Your AI agents never sleep, ensuring round-the-clock lead capture and customer coverage for your business.',
+    gradient: 'from-purple-500 to-indigo-500',
+  },
+  {
+    icon: TrendingUp,
+    title: '70%+ Operational Cost Savings',
+    desc: 'Drastically reduce operational overhead by automating repetitive support, sales, and booking workflows.',
+    gradient: 'from-emerald-500 to-cyan-500',
+  },
+  {
+    icon: BarChart3,
+    title: 'Infinite Scalability',
+    desc: 'Handle thousands of customer interactions simultaneously without hiring extra staff or expanding call centers.',
+    gradient: 'from-cyan-500 to-blue-500',
+  },
+  {
+    icon: Target,
+    title: '99.9% Execution Accuracy',
+    desc: 'Custom-trained AI models with zero human fatigue, continuous learning, and error-free execution.',
+    gradient: 'from-amber-500 to-rose-500',
+  },
+  {
+    icon: Sparkles,
+    title: 'Sub-Second Speed',
+    desc: 'Instant responses across Voice, WhatsApp, and Web Chat — eliminate waiting times and boost conversion.',
+    gradient: 'from-rose-500 to-purple-500',
+  },
+  {
+    icon: Brain,
+    title: 'Seamless Integrations',
+    desc: 'Connects directly with your existing CRM, Razorpay, Stripe, WhatsApp Business API, and custom databases.',
+    gradient: 'from-indigo-500 to-cyan-500',
+  },
+]
+
+function WhyChooseSection() {
+  return (
+    <section className="py-20 px-6 relative z-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="badge badge-purple mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-[hsl(270,95%,65%)]" />
+            The AuraLink Advantage
+          </span>
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-white mb-4">
+            Why Choose <span className="gradient-text">AuraLink Digital Agency</span>
+          </h2>
+          <p className="text-[#94a3b8] text-base">
+            Transforming businesses with intelligent AI agents, custom software platforms, and high-converting web engineering.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {whyChooseReasons.map((item, i) => {
+            const Icon = item.icon
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="glass-card p-6 rounded-2xl border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-5 shadow-lg`}>
+                    <Icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-display font-bold text-xl text-white mb-3">{item.title}</h3>
+                  <p className="text-[#94a3b8] text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Main Page ──────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
@@ -569,6 +654,8 @@ export default function HomePage() {
       <RevenueCalculator />
       <div className="divider max-w-7xl mx-auto px-6" />
       <ServicesSection />
+      <div className="divider max-w-7xl mx-auto px-6" />
+      <WhyChooseSection />
       <div className="divider max-w-7xl mx-auto px-6" />
       <HomepagePricingSection />
       <div className="divider max-w-7xl mx-auto px-6" />

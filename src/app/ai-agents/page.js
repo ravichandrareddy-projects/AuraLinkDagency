@@ -259,12 +259,11 @@ export default function AIAgentsPage() {
       {/* CTA */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="relative p-10 md:p-16 rounded-3xl bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] text-center overflow-hidden">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
+          <div className="relative p-8 md:p-12 rounded-3xl bg-slate-900/80 border border-purple-500/30 text-center overflow-hidden shadow-2xl backdrop-blur-xl">
             <div className="relative z-10">
               <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">Ready to Deploy Your AI Agent?</h2>
-              <p className="text-white/80 text-lg max-w-xl mx-auto mb-8">Start automating your business operations today with our intelligent AI agents.</p>
-              <Button variant="secondary" href="/contact">Book AI Agent Demo</Button>
+              <p className="text-[hsl(230,15%,70%)] text-base max-w-xl mx-auto mb-8">Start automating your business operations today with our intelligent 24/7 AI agents.</p>
+              <Button variant="primary" href="/contact">Book AI Agent Demo</Button>
             </div>
           </div>
         </div>
