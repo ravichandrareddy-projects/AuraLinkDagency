@@ -83,9 +83,8 @@ export default function Navbar() {
                   priority
                 />
               </div>
-              <span className="font-display font-black text-xl tracking-tight text-white drop-shadow-md flex items-center gap-1.5">
-                AuraLink
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/15 text-cyan-300 border border-white/20">AGENCY</span>
+              <span className="font-display font-black text-xl tracking-wider uppercase text-white drop-shadow-md">
+                AURALINK
               </span>
             </Link>
 

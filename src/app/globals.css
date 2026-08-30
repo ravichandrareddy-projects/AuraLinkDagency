@@ -19,14 +19,31 @@
   }
 
   html.light-theme body {
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+  }
+
+  html.light-theme .bg-base-gradient {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+  }
+
+  html.light-theme .grid-pattern {
+    background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px) !important;
+    background-size: 28px 28px !important;
+  }
+
+  html.light-theme .stars-layer-1,
+  html.light-theme .stars-layer-2,
+  html.light-theme .stars-layer-3 {
+    opacity: 0.15 !important;
+    filter: invert(1);
   }
 
   html.light-theme .glass-card {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+    color: #0f172a !important;
   }
 
   html.light-theme h1,
@@ -37,7 +54,11 @@
   }
 
   html.light-theme p {
-    color: #334155;
+    color: #334155 !important;
+  }
+
+  html.light-theme .text-white {
+    color: #0f172a !important;
   }
 
   /* ─── Scrollbar ─────────────────────────────────────────── */
