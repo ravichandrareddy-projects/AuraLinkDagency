@@ -74,11 +74,11 @@ export default function Navbar() {
         <div className="w-full px-4 sm:px-6">
           <div className="flex items-center justify-between gap-4">
             {/* Brand Logo - Aligned Far Left */}
-            <div className="flex items-center gap-3.5 group shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3.5 group shrink-0">
               <div
                 onClick={() => setIsLogoModalOpen(true)}
                 onContextMenu={(e) => e.preventDefault()}
-                className="relative w-10 h-10 sm:w-12 sm:h-12 cursor-pointer transition-transform duration-300 group-hover:scale-105 select-none"
+                className="relative w-8 h-8 sm:w-11 sm:h-11 cursor-pointer transition-transform duration-300 group-hover:scale-105 select-none"
                 title="Click to view protected emblem"
               >
                 <Image
@@ -90,10 +90,12 @@ export default function Navbar() {
                   draggable={false}
                 />
               </div>
-              <Link href="/" className="font-display font-black text-2xl sm:text-3xl tracking-[0.16em] uppercase flex items-center gap-1 leading-none">
-                <span className="aura-text-shine font-black tracking-[0.16em]">AURA</span>
-                <span className="link-text-shine font-black tracking-[0.16em]">LINK</span>
-                <span className="text-xs sm:text-sm font-mono font-extrabold tracking-[0.22em] text-cyan-200 uppercase border-l-2 border-cyan-400/50 pl-2.5 ml-2 drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]">
+              <Link href="/" className="flex flex-col sm:flex-row sm:items-center items-start leading-none gap-0.5 sm:gap-2">
+                <div className="flex items-center gap-0.5">
+                  <span className="aura-text-shine font-black text-lg sm:text-2xl tracking-[0.14em]">AURA</span>
+                  <span className="link-text-shine font-black text-lg sm:text-2xl tracking-[0.14em]">LINK</span>
+                </div>
+                <span className="text-[8px] sm:text-xs font-mono font-extrabold tracking-[0.18em] text-cyan-200 uppercase sm:border-l-2 sm:border-cyan-400/50 sm:pl-2 drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]">
                   DIGITAL AGENCY
                 </span>
               </Link>
@@ -145,22 +147,23 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile Controls */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-xl bg-white/10 text-white"
-                aria-label="Toggle Theme"
-              >
-                {theme === 'dark' ? <Sun size={18} className="text-amber-300" /> : <Moon size={18} className="text-purple-300" />}
-              </button>
+            {/* Mobile Controls - Currency Selector & High Visibility 3 Lines Menu Button */}
+            <div className="flex items-center gap-1.5 lg:hidden shrink-0">
               <CurrencySelector compact />
               <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-xl bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all"
-                aria-label="Toggle Navigation Menu"
+                onClick={toggleTheme}
+                className="p-2 rounded-xl bg-white/10 border border-white/20 text-white"
+                aria-label="Toggle Theme"
               >
-                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                {theme === 'dark' ? <Sun size={16} className="text-amber-300" /> : <Moon size={16} className="text-purple-300" />}
+              </button>
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 border border-cyan-400/50 text-cyan-200 hover:bg-cyan-500/30 transition-all shadow-md shadow-cyan-500/20"
+                aria-label="Toggle Navigation Menu (3 Lines)"
+                title="Navigation Menu"
+              >
+                {isMobileMenuOpen ? <X size={22} className="text-cyan-200" /> : <Menu size={22} className="text-cyan-200" />}
               </button>
             </div>
           </div>
