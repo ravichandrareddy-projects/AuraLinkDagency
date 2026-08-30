@@ -145,8 +145,8 @@ export default function Footer() {
             © 2026 AuraLink Digital Agency. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Terms of Service</a>
+            <Link href="/privacy" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

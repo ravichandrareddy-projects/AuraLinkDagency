@@ -11,6 +11,7 @@ import HoverText from '@/components/ui/HoverText';
 import GradientBackground from '@/components/effects/GradientBackground';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import CurrencySelector from '@/components/ui/CurrencySelector';
+import RazorpayButton from '@/components/ui/RazorpayButton';
 import { useCurrency } from '@/lib/currency-context';
 import { packages, customServices } from '@/lib/pricing-data';
 
@@ -168,9 +169,17 @@ export default function PricingPage() {
                       )}
                     </div>
 
-                    <Button variant={pkg.popular ? 'primary' : 'secondary'} href="/contact" className="w-full justify-center">
-                      {pkg.cta}
-                    </Button>
+                    <div className="space-y-2">
+                      <RazorpayButton
+                        amountMap={pkg.prices}
+                        serviceName={pkg.name}
+                        className="w-full"
+                        buttonText="Pay & Book Now (Razorpay)"
+                      />
+                      <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
+                        {pkg.cta} <ArrowRight size={14} />
+                      </Button>
+                    </div>
                   </GlassCard>
                 </ScrollReveal>
               ))}
@@ -202,9 +211,12 @@ export default function PricingPage() {
                       </ul>
                     </div>
 
-                    <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
-                      Get Quote <ArrowRight size={14} />
-                    </Button>
+                    <div className="space-y-2">
+                      <RazorpayButton amountMap={srv.prices} serviceName={srv.name} className="w-full" />
+                      <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
+                        Get Custom Scope <ArrowRight size={14} />
+                      </Button>
+                    </div>
                   </GlassCard>
                 </ScrollReveal>
               ))}
@@ -242,9 +254,12 @@ export default function PricingPage() {
                       )}
                     </div>
 
-                    <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
-                      Deploy Agent <ArrowRight size={14} />
-                    </Button>
+                    <div className="space-y-2">
+                      <RazorpayButton amountMap={agent.prices} serviceName={agent.name} className="w-full" buttonText="Pay & Deploy Agent" />
+                      <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
+                        Book Demo Call <ArrowRight size={14} />
+                      </Button>
+                    </div>
                   </GlassCard>
                 </ScrollReveal>
               ))}

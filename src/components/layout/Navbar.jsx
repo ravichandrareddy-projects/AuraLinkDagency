@@ -5,18 +5,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 import CurrencySelector from '@/components/ui/CurrencySelector';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/ai-agents', label: 'AI Agents' },
   { href: '/software', label: 'Software' },
   { href: '/websites', label: 'Websites' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/portfolio', label: 'Portfolio' },
-  { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -48,92 +46,89 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
+      <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'bg-[rgba(10,10,25,0.85)] backdrop-blur-2xl border-b border-white/[0.06] shadow-2xl shadow-black/20'
-            : 'bg-transparent'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 px-3 py-3 transition-all duration-300 pointer-events-none"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? 'h-16' : 'h-20'}`}>
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-110">
+        <div className={`max-w-6xl mx-auto transition-all duration-300 pointer-events-auto ${
+          isScrolled
+            ? 'bg-[rgba(15,15,30,0.85)] backdrop-blur-xl border border-white/[0.1] shadow-2xl shadow-purple-950/20 rounded-full px-5 py-2.5'
+            : 'bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-2xl px-6 py-3.5'
+        }`}>
+          <div className="flex items-center justify-between">
+            {/* Brand Logo */}
+            <Link href="/" className="flex items-center gap-3 group shrink-0">
+              <div className="relative w-8 h-8 sm:w-9 sm:h-9 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/logo.png"
-                  alt="AuraLink"
+                  alt="AuraLink Digital Agency"
                   fill
                   className="object-contain"
                   priority
                 />
               </div>
-              <span className="font-display font-bold text-xl bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] bg-clip-text text-transparent">
+              <span className="font-display font-extrabold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-[hsl(270,95%,65%)] via-[hsl(210,100%,60%)] to-[hsl(185,100%,55%)] bg-clip-text text-transparent">
                 AuraLink
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
-                    pathname === link.href
-                      ? 'text-white'
-                      : 'text-[hsl(230,15%,65%)] hover:text-white'
-                  }`}
-                >
-                  {pathname === link.href && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute inset-0 bg-white/[0.08] rounded-lg border border-white/[0.06]"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.label}</span>
-                </Link>
-              ))}
-            </div>
+            {/* Desktop Navigation Links */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${
+                      isActive
+                        ? 'text-white font-bold'
+                        : 'text-[hsl(230,15%,70%)] hover:text-white hover:bg-white/[0.05]'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activePill"
+                        className="absolute inset-0 bg-gradient-to-r from-[hsl(270,95%,65%)]/20 to-[hsl(210,100%,60%)]/20 rounded-full border border-[hsl(270,95%,65%)]/40 shadow-sm shadow-purple-500/20"
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
+                  </Link>
+                );
+              })}
+            </nav>
 
-            {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-3">
-              <CurrencySelector />
+            {/* Right Action Items */}
+            <div className="hidden lg:flex items-center gap-3 shrink-0">
+              <CurrencySelector compact />
               <Link
                 href="/contact"
-                className="px-5 py-2.5 text-sm font-semibold rounded-xl bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-full bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] text-white shadow-md shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
               >
-                Book Consultation
+                <Sparkles size={13} />
+                <span>Get Started</span>
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white hover:bg-white/[0.08] transition-all"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
+            {/* Mobile Controls */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <CurrencySelector compact />
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white hover:bg-white/[0.1] transition-all"
+                aria-label="Toggle Navigation Menu"
+              >
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
           </div>
         </div>
+      </motion.header>
 
-        {/* Scroll Progress Bar */}
-        {isScrolled && (
-          <motion.div
-            className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)]"
-            style={{ width: '100%', scaleX: 0, transformOrigin: '0%' }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.3 }}
-          />
-        )}
-      </motion.nav>
-
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Navigation Drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -141,7 +136,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+              className="fixed inset-0 bg-black/70 backdrop-blur-md z-40 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
@@ -149,59 +144,53 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-[hsl(230,25%,7%)] border-l border-white/[0.08] z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-[hsl(230,25%,7%)] border-l border-white/[0.1] z-50 lg:hidden overflow-y-auto"
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
                   <span className="font-display font-bold text-lg bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] bg-clip-text text-transparent">
                     AuraLink
                   </span>
-                  <div className="flex items-center gap-2">
-                    <CurrencySelector compact />
-                    <button
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white"
-                    >
-                      <X size={20} />
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white"
+                  >
+                    <X size={20} />
+                  </button>
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  {navLinks.map((link, i) => (
-                    <motion.div
+                <div className="flex flex-col gap-1.5">
+                  <Link
+                    href="/"
+                    className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                      pathname === '/' ? 'bg-white/[0.08] text-white font-bold' : 'text-[hsl(230,15%,65%)]'
+                    }`}
+                  >
+                    Home
+                  </Link>
+                  {navLinks.map((link) => (
+                    <Link
                       key={link.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05 }}
+                      href={link.href}
+                      className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                        pathname === link.href
+                          ? 'bg-white/[0.08] text-white font-bold border border-white/[0.08]'
+                          : 'text-[hsl(230,15%,65%)] hover:text-white hover:bg-white/[0.04]'
+                      }`}
                     >
-                      <Link
-                        href={link.href}
-                        className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
-                          pathname === link.href
-                            ? 'bg-white/[0.08] text-white border border-white/[0.06]'
-                            : 'text-[hsl(230,15%,65%)] hover:text-white hover:bg-white/[0.04]'
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
+                      {link.label}
+                    </Link>
                   ))}
                 </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="mt-8"
-                >
+                <div className="mt-8">
                   <Link
                     href="/contact"
                     className="block w-full text-center px-5 py-3 text-sm font-semibold rounded-xl bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] text-white shadow-lg shadow-purple-500/25"
                   >
-                    Book Consultation
+                    Get Consultation
                   </Link>
-                </motion.div>
+                </div>
               </div>
             </motion.div>
           </>
