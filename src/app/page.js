@@ -487,6 +487,66 @@ function CTASection() {
   )
 }
 
+function PricingCard({ item, index, formatPrice }) {
+  const cardRef = useRef(null)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const rotateX = useSpring(useTransform(mouseY, [-100, 100], [8, -8]), { stiffness: 200, damping: 25 })
+  const rotateY = useSpring(useTransform(mouseX, [-100, 100], [-8, 8]), { stiffness: 200, damping: 25 })
+
+  const handleMouseMove = (e) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return
+    const rect = cardRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mouseX.set(e.clientX - rect.left - rect.width / 2)
+    mouseY.set(e.clientY - rect.top - rect.height / 2)
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0)
+    mouseY.set(0)
+  }
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      className="glass-card p-6 rounded-2xl border border-white/[0.08] hover:border-[hsl(270,95%,65%)]/40 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+    >
+      <div>
+        <span className="text-[11px] font-semibold text-[hsl(185,100%,55%)] uppercase tracking-wider block mb-2">
+          {item.popularFor}
+        </span>
+        <h3 className="font-display font-bold text-lg text-white mb-4 group-hover:text-[hsl(270,95%,65%)] transition-colors">
+          {item.category}
+        </h3>
+        <div className="mb-6">
+          <span className="text-xs text-[#94a3b8] block mb-1">
+            {item.startingLabel ? `${item.startingLabel} ` : 'Fixed Package '}
+          </span>
+          <span className="text-3xl font-extrabold gradient-text">
+            {formatPrice(item.prices)}
+          </span>
+        </div>
+      </div>
+
+      <Link
+        href={item.link}
+        className="inline-flex items-center justify-between text-xs font-semibold text-white bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] px-4 py-2.5 rounded-xl transition-all duration-200 group-hover:scale-[1.02]"
+      >
+        <span>Explore Solutions</span>
+        <ArrowRight size={14} />
+      </Link>
+    </motion.div>
+  )
+}
+
 // ─── Homepage Pricing Highlights Section ─────────────────────────────────────────
 function HomepagePricingSection() {
   const { formatPrice, currency } = useCurrency();
@@ -509,39 +569,7 @@ function HomepagePricingSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {homepagePricingHighlights.map((item, i) => (
-            <motion.div
-              key={item.category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-card p-6 rounded-2xl border border-white/[0.08] hover:border-[hsl(270,95%,65%)]/40 transition-all duration-300 flex flex-col justify-between group"
-            >
-              <div>
-                <span className="text-[11px] font-semibold text-[hsl(185,100%,55%)] uppercase tracking-wider block mb-2">
-                  {item.popularFor}
-                </span>
-                <h3 className="font-display font-bold text-lg text-white mb-4 group-hover:text-[hsl(270,95%,65%)] transition-colors">
-                  {item.category}
-                </h3>
-                <div className="mb-6">
-                  <span className="text-xs text-[#94a3b8] block mb-1">
-                    {item.startingLabel ? `${item.startingLabel} ` : 'Fixed Package '}
-                  </span>
-                  <span className="text-3xl font-extrabold gradient-text">
-                    {formatPrice(item.prices)}
-                  </span>
-                </div>
-              </div>
-
-              <Link
-                href={item.link}
-                className="inline-flex items-center justify-between text-xs font-semibold text-white bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] px-4 py-2.5 rounded-xl transition-all duration-200 group-hover:scale-[1.02]"
-              >
-                <span>Explore Solutions</span>
-                <ArrowRight size={14} />
-              </Link>
-            </motion.div>
+            <PricingCard key={item.category} item={item} index={i} formatPrice={formatPrice} />
           ))}
         </div>
 
