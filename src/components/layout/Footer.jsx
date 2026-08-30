@@ -125,7 +125,7 @@ export default function Footer() {
             <div className="mt-6 space-y-3">
               <div className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm">
                 <Mail size={14} />
-                <span>hello@auralink.agency</span>
+                <span>hello@auralinkdigitalagency.indevs.in</span>
               </div>
               <div className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm">
                 <Phone size={14} />

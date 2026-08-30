@@ -42,9 +42,9 @@ const projectTypes = [
 const supportCards = [
   {
     icon: Mail,
-    title: 'Email Us',
-    detail: 'hello@auralink.agency',
-    sub: 'We respond within 24 hours',
+    title: 'Order & Call Support Email',
+    detail: 'hello@auralinkdigitalagency.indevs.in',
+    sub: 'Ticket support — We reach out within 12 hours',
     gradient: 'from-accent-purple to-accent-blue',
   },
   {
@@ -87,6 +87,7 @@ export default function ContactPage() {
   })
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
+  const [ticketId, setTicketId] = useState('')
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -115,6 +116,8 @@ export default function ContactPage() {
       setErrors(validationErrors)
       return
     }
+    const generatedTicket = 'TICK-' + Math.floor(10000 + Math.random() * 90000)
+    setTicketId(generatedTicket)
     setSubmitted(true)
   }
 
@@ -344,16 +347,24 @@ export default function ContactPage() {
                       transition={{ delay: 0.4 }}
                       className="font-display text-2xl font-bold text-[hsl(0,0%,95%)] mb-2"
                     >
-                      Thank you!
+                      Thank You! Ticket Registered
                     </motion.h3>
-                    <motion.p
+                    <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5 }}
-                      className="text-[hsl(230,15%,65%)] max-w-sm"
+                      className="space-y-2 text-center max-w-md"
                     >
-                      We&apos;ll be in touch soon. Our team typically responds within 24 hours.
-                    </motion.p>
+                      <div className="inline-block px-4 py-1.5 rounded-full bg-[hsl(270,95%,65%)]/20 border border-[hsl(270,95%,65%)]/40 text-[hsl(270,95%,65%)] font-mono font-bold text-sm">
+                        Ticket ID: {ticketId || 'TICK-84920'}
+                      </div>
+                      <p className="text-[hsl(230,15%,75%)] text-sm leading-relaxed">
+                        Our specialized booking team will reach out to you within <strong>12 hours</strong> regarding your order and call booking.
+                      </p>
+                      <p className="text-[hsl(230,15%,55%)] text-xs font-mono pt-2">
+                        Official Order Support Email: hello@auralinkdigitalagency.indevs.in
+                      </p>
+                    </motion.div>
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
