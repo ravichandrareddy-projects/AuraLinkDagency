@@ -44,17 +44,17 @@ export default function ProblemSearch() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[hsl(270,95%,65%)]/10 border border-[hsl(270,95%,65%)]/20 text-[hsl(270,95%,65%)] text-xs font-semibold mb-2">
-              <Sparkles size={14} /> Solution Discovery Engine
+              <Sparkles size={14} /> AI Solution Discovery Search Engine
             </div>
-            <h3 className="font-display text-2xl md:text-3xl font-extrabold text-white">
-              What are you trying to solve?
+            <h3 className="font-display text-2xl md:text-4xl font-extrabold text-white">
+              What are you trying to <span className="gradient-text">solve & improve?</span>
             </h3>
-            <p className="text-[hsl(230,15%,65%)] text-sm mt-1">
-              Describe your business challenge to discover targeted AuraLink solutions.
+            <p className="text-[hsl(230,15%,65%)] text-sm md:text-base mt-1">
+              Search your exact business challenge or goal to instantly discover tailored AuraLink AI agents, software, and web solutions.
             </p>
           </div>
           <span className="text-[10px] uppercase font-mono tracking-widest px-2.5 py-1 rounded bg-white/[0.04] text-[hsl(230,15%,55%)] border border-white/[0.06] self-start md:self-center">
-            Deterministic Engine
+            AI Search Engine
           </span>
         </div>
 
