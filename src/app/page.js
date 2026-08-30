@@ -11,6 +11,7 @@ import {
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 import HoverText from '@/components/ui/HoverText'
 import ProblemSearch from '@/components/ui/ProblemSearch'
+import RevenueCalculator from '@/components/ui/RevenueCalculator'
 import { homepagePricingHighlights } from '@/lib/pricing-data'
 import { useCurrency } from '@/lib/currency-context'
 
@@ -557,6 +558,8 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ProblemSearch />
+      <div className="divider max-w-7xl mx-auto px-6" />
+      <RevenueCalculator />
       <div className="divider max-w-7xl mx-auto px-6" />
       <ServicesSection />
       <div className="divider max-w-7xl mx-auto px-6" />
