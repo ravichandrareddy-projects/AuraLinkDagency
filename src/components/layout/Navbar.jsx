@@ -82,9 +82,19 @@ export default function Navbar() {
                   priority
                 />
               </div>
-              <span className="font-display font-black text-lg md:text-xl tracking-wider uppercase text-white drop-shadow-md">
-                AURALINK DIGITAL AGENCY
-              </span>
+              <div className="flex flex-col items-start leading-none group">
+                <div className="font-display font-black text-lg sm:text-xl tracking-widest uppercase flex items-center">
+                  <span className="text-white drop-shadow-md">AURA</span>
+                  <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-md">LINK</span>
+                </div>
+                <div className="flex items-center gap-1.5 w-full mt-0.5">
+                  <div className="h-[1px] flex-1 bg-cyan-500/60" />
+                  <span className="text-[8px] sm:text-[9px] font-mono font-bold tracking-[0.22em] text-white/90 uppercase">
+                    DIGITAL AGENCY
+                  </span>
+                  <div className="h-[1px] flex-1 bg-cyan-500/60" />
+                </div>
+              </div>
             </Link>
 
             {/* Full Screen Desktop Navigation Links */}
@@ -175,9 +185,19 @@ export default function Navbar() {
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <span className="font-display font-black text-sm uppercase tracking-wider text-white">
-                    AURALINK DIGITAL AGENCY
-                  </span>
+                  <div className="flex flex-col items-start leading-none">
+                    <div className="font-display font-black text-base tracking-widest uppercase flex items-center">
+                      <span className="text-white">AURA</span>
+                      <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">LINK</span>
+                    </div>
+                    <div className="flex items-center gap-1 w-full mt-0.5">
+                      <div className="h-[1px] flex-1 bg-cyan-500/60" />
+                      <span className="text-[7.5px] font-mono font-bold tracking-[0.2em] text-white/90 uppercase">
+                        DIGITAL AGENCY
+                      </span>
+                      <div className="h-[1px] flex-1 bg-cyan-500/60" />
+                    </div>
+                  </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-2 rounded-xl bg-white/10 text-white"

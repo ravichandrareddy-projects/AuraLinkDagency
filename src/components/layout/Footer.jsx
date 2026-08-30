@@ -38,9 +38,19 @@ export default function Footer() {
               <div className="relative w-9 h-9">
                 <Image src="/logo.png" alt="AuraLink" fill className="object-contain" />
               </div>
-              <span className="font-display font-black text-lg tracking-wider uppercase text-white">
-                AURALINK DIGITAL AGENCY
-              </span>
+              <div className="flex flex-col items-start leading-none group">
+                <div className="font-display font-black text-lg tracking-widest uppercase flex items-center">
+                  <span className="text-white">AURA</span>
+                  <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">LINK</span>
+                </div>
+                <div className="flex items-center gap-1.5 w-full mt-0.5">
+                  <div className="h-[1px] flex-1 bg-cyan-500/60" />
+                  <span className="text-[8.5px] font-mono font-bold tracking-[0.22em] text-white/90 uppercase">
+                    DIGITAL AGENCY
+                  </span>
+                  <div className="h-[1px] flex-1 bg-cyan-500/60" />
+                </div>
+              </div>
             </Link>
             <p className="text-[hsl(230,15%,55%)] text-sm leading-relaxed mb-6">
               We build AI-powered agents, custom software products, and modern websites that automate operations and drive revenue for businesses worldwide.
