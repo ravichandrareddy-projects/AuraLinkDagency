@@ -12,6 +12,7 @@ import GradientBackground from '@/components/effects/GradientBackground';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import CurrencySelector from '@/components/ui/CurrencySelector';
 import RazorpayButton from '@/components/ui/RazorpayButton';
+import InteractivePaymentPortal from '@/components/ui/InteractivePaymentPortal';
 import { useCurrency } from '@/lib/currency-context';
 import { packages, customServices } from '@/lib/pricing-data';
 
@@ -96,6 +97,11 @@ export default function PricingPage() {
             <CurrencySelector />
           </motion.div>
         </div>
+      </section>
+
+      {/* Interactive Custom Payment & Search Portal */}
+      <section className="py-8 px-4 max-w-7xl mx-auto">
+        <InteractivePaymentPortal />
       </section>
 
       {/* Category Tabs */}
