@@ -3,6 +3,7 @@ import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { CurrencyProvider } from '@/lib/currency-context';
+import { ThemeProvider } from '@/lib/theme-context';
 import JsonLd from '@/components/seo/JsonLd';
 
 const inter = Inter({
@@ -80,23 +81,25 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-[#08080f] text-[#f8fafc] font-sans antialiased">
+      <body className="bg-[#08080f] text-[#f8fafc] font-sans antialiased transition-colors duration-300">
         <JsonLd />
-        <CurrencyProvider>
-          {/* Fixed Background Layer */}
-          <div className="fixed inset-0 z-[-1] bg-base-gradient grid-pattern overflow-hidden">
-            <div className="stars-layer-1" />
-            <div className="stars-layer-2" />
-            <div className="stars-layer-3" />
-          </div>
+        <ThemeProvider>
+          <CurrencyProvider>
+            {/* Fixed Background Layer */}
+            <div className="fixed inset-0 z-[-1] bg-base-gradient grid-pattern overflow-hidden">
+              <div className="stars-layer-1" />
+              <div className="stars-layer-2" />
+              <div className="stars-layer-3" />
+            </div>
 
-          {/* Foreground Content Layer */}
-          <div className="relative z-0 flex flex-col min-h-screen">
-            <Navbar />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-        </CurrencyProvider>
+            {/* Foreground Content Layer */}
+            <div className="relative z-0 flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+          </CurrencyProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

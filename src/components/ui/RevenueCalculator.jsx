@@ -8,12 +8,15 @@ import Button from '@/components/ui/Button';
 import { useCurrency } from '@/lib/currency-context';
 
 export default function RevenueCalculator() {
-  const { currency } = useCurrency();
+  const { currency, currencyMeta } = useCurrency();
+
+  const activeCode = typeof currency === 'string' ? currency : currency?.code || 'USD';
+  const sym = currencyMeta?.symbol || (activeCode === 'INR' ? '₹' : activeCode === 'EUR' ? '€' : '$');
 
   // Inputs
   const [monthlyLeads, setMonthlyLeads] = useState(250);
   const [leadValue, setLeadValue] = useState(
-    currency.code === 'INR' ? 50000 : currency.code === 'EUR' ? 600 : 700
+    activeCode === 'INR' ? 50000 : activeCode === 'EUR' ? 600 : 700
   );
   const [lostPercentage, setLostPercentage] = useState(35); // 35% default lead loss
 
@@ -39,9 +42,7 @@ export default function RevenueCalculator() {
 
   // Formatter helper for Crores / Lakhs in INR, Millions / K in USD & EUR
   const formatFormattedCurrency = (val) => {
-    const sym = currency.symbol;
-
-    if (currency.code === 'INR') {
+    if (activeCode === 'INR') {
       if (val >= 10000000) {
         return `${sym}${(val / 10000000).toFixed(2)} Cr`;
       }
@@ -85,7 +86,7 @@ export default function RevenueCalculator() {
           <GlassCard className="lg:col-span-6 p-6 sm:p-8 border border-white/[0.1] space-y-6" hover={false}>
             <h3 className="font-display font-bold text-lg text-white border-b border-white/[0.08] pb-3 flex items-center justify-between">
               <span>Adjust Your Metrics</span>
-              <span className="text-xs text-[hsl(185,100%,55%)] font-mono font-semibold">Currency: {currency.code} ({currency.symbol})</span>
+              <span className="text-xs text-[hsl(185,100%,55%)] font-mono font-semibold">Currency: {activeCode} ({sym})</span>
             </h3>
 
             {/* Slider 1: Monthly Inquiries */}
@@ -109,13 +110,13 @@ export default function RevenueCalculator() {
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs font-semibold">
                 <span className="text-[hsl(230,15%,70%)]">Average Deal / Customer Value:</span>
-                <span className="text-white font-bold text-sm">{currency.symbol}{leadValue.toLocaleString()}</span>
+                <span className="text-white font-bold text-sm">{sym}{leadValue.toLocaleString()}</span>
               </div>
               <input
                 type="range"
-                min={currency.code === 'INR' ? 5000 : 100}
-                max={currency.code === 'INR' ? 500000 : 10000}
-                step={currency.code === 'INR' ? 5000 : 100}
+                min={activeCode === 'INR' ? 5000 : 100}
+                max={activeCode === 'INR' ? 500000 : 10000}
+                step={activeCode === 'INR' ? 5000 : 100}
                 value={leadValue}
                 onChange={(e) => setLeadValue(parseInt(e.target.value))}
                 className="w-full h-2 bg-white/[0.08] rounded-lg appearance-none cursor-pointer accent-[hsl(185,100%,55%)]"

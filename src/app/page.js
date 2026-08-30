@@ -34,6 +34,7 @@ const features = [
     tag: 'Automated Support',
     stat: '24/7',
     statLabel: 'Availability',
+    link: '/ai-agents',
   },
   {
     id: 'custom-software',
@@ -46,6 +47,7 @@ const features = [
     tag: 'Tailored Solutions',
     stat: '100%',
     statLabel: 'Custom Built',
+    link: '/software',
   },
   {
     id: 'web-dev',
@@ -58,6 +60,7 @@ const features = [
     tag: 'High Conversion',
     stat: '5x',
     statLabel: 'More Leads',
+    link: '/websites',
   },
 ]
 
@@ -330,59 +333,63 @@ function FeatureCard({ feature, index }) {
   const Icon = feature.icon
 
   return (
-    <motion.div
-      ref={cardRef}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="glass-card p-6 group relative overflow-hidden cursor-default"
-    >
-      {/* Glow on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[20px]"
-        style={{ background: `radial-gradient(circle at 50% 0%, ${feature.glow} 0%, transparent 70%)` }}
-      />
+    <Link href={feature.link || '/services'} className="block h-full">
+      <motion.div
+        ref={cardRef}
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+        className="glass-card p-6 group relative overflow-hidden cursor-pointer h-full flex flex-col justify-between hover:border-[hsl(270,95%,65%)]/50 transition-all duration-300"
+      >
+        {/* Glow on hover */}
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[20px]"
+          style={{ background: `radial-gradient(circle at 50% 0%, ${feature.glow} 0%, transparent 70%)` }}
+        />
 
-      {/* Icon */}
-      <div className="mb-4 relative z-10">
-        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-lg`}>
-          <Icon className="w-6 h-6 text-white" />
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10">
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-white font-semibold text-lg font-display">{feature.title}</h3>
-          <span
-            className="text-[10px] font-semibold px-2 py-0.5 rounded-full border"
-            style={{
-              color: `rgba(255,255,255,0.7)`,
-              borderColor: feature.border,
-              background: `${feature.glow}`,
-            }}
-          >
-            {feature.tag}
-          </span>
-        </div>
-        <p className="text-[#64748b] text-sm leading-relaxed mb-4">{feature.description}</p>
-
-        {/* Stat */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/5">
-          <div>
-            <p className={`text-2xl font-bold bg-gradient-to-r ${feature.color} bg-clip-text text-transparent`}>
-              {feature.stat}
-            </p>
-            <p className="text-[#4b5563] text-[11px]">{feature.statLabel}</p>
+        {/* Icon */}
+        <div className="mb-4 relative z-10">
+          <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-lg`}>
+            <Icon className="w-6 h-6 text-white" />
           </div>
-          <ArrowRight className="w-4 h-4 text-[#4b5563] group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
         </div>
-      </div>
-    </motion.div>
+
+        {/* Content */}
+        <div className="relative z-10 flex-1 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-white font-semibold text-lg font-display">{feature.title}</h3>
+              <span
+                className="text-[10px] font-semibold px-2 py-0.5 rounded-full border"
+                style={{
+                  color: `rgba(255,255,255,0.7)`,
+                  borderColor: feature.border,
+                  background: `${feature.glow}`,
+                }}
+              >
+                {feature.tag}
+              </span>
+            </div>
+            <p className="text-[#64748b] text-sm leading-relaxed mb-4">{feature.description}</p>
+          </div>
+
+          {/* Stat */}
+          <div className="flex items-center justify-between pt-4 border-t border-white/5 mt-auto">
+            <div>
+              <p className={`text-2xl font-bold bg-gradient-to-r ${feature.color} bg-clip-text text-transparent`}>
+                {feature.stat}
+              </p>
+              <p className="text-[#4b5563] text-[11px]">{feature.statLabel}</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-[#4b5563] group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
+          </div>
+        </div>
+      </motion.div>
+    </Link>
   )
 }
 
