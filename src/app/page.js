@@ -6,7 +6,7 @@ import { motion, useMotionValue, useTransform, useSpring, useInView } from 'fram
 import {
   ArrowRight, Play, Sparkles, Upload, Brain, Target, Bell,
   CheckCircle2, TrendingUp, Briefcase, Zap, Bot, Code2, Globe, BarChart3,
-  MessageSquare
+  MessageSquare, Search, Plug, Rocket
 } from 'lucide-react'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 import HoverText from '@/components/ui/HoverText'
@@ -671,6 +671,99 @@ function WhyChooseSection() {
   )
 }
 
+// ─── How It Works Section ──────────────────────────────────────────────────────
+const processSteps = [
+  {
+    num: '01',
+    title: 'Discovery',
+    desc: 'We learn about your business needs, analyze existing workflows, and identify high-impact automation opportunities.',
+    icon: Search,
+  },
+  {
+    num: '02',
+    title: 'Configuration',
+    desc: 'We architect, configure, and train your custom AI agents and software platforms tailored to your exact operations.',
+    icon: Zap,
+  },
+  {
+    num: '03',
+    title: 'Integration',
+    desc: 'We seamlessly connect your solution with existing tools, CRM, WhatsApp API, payment gateways, and databases.',
+    icon: Plug,
+  },
+  {
+    num: '04',
+    title: 'Launch & Scale',
+    desc: 'Your AI agent & software platform go live 24/7, continuously learning, driving leads, and generating ROI.',
+    icon: Rocket,
+  },
+]
+
+function HowItWorksSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <section className="py-24 px-6 relative z-10 overflow-hidden" ref={ref}>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            className="badge badge-indigo mb-3"
+          >
+            <Zap className="w-3.5 h-3.5" />
+            Simple 4-Step Process
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1 }}
+            className="font-display font-bold text-4xl sm:text-5xl text-white mb-4"
+          >
+            How It <span className="gradient-text">Works</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+            className="text-[#94a3b8] text-base"
+          >
+            Get your autonomous AI agent and custom software platform up and running in four simple steps.
+          </motion.p>
+        </div>
+
+        {/* 4 Steps Process Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative mt-8">
+          {/* Glowing connecting line on desktop */}
+          <div className="hidden md:block absolute top-12 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-purple-500 via-cyan-400 to-emerald-400 z-0" />
+
+          {processSteps.map((step, i) => {
+            const Icon = step.icon
+            return (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                className="text-center relative z-10 flex flex-col items-center group"
+              >
+                {/* Glowing step icon */}
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center mb-4 shadow-xl shadow-purple-500/25 group-hover:scale-110 transition-transform duration-300 border border-white/20">
+                  <Icon className="w-7 h-7 text-white" />
+                </div>
+                <span className="text-purple-400 text-sm font-mono font-bold tracking-widest">{step.num}</span>
+                <h3 className="font-display text-xl font-bold text-white mt-1 mb-2 group-hover:text-cyan-300 transition-colors">{step.title}</h3>
+                <p className="text-[#94a3b8] text-sm leading-relaxed max-w-xs mx-auto">{step.desc}</p>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Main Page ──────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
@@ -679,6 +772,8 @@ export default function HomePage() {
       <ProblemSearch />
       <div className="divider max-w-7xl mx-auto px-6" />
       <RevenueCalculator />
+      <div className="divider max-w-7xl mx-auto px-6" />
+      <HowItWorksSection />
       <div className="divider max-w-7xl mx-auto px-6" />
       <ServicesSection />
       <div className="divider max-w-7xl mx-auto px-6" />
