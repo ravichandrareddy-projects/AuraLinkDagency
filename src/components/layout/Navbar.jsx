@@ -66,8 +66,8 @@ export default function Navbar() {
         transition={{ duration: 0.4, ease: 'easeInOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-gradient-to-r from-[hsl(265,90%,20%)] via-[hsl(245,85%,22%)] to-[hsl(215,90%,20%)] border-b border-purple-400/30 shadow-2xl shadow-purple-950/30 py-3 backdrop-blur-2xl'
-            : 'bg-gradient-to-r from-[hsl(265,85%,18%)] via-[hsl(240,80%,20%)] to-[hsl(215,85%,18%)] border-b border-white/20 shadow-xl py-4 backdrop-blur-xl'
+            ? 'bg-slate-900/90 dark:bg-slate-950/90 border-b border-white/15 shadow-2xl py-3 backdrop-blur-2xl'
+            : 'bg-white/10 dark:bg-white/[0.06] border-b border-white/20 shadow-xl py-4 backdrop-blur-xl'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -85,7 +85,7 @@ export default function Navbar() {
               </div>
               <span className="font-display font-black text-xl tracking-tight text-white drop-shadow-md flex items-center gap-1.5">
                 AuraLink
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/40">AGENCY</span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/15 text-cyan-300 border border-white/20">AGENCY</span>
               </span>
             </Link>
 
@@ -97,16 +97,16 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-3.5 py-1.5 text-xs font-extrabold rounded-full transition-all duration-200 ${
+                    className={`relative px-3.5 py-1.5 text-xs font-bold rounded-full transition-all duration-200 ${
                       isActive
-                        ? 'text-white font-black'
+                        ? 'text-white font-extrabold'
                         : 'text-white/80 hover:text-white hover:bg-white/10'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeNavPill"
-                        className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full border border-cyan-300/50 shadow-md shadow-cyan-500/30"
+                        className="absolute inset-0 bg-white/20 border border-white/30 rounded-full shadow-sm"
                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                       />
                     )}
@@ -132,7 +132,7 @@ export default function Navbar() {
 
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-black rounded-full bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 hover:from-amber-300 hover:to-rose-400 text-slate-950 shadow-lg shadow-amber-500/30 transition-all duration-300 hover:scale-[1.04] active:scale-[0.97]"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-extrabold rounded-full bg-white text-slate-950 hover:bg-slate-100 shadow-lg shadow-white/10 transition-all duration-300 hover:scale-[1.04] active:scale-[0.97]"
               >
                 <Sparkles size={14} className="text-slate-950" />
                 <span>Book Consultation</span>
@@ -177,7 +177,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-gradient-to-b from-[hsl(265,90%,18%)] via-[hsl(245,85%,20%)] to-slate-950 border-l border-white/20 z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-slate-950 border-l border-white/20 z-50 lg:hidden overflow-y-auto"
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
@@ -199,7 +199,7 @@ export default function Navbar() {
                       href={link.href}
                       className={`block px-4 py-3 rounded-xl text-sm font-bold transition-all ${
                         pathname === link.href
-                          ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-md'
+                          ? 'bg-white/20 text-white shadow-md border border-white/30'
                           : 'text-white/80 hover:text-white hover:bg-white/10'
                       }`}
                     >
@@ -211,7 +211,7 @@ export default function Navbar() {
                 <div className="mt-8">
                   <Link
                     href="/contact"
-                    className="block w-full text-center px-5 py-3.5 text-sm font-extrabold rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 shadow-xl"
+                    className="block w-full text-center px-5 py-3.5 text-sm font-extrabold rounded-xl bg-white text-slate-950 shadow-xl"
                   >
                     Book Consultation
                   </Link>

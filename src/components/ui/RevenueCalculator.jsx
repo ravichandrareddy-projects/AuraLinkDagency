@@ -22,7 +22,6 @@ export default function RevenueCalculator() {
 
   // Calculate Revenue Loss & Gains
   const calculation = useMemo(() => {
-    const totalPotentialRevenue = monthlyLeads * leadValue; // monthly
     const monthlyLostLeads = Math.round(monthlyLeads * (lostPercentage / 100));
     const monthlyRevenueLost = monthlyLostLeads * leadValue;
     const yearlyRevenueLost = monthlyRevenueLost * 12;
@@ -62,7 +61,7 @@ export default function RevenueCalculator() {
   };
 
   return (
-    <section className="py-16 px-4 relative z-10">
+    <section className="py-16 px-4 relative z-10 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12">
@@ -80,10 +79,10 @@ export default function RevenueCalculator() {
           </p>
         </div>
 
-        {/* Calculator Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* Calculator Grid - Clean 2 Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start w-full">
           {/* Controls Column */}
-          <GlassCard className="lg:col-span-6 p-6 sm:p-8 border border-white/[0.1] space-y-6" hover={false}>
+          <GlassCard className="w-full p-6 sm:p-8 border border-white/[0.1] space-y-6" hover={false}>
             <h3 className="font-display font-bold text-lg text-white border-b border-white/[0.08] pb-3 flex items-center justify-between">
               <span>Adjust Your Metrics</span>
               <span className="text-xs text-[hsl(185,100%,55%)] font-mono font-semibold">Currency: {activeCode} ({sym})</span>
@@ -145,28 +144,28 @@ export default function RevenueCalculator() {
           </GlassCard>
 
           {/* Results Summary Column */}
-          <div className="lg:col-span-6 space-y-6 flex flex-col justify-between">
+          <div className="w-full space-y-6 flex flex-col justify-between">
             {/* Loss Box */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-rose-950/40 via-rose-900/20 to-black/40 border border-rose-500/30 relative overflow-hidden shadow-xl">
-              <div className="flex items-center justify-between mb-2">
+            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-rose-950/50 via-rose-900/30 to-black/60 border border-rose-500/40 relative overflow-hidden shadow-xl">
+              <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold text-rose-400 uppercase tracking-wider">
-                  ⚠️ Estimated Revenue Bleed (Loss)
+                  ⚠️ ESTIMATED REVENUE BLEED (LOSS)
                 </span>
-                <span className="text-xs text-rose-300 font-mono">
+                <span className="text-xs text-rose-300 font-mono font-semibold">
                   {calculation.monthlyLostLeads} Leads Lost/mo
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mt-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                 <div>
-                  <span className="text-xs text-[hsl(230,15%,65%)] block">Monthly Revenue Loss</span>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-rose-400">
+                  <span className="text-xs text-[hsl(230,15%,65%)] block mb-1">Monthly Revenue Loss</span>
+                  <span className="text-3xl sm:text-4xl font-extrabold text-rose-400">
                     {formatFormattedCurrency(calculation.monthlyRevenueLost)}
                   </span>
                 </div>
                 <div>
-                  <span className="text-xs text-[hsl(230,15%,65%)] block">Yearly Revenue Loss</span>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-rose-300">
+                  <span className="text-xs text-[hsl(230,15%,65%)] block mb-1">Yearly Revenue Loss</span>
+                  <span className="text-3xl sm:text-4xl font-extrabold text-rose-300">
                     {formatFormattedCurrency(calculation.yearlyRevenueLost)}
                   </span>
                 </div>
@@ -174,30 +173,30 @@ export default function RevenueCalculator() {
             </div>
 
             {/* Recovered Box */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-[hsl(270,95%,65%)]/20 via-[hsl(210,100%,60%)]/20 to-emerald-950/30 border border-emerald-500/40 relative overflow-hidden shadow-2xl">
-              <div className="flex items-center justify-between mb-2">
+            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[hsl(270,95%,65%)]/20 via-[hsl(210,100%,60%)]/20 to-emerald-950/40 border border-emerald-500/40 relative overflow-hidden shadow-2xl">
+              <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Sparkles size={14} /> AuraLink AI Recovery Potential
+                  <Sparkles size={14} /> AURALINK AI RECOVERY POTENTIAL
                 </span>
-                <span className="text-xs text-emerald-300 font-mono">85% Recovery Rate</span>
+                <span className="text-xs text-emerald-300 font-mono font-semibold">85% Recovery Rate</span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mt-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                 <div>
-                  <span className="text-xs text-[hsl(230,15%,65%)] block">Recovered Monthly</span>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-emerald-400">
+                  <span className="text-xs text-[hsl(230,15%,65%)] block mb-1">Recovered Monthly</span>
+                  <span className="text-3xl sm:text-4xl font-extrabold text-emerald-400">
                     {formatFormattedCurrency(calculation.monthlyRecoveredRevenue)}
                   </span>
                 </div>
                 <div>
-                  <span className="text-xs text-[hsl(230,15%,65%)] block">Recovered Yearly</span>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-emerald-300">
+                  <span className="text-xs text-[hsl(230,15%,65%)] block mb-1">Recovered Yearly</span>
+                  <span className="text-3xl sm:text-4xl font-extrabold text-emerald-300">
                     {formatFormattedCurrency(calculation.yearlyRecoveredRevenue)}
                   </span>
                 </div>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-emerald-500/20 flex flex-wrap items-center justify-between gap-3">
+              <div className="mt-6 pt-5 border-t border-emerald-500/20 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-2 text-xs font-medium text-white/90">
                   <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
                   <span>24/7 AI Voice & WhatsApp Instant Response</span>
