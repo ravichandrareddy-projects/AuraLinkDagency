@@ -16,6 +16,7 @@ const navLinks = [
   { href: '/ai-agents', label: 'AI Agents' },
   { href: '/software', label: 'Software' },
   { href: '/websites', label: 'Websites' },
+  { href: '/tech-stack', label: 'Tech Stack' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/contact', label: 'Contact' },
 ];

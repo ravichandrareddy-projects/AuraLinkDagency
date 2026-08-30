@@ -13,6 +13,7 @@ const serviceLinks = [
 ];
 
 const companyLinks = [
+  { href: '/tech-stack', label: 'Tech Stack & Speeds' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
 ];

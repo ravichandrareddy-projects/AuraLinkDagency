@@ -81,9 +81,12 @@ export default function AIAgentsPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[hsl(270,95%,65%)] text-sm font-medium mb-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="flex flex-wrap items-center justify-center gap-3 mb-6">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[hsl(270,95%,65%)] text-sm font-medium">
               🤖 AI-Powered Automation
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-400/30 text-purple-300 text-sm font-mono font-bold">
+              ⚡ Deployed in &lt; 3 Business Days
             </span>
           </motion.div>
           <motion.h1

@@ -140,7 +140,12 @@ export default function SoftwarePage() {
         <GradientBackground />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <ScrollReveal>
-            <Badge variant="purple">Custom Software Solutions</Badge>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Badge variant="purple">Custom Software Solutions</Badge>
+              <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-300 text-sm font-mono font-bold">
+                ⚡ Delivered in &lt; 7 Business Days
+              </span>
+            </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>

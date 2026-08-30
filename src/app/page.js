@@ -6,7 +6,7 @@ import { motion, useMotionValue, useTransform, useSpring, useInView } from 'fram
 import {
   ArrowRight, Play, Sparkles, Upload, Brain, Target, Bell,
   CheckCircle2, TrendingUp, Briefcase, Zap, Bot, Code2, Globe, BarChart3,
-  MessageSquare, Search, Plug, Rocket
+  MessageSquare, Search, Plug, Rocket, Cpu
 } from 'lucide-react'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 import HoverText from '@/components/ui/HoverText'
@@ -785,6 +785,64 @@ function HowItWorksSection() {
   )
 }
 
+// ─── Home Tech Stack & Delivery Section ──────────────────────────────────────────
+function HomeTechStackSection() {
+  const turnaroundItems = [
+    { label: 'Websites & Landing Pages', speed: 'Delivered in 48 Hours', badge: 'Express 48h', icon: Globe },
+    { label: 'Autonomous AI Agents', speed: 'Delivered in < 3 Days', badge: 'Under 3 Days', icon: Bot },
+    { label: 'Custom Software & Apps', speed: 'Delivered in < 7 Days', badge: 'Under 7 Days', icon: Code2 },
+  ];
+
+  return (
+    <section className="py-20 relative overflow-hidden bg-slate-950/60 border-y border-white/[0.06]">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider mb-4">
+            <Cpu size={14} className="text-cyan-400" /> Engineering Stack & Rapid Delivery
+          </div>
+          <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            Built With Modern <span className="logo-blue-shine-text">Tech & AI Stack</span>
+          </h2>
+          <p className="text-[#94a3b8] text-sm sm:text-base max-w-xl mx-auto mt-3">
+            Guaranteed rapid turnaround schedules backed by Next.js, OpenAI, ElevenLabs, and AWS infrastructure.
+          </p>
+        </div>
+
+        {/* Turnaround Guarantees Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {turnaroundItems.map((item) => (
+            <div key={item.label} className="glass-card p-6 border-cyan-500/20 hover:border-cyan-500/40">
+              <div className="flex items-center justify-between mb-3">
+                <item.icon className="w-6 h-6 text-cyan-400" />
+                <span className="px-2.5 py-1 rounded-full bg-cyan-500/15 text-cyan-300 text-[11px] font-mono font-extrabold border border-cyan-400/30">
+                  {item.badge}
+                </span>
+              </div>
+              <h3 className="text-white font-bold text-lg">{item.label}</h3>
+              <p className="text-cyan-300 font-mono font-bold text-xl mt-1">{item.speed}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Tech Badges Row */}
+        <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex flex-wrap items-center justify-between gap-4 text-center sm:text-left">
+          <div>
+            <p className="text-white font-bold text-sm">Core Production Stack:</p>
+            <p className="text-[#64748b] text-xs mt-0.5">Next.js 14 • React • Python FastAPI • PostgreSQL • OpenAI GPT-4o • ElevenLabs • Twilio</p>
+          </div>
+          <Link
+            href="/tech-stack"
+            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-cyan-300 hover:text-white transition-colors"
+          >
+            <span>Explore Full Tech Stack</span>
+            <ArrowRight size={14} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Main Page ──────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
@@ -797,6 +855,8 @@ export default function HomePage() {
       <WhyChooseSection />
       <div className="divider max-w-7xl mx-auto px-6" />
       <HowItWorksSection />
+      <div className="divider max-w-7xl mx-auto px-6" />
+      <HomeTechStackSection />
       <div className="divider max-w-7xl mx-auto px-6" />
       <ServicesSection />
       <div className="divider max-w-7xl mx-auto px-6" />
