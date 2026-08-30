@@ -49,9 +49,9 @@ const supportCards = [
   },
   {
     icon: MessageSquare,
-    title: 'WhatsApp',
-    detail: '+91 98765 43210',
-    sub: 'Chat with us instantly',
+    title: 'WhatsApp & Direct Call',
+    detail: '+91 9440336396',
+    sub: 'Call or chat with us instantly',
     gradient: 'from-accent-blue to-accent-cyan',
   },
   {
@@ -65,7 +65,7 @@ const supportCards = [
 ]
 
 const officeInfo = [
-  { icon: MapPin, text: 'Bangalore, India' },
+  { icon: MapPin, text: 'Andhra Pradesh, India' },
   { icon: Clock, text: 'Mon-Sat, 10AM - 7PM IST' },
   { icon: Globe, text: 'Serving clients worldwide' },
 ]

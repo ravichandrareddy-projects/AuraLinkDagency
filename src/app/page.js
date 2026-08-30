@@ -221,11 +221,11 @@ function HeroSection() {
                 Book Consultation
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/portfolio" className="btn-secondary text-base py-3.5 px-7 flex items-center gap-2">
+              <Link href="/services" className="btn-secondary text-base py-3.5 px-7 flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full gradient-primary flex items-center justify-center">
-                  <Play className="w-3 h-3 text-white fill-white translate-x-0.5" />
+                  <Sparkles className="w-3 h-3 text-white" />
                 </div>
-                View Portfolio
+                Explore Services
               </Link>
             </motion.div>
 

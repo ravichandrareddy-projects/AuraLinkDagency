@@ -133,13 +133,16 @@ export default function Footer() {
                 <Mail size={14} />
                 <span>hello@auralinkdigitalagency.indevs.in</span>
               </a>
-              <div className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm">
+              <a
+                href="tel:+919440336396"
+                className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm hover:text-white transition-colors"
+              >
                 <Phone size={14} />
-                <span>+91 98765 43210</span>
-              </div>
+                <span>+91 9440336396</span>
+              </a>
               <div className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm">
                 <MapPin size={14} />
-                <span>Bangalore, India</span>
+                <span>Andhra Pradesh, India</span>
               </div>
             </div>
           </div>
