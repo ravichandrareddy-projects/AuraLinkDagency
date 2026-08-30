@@ -69,11 +69,11 @@ export default function Navbar() {
             : 'bg-white/10 dark:bg-white/[0.06] border-b border-white/20 shadow-xl py-4 backdrop-blur-xl'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between">
-            {/* Brand Logo */}
-            <Link href="/" className="flex items-center gap-3 group shrink-0">
-              <div className="relative w-9 h-9 transition-transform duration-300 group-hover:scale-105">
+        <div className="w-full px-4 sm:px-6">
+          <div className="flex items-center justify-between gap-4">
+            {/* Brand Logo - Aligned Far Left */}
+            <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+              <div className="relative w-8 h-8 sm:w-9 sm:h-9 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/logo.png"
                   alt="AuraLink Digital Agency"
@@ -82,18 +82,12 @@ export default function Navbar() {
                   priority
                 />
               </div>
-              <div className="flex flex-col items-start leading-none group">
-                <div className="font-display font-black text-lg sm:text-xl tracking-widest uppercase flex items-center">
-                  <span className="text-white drop-shadow-md">AURA</span>
-                  <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-md">LINK</span>
-                </div>
-                <div className="flex items-center gap-1.5 w-full mt-0.5">
-                  <div className="h-[1px] flex-1 bg-cyan-500/60" />
-                  <span className="text-[8px] sm:text-[9px] font-mono font-bold tracking-[0.22em] text-white/90 uppercase">
-                    DIGITAL AGENCY
-                  </span>
-                  <div className="h-[1px] flex-1 bg-cyan-500/60" />
-                </div>
+              <div className="font-display font-black text-base sm:text-lg tracking-wider uppercase flex items-center gap-1.5 leading-none">
+                <span className="text-white drop-shadow-md">AURA</span>
+                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-md">LINK</span>
+                <span className="text-[10px] sm:text-[11px] font-mono font-extrabold tracking-widest text-slate-300/90 uppercase ml-1">
+                  DIGITAL AGENCY
+                </span>
               </div>
             </Link>
 
