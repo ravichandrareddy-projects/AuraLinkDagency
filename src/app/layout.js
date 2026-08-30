@@ -38,6 +38,14 @@ export const metadata = {
     'Digital Transformation Agency',
   ],
   authors: [{ name: 'AuraLink Digital Agency' }],
+  icons: {
+    icon: [
+      { url: '/logo.png', type: 'image/png' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    shortcut: ['/favicon.ico'],
+    apple: [{ url: '/apple-icon.png' }],
+  },
   alternates: {
     canonical: 'https://auralink.agency',
   },
