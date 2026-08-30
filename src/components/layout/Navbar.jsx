@@ -72,8 +72,8 @@ export default function Navbar() {
         <div className="w-full px-4 sm:px-6">
           <div className="flex items-center justify-between gap-4">
             {/* Brand Logo - Aligned Far Left */}
-            <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-              <div className="relative w-8 h-8 sm:w-9 sm:h-9 transition-transform duration-300 group-hover:scale-105">
+            <Link href="/" className="flex items-center gap-3 group shrink-0">
+              <div className="relative w-9 h-9 sm:w-11 sm:h-11 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/logo.png"
                   alt="AuraLink Digital Agency"
@@ -82,31 +82,30 @@ export default function Navbar() {
                   priority
                 />
               </div>
-              <div className="font-display font-black text-base sm:text-lg tracking-wider uppercase flex items-center gap-1.5 leading-none">
-                <span className="text-white drop-shadow-md">AURA</span>
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-md">LINK</span>
-                <span className="text-[10px] sm:text-[11px] font-mono font-extrabold tracking-widest text-slate-300/90 uppercase ml-1">
+              <div className="font-display font-black text-xl sm:text-2xl tracking-wider uppercase flex items-center gap-2 leading-none">
+                <span className="aurora-rainbow-text font-black">AURALINK</span>
+                <span className="text-xs sm:text-sm font-mono font-extrabold tracking-[0.2em] text-cyan-200/90 uppercase ml-0.5 border-l border-cyan-400/40 pl-2">
                   DIGITAL AGENCY
                 </span>
               </div>
             </Link>
 
-            {/* Full Screen Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-1">
+            {/* Full Screen Desktop Navigation Links - Bigger Blue-White Font */}
+            <nav className="hidden lg:flex items-center gap-1.5">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-3.5 py-1.5 text-xs font-bold rounded-full transition-all duration-200 ${
+                    className={`relative px-4 py-2 text-sm sm:text-base font-bold rounded-full transition-all duration-200 ${
                       isActive
                         ? 'text-white font-extrabold'
-                        : 'text-white/80 hover:text-white hover:bg-white/10'
+                        : 'text-cyan-100/90 hover:text-white hover:bg-cyan-500/20'
                     }`}
                   >
                     {isActive && (
-                      <div className="absolute inset-0 bg-white/20 border border-white/30 rounded-full shadow-sm" />
+                      <div className="absolute inset-0 bg-cyan-500/30 border border-cyan-300/40 rounded-full shadow-md shadow-cyan-500/20" />
                     )}
                     <span className="relative z-10">{link.label}</span>
                   </Link>

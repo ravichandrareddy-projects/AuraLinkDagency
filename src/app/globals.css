@@ -23,6 +23,30 @@
     color: #0f172a !important;
   }
 
+  /* 24/7 Glowing Aurora Rainbow Text Animation */
+  @keyframes auroraRainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .aurora-rainbow-text {
+    background: linear-gradient(
+      90deg,
+      #38bdf8,
+      #a855f7,
+      #ec4899,
+      #10b981,
+      #06b6d4,
+      #38bdf8
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: auroraRainbow 5s ease infinite;
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
+  }
+
   html.light-theme .bg-base-gradient {
     background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
   }

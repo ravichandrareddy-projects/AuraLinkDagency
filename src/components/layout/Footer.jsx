@@ -34,14 +34,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-5 group">
-              <div className="relative w-8 h-8 sm:w-9 sm:h-9">
+            <Link href="/" className="flex items-center gap-3 mb-5 group">
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10">
                 <Image src="/logo.png" alt="AuraLink" fill className="object-contain" />
               </div>
-              <div className="font-display font-black text-base sm:text-lg tracking-wider uppercase flex items-center gap-1.5 leading-none">
-                <span className="text-white">AURA</span>
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">LINK</span>
-                <span className="text-[10px] sm:text-[11px] font-mono font-extrabold tracking-widest text-slate-400 uppercase ml-1">
+              <div className="font-display font-black text-lg sm:text-xl tracking-wider uppercase flex items-center gap-2 leading-none">
+                <span className="aurora-rainbow-text font-black">AURALINK</span>
+                <span className="text-xs font-mono font-extrabold tracking-[0.2em] text-cyan-200/90 uppercase ml-0.5 border-l border-cyan-400/40 pl-2">
                   DIGITAL AGENCY
                 </span>
               </div>
