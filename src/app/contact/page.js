@@ -23,12 +23,11 @@ import ScrollReveal from '@/components/effects/ScrollReveal'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 
 const budgetOptions = [
-  'Under ₹10,000',
-  '₹10,000 - ₹25,000',
-  '₹25,000 - ₹50,000',
-  '₹50,000 - ₹1,00,000',
-  '₹1,00,000+',
-  'Not Sure',
+  'Starter / Basic',
+  'Growth / Standard',
+  'Professional / Premium',
+  'Enterprise',
+  'Flexible / To be discussed',
 ]
 
 const projectTypes = [

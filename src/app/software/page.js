@@ -24,8 +24,8 @@ import SectionHeading from '@/components/ui/SectionHeading'
 import GradientBackground from '@/components/effects/GradientBackground'
 import ScrollReveal from '@/components/effects/ScrollReveal'
 import { staggerContainer, staggerItem, fadeInUp } from '@/lib/animations'
-
 import HoverText from '@/components/ui/HoverText'
+import { useCurrency } from '@/lib/currency-context'
 
 /* ─── Inline Data ─── */
 
@@ -36,7 +36,8 @@ const categories = [
     description: 'Dynamic, responsive web apps built for performance, scalability, and seamless user experience.',
     tech: ['React', 'Next.js', 'Node.js'],
     timeline: '6-10 weeks',
-    price: 'From ₹1,00,000',
+    isStarting: true,
+    prices: { INR: 39999, USD: 399, EUR: 379 },
     gradient: 'from-violet-500 to-blue-500',
   },
   {
@@ -45,7 +46,8 @@ const categories = [
     description: 'Cross-platform mobile apps with native-level performance for iOS and Android.',
     tech: ['React Native', 'Flutter'],
     timeline: '8-14 weeks',
-    price: 'From ₹1,50,000',
+    isStarting: true,
+    prices: { INR: 59999, USD: 599, EUR: 549 },
     gradient: 'from-blue-500 to-cyan-500',
   },
   {
@@ -54,7 +56,8 @@ const categories = [
     description: 'Powerful desktop software for Windows, macOS, and Linux with modern UI.',
     tech: ['Electron', 'Python'],
     timeline: '6-10 weeks',
-    price: 'From ₹80,000',
+    isStarting: true,
+    prices: { INR: 59999, USD: 599, EUR: 549 },
     gradient: 'from-cyan-500 to-teal-500',
   },
   {
@@ -63,7 +66,8 @@ const categories = [
     description: 'Scalable cloud-based platforms with billing, auth, and multi-tenant architecture.',
     tech: ['Next.js', 'AWS', 'Stripe'],
     timeline: '12-20 weeks',
-    price: 'From ₹2,00,000',
+    isStarting: true,
+    prices: { INR: 49999, USD: 699, EUR: 649 },
     gradient: 'from-purple-500 to-pink-500',
   },
   {
@@ -72,16 +76,18 @@ const categories = [
     description: 'Custom CRM solutions to manage leads, customers, and sales pipelines effortlessly.',
     tech: ['React', 'PostgreSQL'],
     timeline: '8-12 weeks',
-    price: 'From ₹1,20,000',
+    isStarting: true,
+    prices: { INR: 59999, USD: 699, EUR: 649 },
     gradient: 'from-pink-500 to-rose-500',
   },
   {
     name: 'ERP Systems',
     icon: Building,
-    description: 'Enterprise resource planning systems tailored to your business workflows.',
+    description: 'Enterprise resource planning connecting sales, inventory, HR, purchasing, and accounting.',
     tech: ['Node.js', 'MongoDB'],
     timeline: '16-24 weeks',
-    price: 'From ₹2,50,000',
+    isCustomQuote: true,
+    prices: 'Custom Quote',
     gradient: 'from-amber-500 to-orange-500',
   },
   {
@@ -90,7 +96,8 @@ const categories = [
     description: 'Admin dashboards, automation tools, and internal utilities that save hours daily.',
     tech: ['React', 'Firebase'],
     timeline: '4-8 weeks',
-    price: 'From ₹60,000',
+    isStarting: true,
+    prices: { INR: 39999, USD: 499, EUR: 449 },
     gradient: 'from-emerald-500 to-green-500',
   },
   {
@@ -99,7 +106,8 @@ const categories = [
     description: 'Intelligent platforms leveraging AI/ML for automation, insights, and prediction.',
     tech: ['Python', 'TensorFlow', 'OpenAI'],
     timeline: '10-16 weeks',
-    price: 'From ₹3,00,000',
+    isStarting: true,
+    prices: { INR: 49999, USD: 699, EUR: 649 },
     gradient: 'from-violet-600 to-indigo-500',
   },
 ]
@@ -120,6 +128,7 @@ const techStack = [
 /* ─── Page Component ─── */
 
 export default function SoftwarePage() {
+  const { formatPrice } = useCurrency();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -211,17 +220,18 @@ export default function SoftwarePage() {
                       </span>
                     </div>
 
-                    {/* Price */}
-                    <p className="text-xl font-bold gradient-text mb-4">{cat.price}</p>
-
-                    {/* CTA */}
-                    <a
-                      href="/contact"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(270,95%,65%)] hover:text-[hsl(210,100%,60%)] transition-colors duration-300 group/link"
-                    >
-                      Get Started
-                      <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
-                    </a>
+                    <div className="mt-auto pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                      <span className="text-base font-extrabold gradient-text">
+                        {cat.isCustomQuote ? 'Custom Quote' : formatPrice(cat.prices, cat.isStarting)}
+                      </span>
+                      <a
+                        href="/contact"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[hsl(270,95%,65%)] hover:text-[hsl(210,100%,60%)] transition-colors duration-300 group/link"
+                      >
+                        Get Started
+                        <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform duration-300" />
+                      </a>
+                    </div>
                   </GlassCard>
                 </motion.div>
               )

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, X, Download, CreditCard, Globe, Bot, Code, Puzzle, Sparkles, ArrowRight } from 'lucide-react';
+import { Check, Globe, Bot, Code, Puzzle, Sparkles, ArrowRight, ShieldAlert, Layers, HelpCircle } from 'lucide-react';
 import GlassCard from '@/components/ui/GlassCard';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -10,77 +10,60 @@ import Badge from '@/components/ui/Badge';
 import HoverText from '@/components/ui/HoverText';
 import GradientBackground from '@/components/effects/GradientBackground';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { plans, customServices } from '@/lib/pricing-data';
+import CurrencySelector from '@/components/ui/CurrencySelector';
+import { useCurrency } from '@/lib/currency-context';
+import { packages, customServices } from '@/lib/pricing-data';
 
-const categoryIcons = { websites: Globe, aiAgents: Bot, software: Code, addons: Puzzle };
-const categoryLabels = { websites: 'Websites', aiAgents: 'AI Agents', software: 'Software', addons: 'Add-ons' };
+const categoryIcons = {
+  packages: Layers,
+  websites: Globe,
+  aiAgents: Bot,
+  software: Code,
+  addons: Puzzle,
+};
 
-const invoices = [
-  { id: 'INV-001', date: 'Jan 15, 2024', amount: '₹25,000', status: 'Paid' },
-  { id: 'INV-002', date: 'Feb 15, 2024', amount: '₹5,000', status: 'Paid' },
-  { id: 'INV-003', date: 'Mar 15, 2024', amount: '₹50,000', status: 'Pending' },
-  { id: 'INV-004', date: 'Apr 15, 2024', amount: '₹10,000', status: 'Paid' },
-];
-
-const paymentMethods = [
-  { name: 'Visa', primary: true },
-  { name: 'Mastercard', primary: false },
-  { name: 'UPI', primary: false },
-  { name: 'Razorpay', primary: false },
-  { name: 'Stripe', primary: false },
-];
+const categoryLabels = {
+  packages: 'Packages & Bundles',
+  websites: 'Websites & E-Commerce',
+  aiAgents: 'AI Agent Solutions',
+  software: 'Custom Software',
+  addons: 'Add-ons & Support',
+};
 
 export default function PricingPage() {
-  const [billingPeriod, setBillingPeriod] = useState('monthly');
+  const { currency, formatPrice } = useCurrency();
+  const [activeTab, setActiveTab] = useState('packages');
   const [selectedServices, setSelectedServices] = useState([]);
 
   const toggleService = (serviceId) => {
-    setSelectedServices(prev =>
-      prev.includes(serviceId)
-        ? prev.filter(id => id !== serviceId)
-        : [...prev, serviceId]
+    setSelectedServices((prev) =>
+      prev.includes(serviceId) ? prev.filter((id) => id !== serviceId) : [...prev, serviceId]
     );
   };
 
-  const allServices = useMemo(() => {
-    const all = [];
-    Object.entries(customServices).forEach(([category, items]) => {
-      items.forEach(item => all.push({ ...item, category }));
+  const allServiceItems = useMemo(() => {
+    const list = [];
+    Object.entries(customServices).forEach(([catKey, items]) => {
+      items.forEach((item) => list.push({ ...item, category: catKey }));
     });
-    return all;
+    return list;
   }, []);
 
-  const selectedItems = allServices.filter(s => selectedServices.includes(s.id));
-  const subtotal = selectedItems.reduce((sum, item) => sum + item.price, 0);
-  const hasDiscount = selectedItems.length > 3;
-  const discount = hasDiscount ? Math.round(subtotal * 0.1) : 0;
-  const total = subtotal - discount;
-
-  const formatPrice = (price) => {
-    if (typeof price === 'number') {
-      return '₹' + price.toLocaleString('en-IN');
-    }
-    return price;
-  };
-
-  const getDisplayPrice = (plan) => {
-    if (plan.price === 'Custom') return 'Custom';
-    const price = billingPeriod === 'yearly' ? Math.round(plan.price * 0.8) : plan.price;
-    return formatPrice(price);
-  };
+  const selectedItems = allServiceItems.filter((s) => selectedServices.includes(s.id));
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen pb-24">
       <GradientBackground />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 px-4">
+      <section className="relative pt-32 pb-12 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[hsl(270,95%,65%)] text-sm font-medium mb-6">
-              💰 Transparent Pricing
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[hsl(270,95%,65%)] text-sm font-medium mb-6">
+              💰 Transparent Localized Pricing
             </span>
           </motion.div>
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,338 +74,302 @@ export default function PricingPage() {
             <br />
             <HoverText text="Every Business" className="bg-gradient-to-r from-[hsl(270,95%,65%)] via-[hsl(210,100%,60%)] to-[hsl(185,100%,55%)] bg-clip-text text-transparent" highlightHover={false} />
           </motion.h1>
+
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-[hsl(230,15%,65%)] text-lg md:text-xl max-w-2xl mx-auto"
+            className="text-[hsl(230,15%,65%)] text-lg md:text-xl max-w-2xl mx-auto mb-8"
           >
-            Choose a plan or build your custom package. No hidden fees, no surprises.
+            Select your preferred currency. Transparent fixed rates with no hidden live conversion fees.
           </motion.p>
+
+          {/* Currency Switcher Container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="inline-flex items-center gap-3 p-2 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md shadow-xl"
+          >
+            <span className="text-xs font-semibold text-[hsl(230,15%,65%)] pl-2">Select Display Currency:</span>
+            <CurrencySelector />
+          </motion.div>
         </div>
       </section>
 
-      {/* Billing Toggle */}
-      <section className="pb-8 px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="flex items-center justify-center gap-4"
-        >
-          <div className="relative flex items-center bg-white/[0.04] border border-white/[0.08] rounded-xl p-1">
-            <button
-              onClick={() => setBillingPeriod('monthly')}
-              className={`relative px-5 py-2 text-sm font-medium rounded-lg transition-all duration-300 z-10 ${
-                billingPeriod === 'monthly' ? 'text-white' : 'text-[hsl(230,15%,55%)]'
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setBillingPeriod('yearly')}
-              className={`relative px-5 py-2 text-sm font-medium rounded-lg transition-all duration-300 z-10 ${
-                billingPeriod === 'yearly' ? 'text-white' : 'text-[hsl(230,15%,55%)]'
-              }`}
-            >
-              Yearly
-            </button>
-            <motion.div
-              className="absolute inset-y-1 rounded-lg bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)]"
-              initial={false}
-              animate={{
-                left: billingPeriod === 'monthly' ? '4px' : '50%',
-                right: billingPeriod === 'yearly' ? '4px' : '50%',
-              }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            />
+      {/* Category Tabs */}
+      <section className="py-6 px-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-center">
+          <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md">
+            {Object.keys(categoryLabels).map((catKey) => {
+              const Icon = categoryIcons[catKey];
+              const isActive = activeTab === catKey;
+              return (
+                <button
+                  key={catKey}
+                  onClick={() => setActiveTab(catKey)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
+                    isActive
+                      ? 'bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] text-white shadow-lg shadow-purple-500/20 font-semibold'
+                      : 'text-[hsl(230,15%,65%)] hover:text-white hover:bg-white/[0.04]'
+                  }`}
+                >
+                  <Icon size={16} />
+                  <span>{categoryLabels[catKey]}</span>
+                </button>
+              );
+            })}
           </div>
-          {billingPeriod === 'yearly' && (
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}>
-              <Badge variant="purple">Save 20%</Badge>
-            </motion.div>
-          )}
-        </motion.div>
+        </div>
       </section>
 
-      {/* Standard Plans */}
+      {/* Tab Content Display */}
       <section className="py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {plans.map((plan, i) => (
-              <ScrollReveal key={plan.name} delay={i * 0.1}>
-                <div className={`relative h-full ${plan.popular ? 'lg:-mt-4 lg:mb-4' : ''}`}>
-                  {plan.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-[60]">
-                      <Badge variant="purple">Most Popular</Badge>
-                    </div>
-                  )}
+          {/* Packages View */}
+          {activeTab === 'packages' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {packages.map((pkg, i) => (
+                <ScrollReveal key={pkg.id} delay={i * 0.08}>
                   <GlassCard
                     hover
-                    className={`p-6 h-full flex flex-col ${
-                      plan.popular
-                        ? 'ring-2 ring-[hsl(270,95%,65%)] shadow-lg shadow-purple-500/10'
-                        : ''
+                    className={`p-6 h-full flex flex-col justify-between relative ${
+                      pkg.popular ? 'ring-2 ring-[hsl(270,95%,65%)] shadow-xl shadow-purple-500/15' : ''
                     }`}
                   >
-                    <h3 className="font-display text-lg font-bold text-white mb-2">{plan.name}</h3>
-                    <div className="mb-4">
-                      <span className="text-3xl md:text-4xl font-bold text-white">
-                        {getDisplayPrice(plan)}
-                      </span>
-                      {plan.price !== 'Custom' && (
-                        <span className="text-[hsl(230,15%,55%)] text-sm ml-1">/project</span>
+                    {pkg.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <Badge variant="purple">Most Popular</Badge>
+                      </div>
+                    )}
+                    <div>
+                      <h3 className="font-display text-xl font-bold text-white mb-1">{pkg.name}</h3>
+                      <p className="text-[hsl(230,15%,55%)] text-xs mb-4">{pkg.tagline}</p>
+
+                      <div className="mb-6">
+                        <span className="text-3xl sm:text-4xl font-extrabold text-white">
+                          {formatPrice(pkg.prices)}
+                        </span>
+                      </div>
+
+                      <ul className="space-y-3 mb-6">
+                        {pkg.features.map((feat, j) => (
+                          <li key={j} className="flex items-start gap-2.5 text-xs sm:text-sm text-[hsl(230,15%,70%)]">
+                            <Check size={16} className="text-[hsl(185,100%,55%)] shrink-0 mt-0.5" />
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {pkg.note && (
+                        <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs mb-6">
+                          ⚠️ {pkg.note}
+                        </div>
                       )}
                     </div>
-                    {billingPeriod === 'yearly' && plan.price !== 'Custom' && (
-                      <p className="text-xs text-[hsl(270,95%,65%)] mb-3">
-                        Save {formatPrice(Math.round(plan.price * 0.2))}
-                      </p>
-                    )}
-                    <ul className="space-y-3 mb-6 flex-1">
-                      {plan.features.map((feat, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-[hsl(230,15%,65%)]">
-                          <Check size={16} className="text-[hsl(185,100%,55%)] mt-0.5 shrink-0" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button
-                      variant={plan.popular ? 'primary' : 'secondary'}
-                      onClick={() => alert('Payment Gateway Integration Coming Soon!')}
-                      className="w-full justify-center"
-                    >
-                      {plan.cta || 'Get Started'}
+
+                    <Button variant={pkg.popular ? 'primary' : 'secondary'} href="/contact" className="w-full justify-center">
+                      {pkg.cta}
                     </Button>
                   </GlassCard>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Custom Builder */}
-      <section className="py-24 px-4 bg-[hsl(230,20%,11%)]/50">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeading title="Build Your Custom Package" subtitle="Select exactly what you need and get an instant price estimate" centered />
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr,380px] gap-8 mt-12">
-            {/* Service Selection */}
-            <div className="space-y-6">
-              {Object.entries(customServices).map(([category, items]) => {
-                const Icon = categoryIcons[category];
-                return (
-                  <GlassCard key={category} className="p-0 overflow-hidden">
-                    <div className="px-6 py-4 border-b border-white/[0.06] flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[hsl(270,95%,65%)]/15 to-[hsl(210,100%,60%)]/15 flex items-center justify-center">
-                        <Icon size={16} className="text-[hsl(270,95%,65%)]" />
-                      </div>
-                      <h3 className="font-display font-bold text-white">{categoryLabels[category]}</h3>
-                    </div>
-                    <div className="divide-y divide-white/[0.04]">
-                      {items.map((service) => {
-                        const isSelected = selectedServices.includes(service.id);
-                        return (
-                          <button
-                            key={service.id}
-                            onClick={() => toggleService(service.id)}
-                            className={`w-full flex items-center gap-4 px-6 py-4 text-left transition-all duration-200 hover:bg-white/[0.02] ${
-                              isSelected ? 'bg-[hsl(270,95%,65%)]/[0.06]' : ''
-                            }`}
-                          >
-                            <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 shrink-0 ${
-                              isSelected
-                                ? 'bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] border-transparent'
-                                : 'border-[hsl(230,10%,35%)]'
-                            }`}>
-                              {isSelected && <Check size={12} className="text-white" />}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-white text-sm font-medium">{service.name}</p>
-                              {service.description && (
-                                <p className="text-[hsl(230,10%,45%)] text-xs mt-0.5 truncate">{service.description}</p>
-                              )}
-                            </div>
-                            <span className="text-[hsl(230,15%,55%)] text-sm font-medium shrink-0">
-                              {formatPrice(service.price)}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </GlassCard>
-                );
-              })}
+                </ScrollReveal>
+              ))}
             </div>
+          )}
 
-            {/* Price Summary */}
-            <div className="lg:sticky lg:top-24 h-fit">
-              <GlassCard className="p-0 overflow-hidden">
-                <div className="h-1 w-full bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)]" />
-                <div className="p-6">
-                  <h3 className="font-display text-xl font-bold text-white mb-6">Your Package</h3>
+          {/* Websites View */}
+          {activeTab === 'websites' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {customServices.websites.map((srv, i) => (
+                <ScrollReveal key={srv.id} delay={i * 0.05}>
+                  <GlassCard hover className="p-6 h-full flex flex-col justify-between">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[hsl(185,100%,55%)]">Web Development</span>
+                      <h3 className="font-display text-lg font-bold text-white mt-1 mb-2">{srv.name}</h3>
+                      <p className="text-[hsl(230,15%,60%)] text-xs mb-4 leading-relaxed">{srv.description}</p>
 
-                  {selectedItems.length === 0 ? (
-                    <div className="py-12 text-center">
-                      <Sparkles size={40} className="text-[hsl(230,10%,35%)] mx-auto mb-3" />
-                      <p className="text-[hsl(230,10%,45%)] text-sm">Select services to see pricing</p>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="space-y-3 mb-6 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
-                        <AnimatePresence>
-                          {selectedItems.map((item) => (
-                            <motion.div
-                              key={item.id}
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="flex items-center justify-between text-sm"
-                            >
-                              <span className="text-[hsl(230,15%,65%)] truncate mr-2">{item.name}</span>
-                              <span className="text-white font-medium shrink-0">{formatPrice(item.price)}</span>
-                            </motion.div>
-                          ))}
-                        </AnimatePresence>
+                      <div className="mb-5">
+                        <span className="text-2xl font-bold gradient-text">{formatPrice(srv.prices)}</span>
                       </div>
 
-                      <div className="border-t border-white/[0.08] pt-4 space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-[hsl(230,15%,55%)]">Subtotal</span>
-                          <span className="text-white">{formatPrice(subtotal)}</span>
+                      <ul className="space-y-2 mb-6">
+                        {srv.features.map((f, idx) => (
+                          <li key={idx} className="flex items-center gap-2 text-xs text-[hsl(230,15%,70%)]">
+                            <Check size={14} className="text-[hsl(185,100%,55%)] shrink-0" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
+                      Get Quote <ArrowRight size={14} />
+                    </Button>
+                  </GlassCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          )}
+
+          {/* AI Agents View */}
+          {activeTab === 'aiAgents' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {customServices.aiAgents.map((agent, i) => (
+                <ScrollReveal key={agent.id} delay={i * 0.05}>
+                  <GlassCard hover className="p-6 h-full flex flex-col justify-between">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[hsl(270,95%,65%)]">AI Agent Solution</span>
+                      <h3 className="font-display text-lg font-bold text-white mt-1 mb-2">{agent.name}</h3>
+                      <p className="text-[hsl(230,15%,60%)] text-xs mb-4 leading-relaxed">{agent.description}</p>
+
+                      <div className="mb-4">
+                        <span className="text-2xl font-bold gradient-text">{formatPrice(agent.prices)}</span>
+                      </div>
+
+                      <ul className="space-y-2 mb-4">
+                        {agent.features.map((f, idx) => (
+                          <li key={idx} className="flex items-center gap-2 text-xs text-[hsl(230,15%,70%)]">
+                            <Check size={14} className="text-[hsl(185,100%,55%)] shrink-0" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {agent.usageNotice && (
+                        <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] text-[hsl(230,15%,60%)] mb-6">
+                          ℹ️ <span className="italic">{agent.usageNotice}</span>
                         </div>
-                        {hasDiscount && (
-                          <div className="flex justify-between text-sm">
-                            <span className="text-[hsl(185,100%,55%)]">Bundle Discount (10%)</span>
-                            <span className="text-[hsl(185,100%,55%)]">-{formatPrice(discount)}</span>
+                      )}
+                    </div>
+
+                    <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
+                      Deploy Agent <ArrowRight size={14} />
+                    </Button>
+                  </GlassCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          )}
+
+          {/* Software View */}
+          {activeTab === 'software' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {customServices.software.map((sw, i) => (
+                <ScrollReveal key={sw.id} delay={i * 0.05}>
+                  <GlassCard hover className="p-6 h-full flex flex-col justify-between">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[hsl(210,100%,60%)]">Custom Software</span>
+                      <h3 className="font-display text-lg font-bold text-white mt-1 mb-2">{sw.name}</h3>
+                      <p className="text-[hsl(230,15%,60%)] text-xs mb-4 leading-relaxed">{sw.description}</p>
+
+                      <div className="mb-4">
+                        {sw.isCustomQuote ? (
+                          <span className="text-2xl font-bold text-[hsl(185,100%,55%)]">Custom Quote</span>
+                        ) : (
+                          <div>
+                            <span className="text-xs text-[hsl(230,15%,55%)] block">Starting from</span>
+                            <span className="text-2xl font-bold gradient-text">
+                              {formatPrice(sw.prices, true)}
+                            </span>
                           </div>
                         )}
-                        <div className="border-t border-white/[0.08] pt-3 flex justify-between items-center">
-                          <span className="text-white font-medium">Estimated Total</span>
-                          <motion.span
-                            key={total}
-                            initial={{ scale: 1.1 }}
-                            animate={{ scale: 1 }}
-                            className="text-2xl font-bold bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] bg-clip-text text-transparent"
-                          >
-                            {formatPrice(total)}
-                          </motion.span>
-                        </div>
                       </div>
-                    </>
-                  )}
 
-                  <div className="mt-6 space-y-3">
-                    <Button variant="primary" href="/contact" className="w-full justify-center">
-                      Get Custom Quote
+                      {sw.erpExplanation && (
+                        <div className="p-3 rounded-xl bg-[hsl(270,95%,65%)]/10 border border-[hsl(270,95%,65%)]/20 text-xs text-[hsl(230,15%,80%)] mb-4">
+                          <strong className="text-[hsl(270,95%,65%)] block mb-1">Enterprise ERP Scope:</strong>
+                          {sw.erpExplanation}
+                        </div>
+                      )}
+
+                      <ul className="space-y-2 mb-6">
+                        {sw.features.map((f, idx) => (
+                          <li key={idx} className="flex items-center gap-2 text-xs text-[hsl(230,15%,70%)]">
+                            <Check size={14} className="text-[hsl(185,100%,55%)] shrink-0" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
+                      Request Consultation <ArrowRight size={14} />
                     </Button>
-                    <p className="text-[hsl(230,10%,45%)] text-xs text-center">
-                      or call us at +91 98765 43210
-                    </p>
-                  </div>
-                </div>
-              </GlassCard>
+                  </GlassCard>
+                </ScrollReveal>
+              ))}
             </div>
-          </div>
+          )}
+
+          {/* Add-ons View */}
+          {activeTab === 'addons' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+              {customServices.addons.map((add, i) => (
+                <ScrollReveal key={add.id} delay={i * 0.05}>
+                  <GlassCard hover className="p-6 h-full flex flex-col justify-between">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[hsl(185,100%,55%)]">Add-on Service</span>
+                      <h3 className="font-display text-lg font-bold text-white mt-1 mb-2">{add.name}</h3>
+                      <p className="text-[hsl(230,15%,60%)] text-xs mb-4 leading-relaxed">{add.description}</p>
+
+                      <div className="mb-4">
+                        <span className="text-2xl font-bold gradient-text">
+                          {formatPrice(add.prices, false, add.period || '')}
+                        </span>
+                      </div>
+
+                      {add.regionalNote && (
+                        <p className="text-xs text-[hsl(230,15%,50%)] italic mb-4">{add.regionalNote}</p>
+                      )}
+                    </div>
+
+                    <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
+                      Add to Package <ArrowRight size={14} />
+                    </Button>
+                  </GlassCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Billing Dashboard */}
-      <section className="py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeading title="Billing & Payments" subtitle="Manage your invoices, payment methods, and subscriptions" centered />
-
-          {/* Invoice History */}
-          <div className="mt-12">
-            <ScrollReveal>
-              <GlassCard className="p-0 overflow-hidden">
-                <div className="px-6 py-4 border-b border-white/[0.06]">
-                  <h3 className="font-display font-bold text-white">Invoice History</h3>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-white/[0.06]">
-                        <th className="text-left px-6 py-3 text-[hsl(230,10%,45%)] text-xs font-medium uppercase tracking-wider">Invoice</th>
-                        <th className="text-left px-6 py-3 text-[hsl(230,10%,45%)] text-xs font-medium uppercase tracking-wider">Date</th>
-                        <th className="text-left px-6 py-3 text-[hsl(230,10%,45%)] text-xs font-medium uppercase tracking-wider">Amount</th>
-                        <th className="text-left px-6 py-3 text-[hsl(230,10%,45%)] text-xs font-medium uppercase tracking-wider">Status</th>
-                        <th className="text-right px-6 py-3 text-[hsl(230,10%,45%)] text-xs font-medium uppercase tracking-wider">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/[0.04]">
-                      {invoices.map((inv) => (
-                        <tr key={inv.id} className="hover:bg-white/[0.02] transition-colors">
-                          <td className="px-6 py-4 text-white text-sm font-medium">{inv.id}</td>
-                          <td className="px-6 py-4 text-[hsl(230,15%,55%)] text-sm">{inv.date}</td>
-                          <td className="px-6 py-4 text-white text-sm font-medium">{inv.amount}</td>
-                          <td className="px-6 py-4">
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                              inv.status === 'Paid'
-                                ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                                : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-                            }`}>
-                              {inv.status}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 text-right">
-                            <button className="text-[hsl(230,15%,55%)] hover:text-white transition-colors inline-flex items-center gap-1 text-sm">
-                              <Download size={14} /> Download
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </GlassCard>
-            </ScrollReveal>
+      {/* Disclaimers & Scope Transparency Section */}
+      <section className="py-12 px-4 max-w-4xl mx-auto">
+        <GlassCard className="p-6 md:p-8 border border-white/[0.08]" hover={false}>
+          <div className="flex items-start gap-4">
+            <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shrink-0">
+              <ShieldAlert size={24} />
+            </div>
+            <div>
+              <h4 className="font-display font-bold text-lg text-white mb-2">Important Scope & Infrastructure Notes</h4>
+              <ul className="space-y-2 text-xs text-[hsl(230,15%,65%)] leading-relaxed list-disc pl-4">
+                <li>
+                  <strong>Development vs. Usage Billed Separately:</strong> AI Agent pricing covers development, prompt engineering, and integration. Third-party infrastructure costs (Voice carrier minutes, Meta WhatsApp API charges, OpenAI/LLM API calls) are billed separately based on consumption.
+                </li>
+                <li>
+                  <strong>Scope Dependent Software:</strong> Prices listed for Custom Software & Web Apps indicate entry starting thresholds. Final cost depends on total pages, API complexity, role permissions, and database volume.
+                </li>
+                <li>
+                  <strong>Complete SEO Included:</strong> Technical SEO, metadata, sitemap generation, and mobile speed optimization are standard components included in all AuraLink website projects.
+                </li>
+              </ul>
+            </div>
           </div>
+        </GlassCard>
+      </section>
 
-          {/* Payment Methods */}
-          <div className="mt-8">
-            <ScrollReveal delay={0.1}>
-              <h3 className="font-display font-bold text-white mb-4">Payment Methods</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                {paymentMethods.map((pm) => (
-                  <GlassCard
-                    key={pm.name}
-                    className={`p-4 text-center ${pm.primary ? 'ring-1 ring-[hsl(270,95%,65%)]/50' : ''}`}
-                  >
-                    <CreditCard size={24} className="mx-auto mb-2 text-[hsl(230,15%,55%)]" />
-                    <p className="text-white text-sm font-medium">{pm.name}</p>
-                    {pm.primary && (
-                      <p className="text-[hsl(270,95%,65%)] text-xs mt-1">Primary</p>
-                    )}
-                  </GlassCard>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-
-          {/* Subscription */}
-          <div className="mt-8">
-            <ScrollReveal delay={0.2}>
-              <GlassCard className="p-6">
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="font-display font-bold text-white">Growth Business</h3>
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                        Active
-                      </span>
-                    </div>
-                    <p className="text-[hsl(230,15%,55%)] text-sm">
-                      Next renewal: May 15, 2024 • ₹25,000
-                    </p>
-                  </div>
-                  <div className="flex gap-3">
-                    <Button variant="secondary" size="sm">Change Plan</Button>
-                    <Button variant="ghost" size="sm">Cancel</Button>
-                  </div>
-                </div>
-              </GlassCard>
-            </ScrollReveal>
+      {/* CTA Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="p-10 rounded-3xl bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] shadow-2xl relative overflow-hidden">
+            <h2 className="font-display text-3xl font-extrabold text-white mb-3">Need a Custom Tailored Package?</h2>
+            <p className="text-white/80 text-sm max-w-xl mx-auto mb-8">
+              Speak with our senior solutions engineers to get a clear scope breakdown and fixed proposal.
+            </p>
+            <Button variant="secondary" href="/contact">
+              Talk to AuraLink Solutions
+            </Button>
           </div>
         </div>
       </section>

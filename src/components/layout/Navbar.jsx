@@ -6,9 +6,11 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import CurrencySelector from '@/components/ui/CurrencySelector';
 
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
   { href: '/ai-agents', label: 'AI Agents' },
   { href: '/software', label: 'Software' },
   { href: '/websites', label: 'Websites' },
@@ -100,6 +102,7 @@ export default function Navbar() {
 
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-3">
+              <CurrencySelector />
               <Link
                 href="/contact"
                 className="px-5 py-2.5 text-sm font-semibold rounded-xl bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
@@ -153,12 +156,15 @@ export default function Navbar() {
                   <span className="font-display font-bold text-lg bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] bg-clip-text text-transparent">
                     AuraLink
                   </span>
-                  <button
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white"
-                  >
-                    <X size={20} />
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <CurrencySelector compact />
+                    <button
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white"
+                    >
+                      <X size={20} />
+                    </button>
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-1">

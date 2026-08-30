@@ -2,6 +2,8 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { CurrencyProvider } from '@/lib/currency-context';
+import JsonLd from '@/components/seo/JsonLd';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -16,25 +18,62 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata = {
-  title: 'AuraLink Digital Agency | AI Agents, Software & Websites',
+  metadataBase: new URL('https://auralink.agency'),
+  title: {
+    default: 'AuraLink Digital Agency | AI Agents, Custom Software & Websites',
+    template: '%s | AuraLink Digital Agency',
+  },
   description:
-    'AuraLink Digital Agency specializes in building cutting-edge AI agents, custom software solutions, and premium websites that drive growth and transform businesses.',
+    'AuraLink Digital Agency delivers autonomous AI Agents, custom web & mobile software, E-Commerce stores, technical SEO, and workflow automation for modern enterprises.',
   keywords: [
-    'AI agents',
-    'digital agency',
-    'web development',
-    'software development',
-    'WhatsApp automation',
-    'voice agents',
-    'custom software',
+    'AuraLink Digital Agency',
+    'AI Agents Solutions',
+    'Voice Calling Agent',
+    'WhatsApp Business Agent',
+    'Custom Software Development',
+    'SaaS Platform Development',
+    'E-Commerce Development',
+    'Technical SEO Architecture',
+    'Digital Transformation Agency',
   ],
   authors: [{ name: 'AuraLink Digital Agency' }],
+  alternates: {
+    canonical: 'https://auralink.agency',
+  },
   openGraph: {
-    title: 'AuraLink Digital Agency | AI Agents, Software & Websites',
+    title: 'AuraLink Digital Agency | AI Agents, Custom Software & Websites',
     description:
-      'Building cutting-edge AI agents, custom software solutions, and premium websites.',
+      'Engineered for growth: Autonomous AI voice/WhatsApp agents, full-stack software, and conversion-focused websites.',
+    url: 'https://auralink.agency',
+    siteName: 'AuraLink Digital Agency',
+    locale: 'en_US',
     type: 'website',
-    locale: 'en_IN',
+    images: [
+      {
+        url: 'https://auralink.agency/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'AuraLink Digital Agency',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AuraLink Digital Agency | AI Agents, Custom Software & Websites',
+    description:
+      'Autonomous AI voice & WhatsApp agents, custom SaaS platforms, and modern web development.',
+    images: ['https://auralink.agency/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -42,19 +81,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="bg-[#08080f] text-[#f8fafc] font-sans antialiased">
-        {/* Fixed Background Layer */}
-        <div className="fixed inset-0 z-[-1] bg-base-gradient grid-pattern overflow-hidden">
-          <div className="stars-layer-1" />
-          <div className="stars-layer-2" />
-          <div className="stars-layer-3" />
-        </div>
+        <JsonLd />
+        <CurrencyProvider>
+          {/* Fixed Background Layer */}
+          <div className="fixed inset-0 z-[-1] bg-base-gradient grid-pattern overflow-hidden">
+            <div className="stars-layer-1" />
+            <div className="stars-layer-2" />
+            <div className="stars-layer-3" />
+          </div>
 
-        {/* Foreground Content Layer */}
-        <div className="relative z-0 flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </div>
+          {/* Foreground Content Layer */}
+          <div className="relative z-0 flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
+        </CurrencyProvider>
       </body>
     </html>
   );

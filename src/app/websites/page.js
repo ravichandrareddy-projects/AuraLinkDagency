@@ -10,17 +10,20 @@ import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import GradientBackground from '@/components/effects/GradientBackground';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import HoverText from '@/components/ui/HoverText';
+import { useCurrency } from '@/lib/currency-context';
 
 const categories = [
-  { icon: Globe, name: 'Business Websites', desc: 'Professional online presence that establishes trust and credibility for your brand.', price: '₹10,000', features: ['Custom design', 'Contact forms', 'Mobile responsive'] },
-  { icon: Rocket, name: 'Startup Websites', desc: 'Launch with impact — fast, modern websites built for growth and conversion.', price: '₹15,000', features: ['Modern design', 'Fast loading', 'SEO ready'] },
-  { icon: ShoppingCart, name: 'E-Commerce Stores', desc: 'Sell online seamlessly with fully integrated product catalogs and payments.', price: '₹25,000', features: ['Product catalog', 'Payment gateway', 'Inventory management'] },
-  { icon: Briefcase, name: 'Portfolio Websites', desc: 'Showcase your work with stunning visual layouts and smooth animations.', price: '₹12,000', features: ['Gallery layouts', 'Project showcases', 'Smooth animations'] },
-  { icon: UtensilsCrossed, name: 'Restaurant Websites', desc: 'Digital menus, table booking, and online ordering for modern restaurants.', price: '₹10,000', features: ['Digital menu', 'Online booking', 'Order system'] },
-  { icon: Building2, name: 'Real Estate Websites', desc: 'Property listings, virtual tours, and agent profiles for real estate businesses.', price: '₹20,000', features: ['Property listings', 'Search filters', 'Agent profiles'] },
-  { icon: HeartPulse, name: 'Healthcare Websites', desc: 'Patient-focused design with appointment booking and health information.', price: '₹18,000', features: ['Appointment booking', 'Patient portal', 'HIPAA compliance'] },
-  { icon: Layout, name: 'Landing Pages', desc: 'High-conversion single pages designed to maximize leads and sign-ups.', price: '₹5,000', features: ['A/B testing ready', 'Lead capture', 'Fast loading'] },
-  { icon: RefreshCw, name: 'Website Redesign', desc: 'Modernize your existing site with fresh design, better performance, and improved SEO.', price: '₹15,000', features: ['Brand refresh', 'Performance boost', 'SEO overhaul'] },
+  { icon: Globe, name: 'Local Starter Website', desc: '1–3 page sleek website tailored for local shops, barbers, cafes, and micro-businesses.', prices: { INR: 8000, USD: 199, EUR: 179 }, features: ['1–3 Pages', 'WhatsApp Button', 'Google Maps', 'Mobile Responsive'] },
+  { icon: Layout, name: 'Landing Page', desc: 'High-converting single-page website with modern design optimized for ad campaigns.', prices: { INR: 9999, USD: 149, EUR: 139 }, features: ['High Conversion Design', 'Lead Capture Form', 'Fast Loading Speed'] },
+  { icon: Globe, name: 'Business Website', desc: 'Professional online presence that establishes trust and credibility for your brand.', prices: { INR: 14999, USD: 399, EUR: 349 }, features: ['Custom design', 'Contact forms', 'Mobile responsive'] },
+  { icon: Rocket, name: 'Startup Website', desc: 'Launch with impact — fast, modern websites built for growth and conversion.', prices: { INR: 34999, USD: 449, EUR: 429 }, features: ['Modern design', 'Fast loading', 'SEO ready'] },
+  { icon: ShoppingCart, name: 'E-Commerce Store', desc: 'Sell online seamlessly with fully integrated product catalogs and payments.', prices: { INR: 29999, USD: 499, EUR: 449 }, features: ['Product catalog', 'Payment gateway', 'Inventory management'] },
+  { icon: Briefcase, name: 'Portfolio Website', desc: 'Showcase your work with stunning visual layouts and smooth animations.', prices: { INR: 14999, USD: 249, EUR: 229 }, features: ['Gallery layouts', 'Project showcases', 'Smooth animations'] },
+  { icon: UtensilsCrossed, name: 'Restaurant Website', desc: 'Digital menus, table booking, and online ordering for modern restaurants.', prices: { INR: 19999, USD: 299, EUR: 279 }, features: ['Digital menu', 'Online booking', 'Order system'] },
+  { icon: Building2, name: 'Real Estate Website', desc: 'Property listings, virtual tours, and agent profiles for real estate businesses.', prices: { INR: 29999, USD: 449, EUR: 429 }, features: ['Property listings', 'Search filters', 'Agent profiles'] },
+  { icon: HeartPulse, name: 'Healthcare Website', desc: 'Patient-focused design with appointment booking and health information.', prices: { INR: 29999, USD: 449, EUR: 429 }, features: ['Appointment booking', 'Patient portal', 'HIPAA compliance'] },
+  { icon: RefreshCw, name: 'Website Redesign', desc: 'Modernize your existing site with fresh design, better performance, and improved SEO.', prices: { INR: 24999, USD: 399, EUR: 379 }, features: ['Brand refresh', 'Performance boost', 'SEO overhaul'] },
+  { icon: Zap, name: 'Premium 3D Website', desc: 'Immersive WebGL / Three.js 3D experience with bespoke visual motion design.', prices: { INR: 39999, USD: 599, EUR: 549 }, features: ['3D WebGL Motion', 'Custom Shaders', 'Bespoke UI/UX'] },
 ];
 
 const metrics = [
@@ -43,6 +46,7 @@ const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } }
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
 export default function WebsitesPage() {
+  const { formatPrice } = useCurrency();
   return (
     <div className="relative">
       <GradientBackground />
@@ -108,9 +112,9 @@ export default function WebsitesPage() {
                         </li>
                       ))}
                     </ul>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xl font-bold bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] bg-clip-text text-transparent">
-                        From {cat.price}
+                    <div className="pt-2 flex items-center justify-between gap-3">
+                      <span className="text-lg font-extrabold gradient-text">
+                        {formatPrice(cat.prices)}
                       </span>
                       <Button variant="ghost" size="sm" href="/contact">
                         Get Started <ArrowRight size={14} />

@@ -43,7 +43,7 @@ export const portfolioProjects = [
     description:
       'Developed a comprehensive financial tracking SaaS platform with real-time dashboards, automated reporting, multi-currency support, and bank API integrations.',
     technologies: ['React', 'Node.js', 'MongoDB', 'Plaid API', 'AWS'],
-    results: '12,000+ active users within 6 months, ₹2Cr ARR achieved',
+    results: '12,000+ active users within 6 months, strong ARR achieved',
     testimonial: {
       quote:
         'AuraLink delivered a world-class product on time and within budget. Their technical expertise is unmatched.',
@@ -94,7 +94,7 @@ export const portfolioProjects = [
     description:
       'Deployed a WhatsApp AI agent for a D2C brand that handles product discovery, order placement, payment processing, and delivery tracking — all within WhatsApp.',
     technologies: ['Node.js', 'WhatsApp Business API', 'Razorpay', 'OpenAI', 'MongoDB'],
-    results: '₹45L monthly revenue through WhatsApp, 89% customer satisfaction',
+    results: 'Significant monthly revenue through WhatsApp, 89% customer satisfaction',
     testimonial: {
       quote:
         'Our customers can now browse and buy products without leaving WhatsApp. Sales have skyrocketed.',

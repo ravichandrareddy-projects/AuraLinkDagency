@@ -1,0 +1,47 @@
+# AuraLink Digital Agency — Machine-Readable Documentation
+> AuraLink Digital Agency delivers Websites & E-Commerce, AI Agent Solutions, Custom Software Development, Workflow Automation, Digital Marketing, and Technical SEO.
+
+## Core Capabilities
+- Websites & E-Commerce: Landing pages, Business Websites, Dynamic Websites with CMS, E-Commerce Stores, 3D WebGL Experiences, Website Redesigns.
+- AI Agent Solutions: Autonomous Voice Calling Agents, 24/7 WhatsApp API Business Agents, Social Media Manager Agents, Sales Qualification Agents, Lead Generation Agents, Onboarding & Scraping Agents.
+- Custom Software Solutions: Web Applications (React/Next.js), Cross-Platform Mobile Apps (iOS/Android), SaaS Platforms, CRM Systems, Custom ERP Systems, Internal Admin Dashboards.
+- Digital Marketing & SEO: Technical SEO Audits, On-Page & Local SEO, Google Business Profile Optimization, Conversion Rate Optimization (CRO), Analytics & Event Tracking.
+- Creative & Maintenance: Brand Identity, UI/UX Design, Dedicated Support Desk, Ongoing Website Maintenance.
+
+## Service Architecture URLs
+- Homepage: https://auralink.agency/
+- All Services: https://auralink.agency/services
+- Websites & E-Commerce: https://auralink.agency/websites
+- AI Agent Solutions: https://auralink.agency/ai-agents
+- Custom Software: https://auralink.agency/software
+- Dedicated SEO: https://auralink.agency/services/seo
+- Dedicated Automation: https://auralink.agency/services/automation
+- Dedicated Digital Marketing: https://auralink.agency/services/digital-marketing
+- Transparent Multi-Currency Pricing: https://auralink.agency/pricing
+- Machine-Readable Agent Pricing File: https://auralink.agency/pricing.md
+- Portfolio & Case Studies: https://auralink.agency/portfolio
+- Frequently Asked Questions: https://auralink.agency/faq
+- Contact & Consultations: https://auralink.agency/contact
+
+## Multi-Currency Pricing Philosophy
+- Currencies Supported: USD ($), INR (₹), EUR (€).
+- USD is the primary international pricing reference.
+- India utilizes localized lower regional pricing.
+- Europe utilizes localized EUR pricing.
+- Predefined static rates per currency; no live currency conversion math.
+- Local Starter Website: INR ₹8,000 / USD $199 / EUR €179
+- Business Website: INR ₹14,999 / USD $399 / EUR €349
+- E-Commerce Store: INR ₹29,999 / USD $499 / EUR €449
+- Premium 3D Website: INR ₹39,999 / USD $599 / EUR €549
+- AI Voice Agent: INR ₹19,999 / USD $499 / EUR €449
+- WhatsApp Business Agent: INR ₹14,999 / USD $399 / EUR €379
+- Custom Software (Web/SaaS/CRM): Starting from INR ₹39,999 / USD $399 / EUR €379
+- Enterprise ERP Systems: Quoted on a Custom Quote basis depending on module scope.
+- Note: Third-party API usage (telephony minutes, Meta WhatsApp API conversation charges, hosting, AI model API usage) is separate from development fees.
+
+## Agency Contact Information
+- Website: https://auralink.agency
+- Email: hello@auralink.agency
+- Phone: +91 98765 43210
+- Headquarters: Bangalore, India (Serving Global Clients Worldwide)
+- Operating Hours: Mon-Sat, 10 AM - 7 PM IST

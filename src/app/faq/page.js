@@ -36,7 +36,7 @@ const faqCategories = [
       {
         question: 'Do you offer maintenance packages?',
         answer:
-          'Yes! We offer monthly maintenance packages starting at ₹5,000/month. This includes regular updates, security patches, performance optimization, content updates, and priority support.',
+          'Yes! We offer customized monthly maintenance packages. This includes regular updates, security patches, performance optimization, content updates, and priority support.',
       },
     ],
   },
@@ -82,7 +82,7 @@ const faqCategories = [
       {
         question: 'What\'s included in website hosting?',
         answer:
-          'We can set up hosting on platforms like Vercel, AWS, or your preferred provider. Our plans include initial deployment, SSL certificates, domain configuration, and performance optimization. Hosting costs are separate and typically range from ₹500-5,000/month depending on traffic.',
+          'We can set up hosting on platforms like Vercel, AWS, or your preferred provider. Our plans include initial deployment, SSL certificates, domain configuration, and performance optimization. Hosting costs depend on your traffic and infrastructure needs.',
       },
     ],
   },
