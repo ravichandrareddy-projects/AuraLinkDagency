@@ -1,5 +1,5 @@
 export default function robots() {
-  const baseUrl = 'https://auralink.agency';
+  const baseUrl = 'https://auralinkdigitalagency.indevs.in';
 
   return {
     rules: [

@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://auralink.agency'),
+  metadataBase: new URL('https://auralinkdigitalagency.indevs.in'),
   title: {
     default: 'AuraLink Digital Agency | AI Agents, Custom Software & Websites',
     template: '%s | AuraLink Digital Agency',
@@ -47,13 +47,13 @@ export const metadata = {
     apple: [{ url: '/apple-icon.png' }],
   },
   alternates: {
-    canonical: 'https://auralink.agency',
+    canonical: 'https://auralinkdigitalagency.indevs.in',
   },
   openGraph: {
     title: 'AuraLink Digital Agency | AI Agents, Custom Software & Websites',
     description:
       'Engineered for growth: Autonomous AI voice/WhatsApp agents, full-stack software, and conversion-focused websites.',
-    url: 'https://auralink.agency',
+    url: 'https://auralinkdigitalagency.indevs.in',
     siteName: 'AuraLink Digital Agency',
     locale: 'en_US',
     type: 'website',

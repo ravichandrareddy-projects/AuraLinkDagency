@@ -1,5 +1,5 @@
 export default async function sitemap() {
-  const baseUrl = 'https://auralink.agency';
+  const baseUrl = 'https://auralinkdigitalagency.indevs.in';
   const lastModified = new Date();
 
   const routes = [

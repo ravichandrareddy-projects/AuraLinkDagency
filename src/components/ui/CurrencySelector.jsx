@@ -40,13 +40,13 @@ export default function CurrencySelector({ compact = false }) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.95 }}
+            initial={{ opacity: 0, y: 6, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.95 }}
+            exit={{ opacity: 0, y: 6, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 mt-2 w-44 rounded-xl border border-white/[0.1] bg-[hsl(230,25%,10%)]/95 shadow-2xl backdrop-blur-xl z-50 overflow-hidden"
+            className="absolute right-0 mt-2 w-48 rounded-xl border border-cyan-500/30 bg-slate-950/95 shadow-2xl shadow-cyan-500/20 backdrop-blur-2xl z-[9999]"
           >
-            <div className="p-1 space-y-0.5">
+            <div className="p-1.5 space-y-1 max-h-60 overflow-y-auto">
               {Object.values(currencies).map((curr) => {
                 const isSelected = curr.code === currency;
                 return (
@@ -56,17 +56,17 @@ export default function CurrencySelector({ compact = false }) {
                       setCurrency(curr.code);
                       setIsOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium rounded-lg transition-colors ${
+                    className={`w-full flex items-center justify-between px-3 py-2.5 text-xs font-bold rounded-lg transition-colors ${
                       isSelected
-                        ? 'bg-[hsl(270,95%,65%)]/20 text-white font-semibold border border-[hsl(270,95%,65%)]/30'
-                        : 'text-[hsl(230,15%,75%)] hover:bg-white/[0.06] hover:text-white'
+                        ? 'bg-cyan-500/20 text-cyan-200 border border-cyan-400/40 shadow-sm'
+                        : 'text-slate-300 hover:bg-white/10 hover:text-white'
                     }`}
                   >
                     <span className="flex items-center gap-2">
-                      <span>{curr.flag}</span>
+                      <span className="text-sm">{curr.flag}</span>
                       <span>{curr.code}</span>
                     </span>
-                    <span className="text-[hsl(230,15%,55%)]">{curr.symbol}</span>
+                    <span className="font-mono text-cyan-300 font-bold">{curr.symbol}</span>
                   </button>
                 );
               })}
