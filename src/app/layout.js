@@ -84,6 +84,9 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'BLCoj7t3cINNzjNjxx-TCqtkFgfFCvXQq2dfVuJG',
+  },
   other: {
     'geo.region': 'IN-AP',
     'geo.placename': 'Andhra Pradesh, India',
