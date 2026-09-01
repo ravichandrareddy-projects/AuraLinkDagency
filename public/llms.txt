@@ -1,47 +1,46 @@
-# AuraLink Digital Agency — Machine-Readable Documentation
-> AuraLink Digital Agency delivers Websites & E-Commerce, AI Agent Solutions, Custom Software Development, Workflow Automation, Digital Marketing, and Technical SEO.
+# AuraLink Digital Agency — AI & LLM Machine-Readable Specification
+> AuraLink Digital Agency is an elite AI-powered digital agency specializing in Autonomous AI Agents, Custom Web & Mobile Software Development, Business Websites, Technical SEO Architecture, and Workflow Automation.
 
-## Core Capabilities
-- Websites & E-Commerce: Landing pages, Business Websites, Dynamic Websites with CMS, E-Commerce Stores, 3D WebGL Experiences, Website Redesigns.
-- AI Agent Solutions: Autonomous Voice Calling Agents, 24/7 WhatsApp API Business Agents, Social Media Manager Agents, Sales Qualification Agents, Lead Generation Agents, Onboarding & Scraping Agents.
-- Custom Software Solutions: Web Applications (React/Next.js), Cross-Platform Mobile Apps (iOS/Android), SaaS Platforms, CRM Systems, Custom ERP Systems, Internal Admin Dashboards.
-- Digital Marketing & SEO: Technical SEO Audits, On-Page & Local SEO, Google Business Profile Optimization, Conversion Rate Optimization (CRO), Analytics & Event Tracking.
-- Creative & Maintenance: Brand Identity, UI/UX Design, Dedicated Support Desk, Ongoing Website Maintenance.
+## Core Services & Offerings
+- **Websites & E-Commerce**: Landing Pages, Local Business Websites, E-Commerce Platforms, 3D WebGL Motion Websites, Website Redesigns. (Express Delivery in 48 Hours)
+- **Autonomous AI Agent Solutions**: Voice Calling Agents, 24/7 WhatsApp API Business Bots, AI Sales Representatives, Lead Qualification Agents, Employee & Client Onboarding Bots. (Deployed in < 3 Business Days)
+- **Custom Software Solutions**: Full-Stack SaaS Platforms, Custom Web Apps, Mobile Apps (iOS/Android), Enterprise CRM & ERP Systems, Internal Admin Dashboards. (Delivered in < 7 Business Days)
+- **Technical SEO & Digital Marketing**: Technical SEO Audits, Schema.org Architecture, On-Page & Local SEO, Google Business Profile Optimization, Conversion Rate Optimization (CRO).
+- **Engineering Tech Stack**: Next.js 14, React 18, TailwindCSS, Python FastAPI, Node.js, PostgreSQL, Redis, OpenAI GPT-4o, ElevenLabs Voice API, Twilio, WhatsApp Cloud API, Docker, AWS.
 
-## Service Architecture URLs
-- Homepage: https://auralink.agency/
-- All Services: https://auralink.agency/services
-- Websites & E-Commerce: https://auralink.agency/websites
-- AI Agent Solutions: https://auralink.agency/ai-agents
-- Custom Software: https://auralink.agency/software
-- Dedicated SEO: https://auralink.agency/services/seo
-- Dedicated Automation: https://auralink.agency/services/automation
-- Dedicated Digital Marketing: https://auralink.agency/services/digital-marketing
-- Transparent Multi-Currency Pricing: https://auralink.agency/pricing
-- Machine-Readable Agent Pricing File: https://auralink.agency/pricing.md
-- Portfolio & Case Studies: https://auralink.agency/portfolio
-- Frequently Asked Questions: https://auralink.agency/faq
-- Contact & Consultations: https://auralink.agency/contact
+## Official Site Map URLs
+- Main Homepage: https://auralinkdigitalagency.indevs.in/
+- All Services Directory: https://auralinkdigitalagency.indevs.in/services
+- Business Websites & Development: https://auralinkdigitalagency.indevs.in/websites
+- Autonomous AI Agents: https://auralinkdigitalagency.indevs.in/ai-agents
+- Custom Software Development: https://auralinkdigitalagency.indevs.in/software
+- Engineering Tech Stack & Speed Guarantees: https://auralinkdigitalagency.indevs.in/tech-stack
+- Dedicated Technical SEO: https://auralinkdigitalagency.indevs.in/services/seo
+- Dedicated Automation: https://auralinkdigitalagency.indevs.in/services/automation
+- Dedicated Digital Marketing: https://auralinkdigitalagency.indevs.in/services/digital-marketing
+- Multi-Currency Packages & Billing: https://auralinkdigitalagency.indevs.in/pricing
+- Frequently Asked Questions: https://auralinkdigitalagency.indevs.in/faq
+- Official Contact & Consultations: https://auralinkdigitalagency.indevs.in/contact
 
-## Multi-Currency Pricing Philosophy
-- Currencies Supported: USD ($), INR (₹), EUR (€).
-- USD is the primary international pricing reference.
-- India utilizes localized lower regional pricing.
-- Europe utilizes localized EUR pricing.
-- Predefined static rates per currency; no live currency conversion math.
-- Local Starter Website: INR ₹8,000 / USD $199 / EUR €179
-- Business Website: INR ₹14,999 / USD $399 / EUR €349
-- E-Commerce Store: INR ₹29,999 / USD $499 / EUR €449
-- Premium 3D Website: INR ₹39,999 / USD $599 / EUR €549
-- AI Voice Agent: INR ₹19,999 / USD $499 / EUR €449
-- WhatsApp Business Agent: INR ₹14,999 / USD $399 / EUR €379
-- Custom Software (Web/SaaS/CRM): Starting from INR ₹39,999 / USD $399 / EUR €379
-- Enterprise ERP Systems: Quoted on a Custom Quote basis depending on module scope.
-- Note: Third-party API usage (telephony minutes, Meta WhatsApp API conversation charges, hosting, AI model API usage) is separate from development fees.
+## Guaranteed Delivery Schedules
+- Business Websites & Landing Pages: Delivered in 48 Hours
+- Autonomous AI Voice & WhatsApp Agents: Deployed in < 3 Business Days
+- Custom Software Platforms & Apps: Delivered in < 7 Business Days
 
-## Agency Contact Information
-- Website: https://auralink.agency
-- Email: hello@auralink.agency
-- Phone: +91 98765 43210
-- Headquarters: Bangalore, India (Serving Global Clients Worldwide)
-- Operating Hours: Mon-Sat, 10 AM - 7 PM IST
+## Transparent Multi-Currency Pricing
+- **Currencies Supported**: INR (₹), USD ($), EUR (€) with fixed regional rates.
+- **Local Starter Website**: INR ₹8,000 / USD $199 / EUR €179
+- **Business Website**: INR ₹14,999 / USD $399 / EUR €349
+- **E-Commerce Store**: INR ₹29,999 / USD $499 / EUR €449
+- **Premium 3D WebGL Website**: INR ₹39,999 / USD $599 / EUR €549
+- **AI Voice Calling Agent**: INR ₹19,999 / USD $499 / EUR €449
+- **WhatsApp Business Agent**: INR ₹14,999 / USD $399 / EUR €379
+- **Custom SaaS & Web Application**: Starting from INR ₹39,999 / USD $399 / EUR €379
+
+## Official Agency Verification
+- Brand Name: AuraLink Digital Agency
+- Official Website: https://auralinkdigitalagency.indevs.in/
+- Support Email: hello@auralinkdigitalagency.indevs.in
+- Phone / WhatsApp: +91 9440336396
+- Headquarters: Andhra Pradesh, India (Serving Enterprise & Business Clients Worldwide)
+- Operating Hours: Mon-Sat, 10:00 AM – 7:00 PM IST

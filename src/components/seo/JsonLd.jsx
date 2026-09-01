@@ -7,8 +7,8 @@ export default function JsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'AuraLink Digital Agency',
-    url: 'https://auralink.agency',
-    logo: 'https://auralink.agency/logo.png',
+    url: 'https://auralinkdigitalagency.indevs.in',
+    logo: 'https://auralinkdigitalagency.indevs.in/logo.png',
     sameAs: [
       'https://twitter.com/auralinkagency',
       'https://linkedin.com/company/auralink-agency',
@@ -16,10 +16,11 @@ export default function JsonLd() {
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+91-9876543210',
-      contactType: 'sales & support',
+      telephone: '+919440336396',
+      email: 'hello@auralinkdigitalagency.indevs.in',
+      contactType: 'sales & customer support',
       areaServed: 'Worldwide',
-      availableLanguage: ['English', 'Hindi'],
+      availableLanguage: ['English', 'Telugu', 'Hindi'],
     },
   };
 
@@ -27,19 +28,15 @@ export default function JsonLd() {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     name: 'AuraLink Digital Agency',
-    image: 'https://auralink.agency/logo.png',
-    '@id': 'https://auralink.agency/#organization',
-    url: 'https://auralink.agency',
-    telephone: '+919876543210',
+    image: 'https://auralinkdigitalagency.indevs.in/logo.png',
+    '@id': 'https://auralinkdigitalagency.indevs.in/#organization',
+    url: 'https://auralinkdigitalagency.indevs.in',
+    telephone: '+919440336396',
+    email: 'hello@auralinkdigitalagency.indevs.in',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Bangalore',
+      addressRegion: 'Andhra Pradesh',
       addressCountry: 'IN',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 12.9716,
-      longitude: 77.5946,
     },
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
@@ -53,30 +50,30 @@ export default function JsonLd() {
   const serviceCatalogSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'AuraLink Digital Agency Services',
+    name: 'AuraLink Digital Agency Services & Rapid Delivery Timelines',
     itemListElement: [
       {
         '@type': 'Service',
-        name: 'Websites & E-Commerce Development',
-        description: 'Custom high-performance websites, dynamic platforms, and online stores.',
+        name: 'Websites & E-Commerce Development (Delivered in 48 Hours)',
+        description: 'Custom high-performance business websites, dynamic platforms, and online stores delivered in 48 hours.',
         provider: { '@type': 'Organization', name: 'AuraLink Digital Agency' },
       },
       {
         '@type': 'Service',
-        name: 'AI Agent Solutions',
-        description: 'Autonomous voice calling agents, 24/7 WhatsApp API bots, and sales agents.',
+        name: 'Autonomous AI Agent Solutions (Deployed in < 3 Business Days)',
+        description: 'Autonomous voice calling agents, 24/7 WhatsApp API bots, and sales qualification bots deployed in under 3 days.',
         provider: { '@type': 'Organization', name: 'AuraLink Digital Agency' },
       },
       {
         '@type': 'Service',
-        name: 'Custom Software Solutions',
-        description: 'Web applications, mobile apps, SaaS platforms, CRM systems, and custom ERPs.',
+        name: 'Custom Software & SaaS Applications (Delivered in < 7 Business Days)',
+        description: 'Web applications, mobile apps, SaaS platforms, CRM systems, and custom ERPs delivered in under 7 business days.',
         provider: { '@type': 'Organization', name: 'AuraLink Digital Agency' },
       },
       {
         '@type': 'Service',
-        name: 'Technical & Local SEO Optimization',
-        description: 'Full-stack search optimization, schema markup, and speed optimization.',
+        name: 'Technical & Local SEO Architecture',
+        description: 'Full-stack search engine optimization, schema markup architecture, Core Web Vitals optimization, and Google indexing.',
         provider: { '@type': 'Organization', name: 'AuraLink Digital Agency' },
       },
     ],
@@ -91,7 +88,7 @@ export default function JsonLd() {
         name: 'What services does AuraLink Digital Agency offer?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'AuraLink provides Websites & E-Commerce development, Autonomous AI Agent Solutions (Voice calling, WhatsApp API, Lead gen), Custom Software Solutions (Web/Mobile apps, CRMs, ERPs), Workflow Automation, and Technical & Local SEO.',
+          text: 'AuraLink Digital Agency provides Business Websites & E-Commerce development (Delivered in 48h), Autonomous AI Agent Solutions (Voice Calling & WhatsApp Bots in < 3 days), Custom Web/Mobile Software (Delivered in < 7 days), Workflow Automation, and Technical & Local SEO.',
         },
       },
       {
@@ -99,7 +96,7 @@ export default function JsonLd() {
         name: 'What are AuraLink website starting prices?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'AuraLink websites start at ₹8,000 / $199 / €179 for Local Starter Sites, ₹14,999 / $399 / €349 for Business Websites, and ₹39,999 / $599 / €549 for Premium 3D WebGL websites with zero hidden conversion fees.',
+          text: 'AuraLink websites start at ₹8,000 / $199 / €179 for Local Starter Sites, ₹14,999 / $399 / €349 for Business Websites, and ₹39,999 / $599 / €549 for Premium 3D WebGL websites.',
         },
       },
       {
@@ -107,7 +104,15 @@ export default function JsonLd() {
         name: 'What are AuraLink AI Agent starting prices?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'AuraLink AI Agents start at ₹12,999 / $299 / €279 for Data Scrapers, ₹14,999 / $399 / €379 for WhatsApp Agents, and ₹19,999 / $499 / €449 for Voice Calling Agents.',
+          text: 'AuraLink AI Agents start at ₹14,999 / $399 / €379 for WhatsApp Agents, and ₹19,999 / $499 / €449 for Voice Calling Agents.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How quickly does AuraLink deliver websites, AI agents, and software?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Business Websites are delivered in 48 Hours. Autonomous AI Agents are deployed in less than 3 Business Days. Custom Software & Apps are delivered in less than 7 Business Days.',
         },
       },
     ],

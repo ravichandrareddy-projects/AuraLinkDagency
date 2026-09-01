@@ -84,6 +84,12 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'geo.region': 'IN-AP',
+    'geo.placename': 'Andhra Pradesh, India',
+    'geo.position': '16.5062;80.6480',
+    'ICBM': '16.5062, 80.6480',
+  },
 };
 
 export default function RootLayout({ children }) {

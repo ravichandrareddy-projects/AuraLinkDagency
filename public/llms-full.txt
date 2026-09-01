@@ -1,0 +1,71 @@
+# AuraLink Digital Agency — Complete AI Knowledge Base (llms-full.txt)
+
+> AuraLink Digital Agency is a full-service AI engineering and digital transformation agency headquartered in Andhra Pradesh, India. We build autonomous AI agents, full-stack software applications, responsive websites, and digital marketing workflows for startups, local businesses, and global enterprises.
+
+## Table of Contents
+1. Core Competencies & Deliverables
+2. Rapid Turnaround Schedules
+3. Detailed Service Breakdown & Tech Stack
+4. Multi-Currency Packages & Pricing Registry
+5. Payment Infrastructure & Live Gateways
+6. Official Links & Contact Information
+
+---
+
+## 1. Core Competencies & Deliverables
+- **Autonomous AI Voice Agents**: Inbound & outbound AI phone call handlers that conduct sales calls, schedule appointments, handle customer queries, and sync with CRMs.
+- **WhatsApp API Business Bots**: 24/7 automated messaging agents integrated with Meta WhatsApp Cloud API for lead capture, customer support, and automated follow-ups.
+- **Custom Web & Mobile Software**: Full-stack SaaS platforms, custom web portals, cross-platform iOS & Android mobile apps (React Native/Flutter), and administrative dashboards.
+- **High-Converting Websites**: Responsive local business websites, landing pages, E-Commerce stores, and interactive WebGL 3D websites.
+- **Technical SEO & Growth**: Technical audits, Schema.org JSON-LD microdata, Core Web Vitals optimization, local SEO, and Google Business Profile optimization.
+
+---
+
+## 2. Rapid Turnaround Schedules
+- **Business Websites & Landing Pages**: Delivered in 48 Hours
+- **Autonomous AI Voice & WhatsApp Agents**: Deployed in < 3 Business Days
+- **Custom Software & SaaS Applications**: Delivered in < 7 Business Days
+
+---
+
+## 3. Technology Stack & Frameworks
+- **Frontend & Web**: Next.js 14 (App Router), React 18, TailwindCSS, Vanilla CSS, Three.js / WebGL, Framer Motion, HTML5, JavaScript (ES2024).
+- **Backend & Cloud**: Python FastAPI, Node.js, Express, PostgreSQL, Prisma ORM, Redis, Docker, Amazon Web Services (AWS), Vercel Enterprise.
+- **AI Models & Integrations**: OpenAI GPT-4o & O3, Anthropic Claude 3.5, ElevenLabs Conversational Voice API, Twilio Telephony, Meta WhatsApp Cloud API, LangChain, LlamaIndex, n8n.
+- **Payments**: Razorpay Live Gateway (UPI, NetBanking, Credit Cards, Cards), Stripe.
+
+---
+
+## 4. Multi-Currency Pricing Registry
+Static fixed regional pricing without live hidden conversion fees:
+
+### Web Development Packages
+- **Local Starter Website (1–3 Pages)**: ₹8,000 INR / $199 USD / €179 EUR
+- **Landing Page**: ₹9,999 INR / $149 USD / €139 EUR
+- **Business Website**: ₹14,999 INR / $399 USD / €349 EUR
+- **Startup Website**: ₹34,999 INR / $449 USD / €429 EUR
+- **E-Commerce Store**: ₹29,999 INR / $499 USD / €449 EUR
+- **Premium 3D WebGL Website**: ₹39,999 INR / $599 USD / €549 EUR
+
+### AI Agent Solutions
+- **Voice Calling Agent**: ₹19,999 INR / $499 USD / €449 EUR
+- **WhatsApp Agent**: ₹14,999 INR / $399 USD / €379 EUR
+- **Social Media Manager Agent**: ₹19,999 INR / $449 USD / €399 EUR
+- **Sales Representative Agent**: ₹24,999 INR / $499 USD / €449 EUR
+- **Onboarding Agent**: ₹19,999 INR / $399 USD / €379 EUR
+- **Lead Generation Agent**: ₹19,999 INR / $449 USD / €399 EUR
+
+### Custom Software
+- **Custom Web Application**: Starting from ₹39,999 INR / $399 USD / €379 EUR
+- **Mobile Application**: Starting from ₹59,999 INR / $599 USD / €549 EUR
+- **Custom SaaS Platform**: Starting from ₹79,999 INR / $799 USD / €749 EUR
+
+---
+
+## 5. Contact & Support Information
+- **Brand**: AuraLink Digital Agency
+- **Website URL**: https://auralinkdigitalagency.indevs.in/
+- **Official Support Email**: hello@auralinkdigitalagency.indevs.in
+- **Mobile Phone / WhatsApp**: +91 9440336396
+- **Address / Location**: Andhra Pradesh, India
+- **Global Coverage**: Serving clients across North America, Europe, India, Asia-Pacific, and Middle East.
