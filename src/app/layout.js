@@ -85,7 +85,7 @@ export const metadata = {
     },
   },
   verification: {
-    google: 'BLCoj7t3cINNzjNjxx-TCqtkFgfFCvXQq2dfVuJG',
+    google: 'BLCoj7t3clNNzjNjxx-TCqtkFgfFCvXQq2dFvUjGuBA',
   },
   other: {
     'geo.region': 'IN-AP',
