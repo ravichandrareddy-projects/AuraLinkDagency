@@ -44,7 +44,7 @@ Static fixed regional pricing without live hidden conversion fees:
 - **Landing Page**: ₹9,999 INR / $149 USD / €139 EUR
 - **Business Website**: ₹14,999 INR / $399 USD / €349 EUR
 - **Startup Website**: ₹34,999 INR / $449 USD / €429 EUR
-- **E-Commerce Store**: ₹29,999 INR / $499 USD / €449 EUR
+- **E-Commerce Store**: ₹15,999 INR / $299 USD / €279 EUR
 - **Premium 3D WebGL Website**: ₹39,999 INR / $599 USD / €549 EUR
 
 ### AI Agent Solutions

@@ -31,7 +31,7 @@
 - **Currencies Supported**: INR (₹), USD ($), EUR (€) with fixed regional rates.
 - **Local Starter Website**: INR ₹8,000 / USD $199 / EUR €179
 - **Business Website**: INR ₹14,999 / USD $399 / EUR €349
-- **E-Commerce Store**: INR ₹29,999 / USD $499 / EUR €449
+- **E-Commerce Store**: INR ₹15,999 / USD $299 / EUR €279
 - **Premium 3D WebGL Website**: INR ₹39,999 / USD $599 / EUR €549
 - **AI Voice Calling Agent**: INR ₹19,999 / USD $499 / EUR €449
 - **WhatsApp Business Agent**: INR ₹14,999 / USD $399 / EUR €379
