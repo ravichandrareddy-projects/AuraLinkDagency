@@ -173,7 +173,7 @@ export const customServices = {
       id: 'ecommerce-store',
       name: 'E-Commerce Store',
       description: 'Full-featured online store with product catalogs, shopping cart, and payment gateway.',
-      prices: { INR: 15999, USD: 299, EUR: 279 },
+      prices: { INR: 15999, USD: 499, EUR: 449 },
       features: ['Product Catalog', 'Payment Gateways', 'Order Management'],
     },
     {
