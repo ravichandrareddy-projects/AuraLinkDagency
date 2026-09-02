@@ -59,10 +59,10 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://auralink.agency/og-image.jpg',
+        url: 'https://auralinkdigitalagency.indevs.in/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'AuraLink Digital Agency',
+        alt: 'AuraLink Digital Agency — Autonomous AI Agents, Custom Software & Websites',
       },
     ],
   },
@@ -71,7 +71,7 @@ export const metadata = {
     title: 'AuraLink Digital Agency | AI Agents, Custom Software & Websites',
     description:
       'Autonomous AI voice & WhatsApp agents, custom SaaS platforms, and modern web development.',
-    images: ['https://auralink.agency/og-image.jpg'],
+    images: ['https://auralinkdigitalagency.indevs.in/og-image.jpg'],
   },
   robots: {
     index: true,
