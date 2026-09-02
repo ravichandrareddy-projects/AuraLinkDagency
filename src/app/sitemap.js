@@ -3,29 +3,28 @@ export default async function sitemap() {
   const lastModified = new Date();
 
   const routes = [
-    '',
-    '/services',
-    '/services/websites',
-    '/services/ai-agents',
-    '/services/software',
-    '/services/automation',
-    '/services/digital-marketing',
-    '/services/seo',
-    '/websites',
-    '/ai-agents',
-    '/software',
-    '/pricing',
-    '/tech-stack',
-    '/faq',
-    '/contact',
-    '/llms.txt',
-    '/pricing.md',
+    { url: '', priority: 1.0, changeFrequency: 'daily' },
+    { url: '/services', priority: 0.9, changeFrequency: 'daily' },
+    { url: '/websites', priority: 0.9, changeFrequency: 'daily' },
+    { url: '/ai-agents', priority: 0.9, changeFrequency: 'daily' },
+    { url: '/software', priority: 0.9, changeFrequency: 'daily' },
+    { url: '/tech-stack', priority: 0.9, changeFrequency: 'daily' },
+    { url: '/pricing', priority: 0.9, changeFrequency: 'daily' },
+    { url: '/contact', priority: 0.9, changeFrequency: 'daily' },
+    { url: '/services/automation', priority: 0.8, changeFrequency: 'weekly' },
+    { url: '/services/digital-marketing', priority: 0.8, changeFrequency: 'weekly' },
+    { url: '/services/seo', priority: 0.8, changeFrequency: 'weekly' },
+    { url: '/faq', priority: 0.8, changeFrequency: 'weekly' },
+    { url: '/privacy', priority: 0.5, changeFrequency: 'monthly' },
+    { url: '/terms', priority: 0.5, changeFrequency: 'monthly' },
+    { url: '/llms.txt', priority: 0.5, changeFrequency: 'monthly' },
+    { url: '/llms-full.txt', priority: 0.5, changeFrequency: 'monthly' },
   ];
 
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
+  return routes.map((item) => ({
+    url: `${baseUrl}${item.url}`,
     lastModified,
-    changeFrequency: route === '' ? 'daily' : 'weekly',
-    priority: route === '' ? 1.0 : route.startsWith('/services') || route === '/pricing' ? 0.9 : 0.8,
+    changeFrequency: item.changeFrequency,
+    priority: item.priority,
   }));
 }

@@ -1,0 +1,9 @@
+# AuraLink Digital Agency - Robots Specification
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+# Host & Sitemap
+Host: https://auralinkdigitalagency.indevs.in
+Sitemap: https://auralinkdigitalagency.indevs.in/sitemap.xml
