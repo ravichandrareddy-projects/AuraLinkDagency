@@ -1,46 +1,74 @@
-# AuraLink Digital Agency — AI & LLM Machine-Readable Specification
-> AuraLink Digital Agency is an elite AI-powered digital agency specializing in Autonomous AI Agents, Custom Web & Mobile Software Development, Business Websites, Technical SEO Architecture, and Workflow Automation.
+# AuraLink Digital Agency
 
-## Core Services & Offerings
-- **Websites & E-Commerce**: Landing Pages, Local Business Websites, E-Commerce Platforms, 3D WebGL Motion Websites, Website Redesigns. (Express Delivery in 48 Hours)
-- **Autonomous AI Agent Solutions**: Voice Calling Agents, 24/7 WhatsApp API Business Bots, AI Sales Representatives, Lead Qualification Agents, Employee & Client Onboarding Bots. (Deployed in < 3 Business Days)
-- **Custom Software Solutions**: Full-Stack SaaS Platforms, Custom Web Apps, Mobile Apps (iOS/Android), Enterprise CRM & ERP Systems, Internal Admin Dashboards. (Delivered in < 7 Business Days)
-- **Technical SEO & Digital Marketing**: Technical SEO Audits, Schema.org Architecture, On-Page & Local SEO, Google Business Profile Optimization, Conversion Rate Optimization (CRO).
-- **Engineering Tech Stack**: Next.js 14, React 18, TailwindCSS, Python FastAPI, Node.js, PostgreSQL, Redis, OpenAI GPT-4o, ElevenLabs Voice API, Twilio, WhatsApp Cloud API, Docker, AWS.
+> AuraLink Digital Agency provides website development, e-commerce websites, custom software, AI agents, and business automation solutions for businesses in India and worldwide.
 
-## Official Site Map URLs
-- Main Homepage: https://auralinkdigitalagency.indevs.in/
-- All Services Directory: https://auralinkdigitalagency.indevs.in/services
-- Business Websites & Development: https://auralinkdigitalagency.indevs.in/websites
-- Autonomous AI Agents: https://auralinkdigitalagency.indevs.in/ai-agents
-- Custom Software Development: https://auralinkdigitalagency.indevs.in/software
-- Engineering Tech Stack & Speed Guarantees: https://auralinkdigitalagency.indevs.in/tech-stack
-- Dedicated Technical SEO: https://auralinkdigitalagency.indevs.in/services/seo
-- Dedicated Automation: https://auralinkdigitalagency.indevs.in/services/automation
-- Dedicated Digital Marketing: https://auralinkdigitalagency.indevs.in/services/digital-marketing
-- Multi-Currency Packages & Billing: https://auralinkdigitalagency.indevs.in/pricing
-- Frequently Asked Questions: https://auralinkdigitalagency.indevs.in/faq
-- Official Contact & Consultations: https://auralinkdigitalagency.indevs.in/contact
+## Core Services
 
-## Guaranteed Delivery Schedules
-- Business Websites & Landing Pages: Delivered in 48 Hours
-- Autonomous AI Voice & WhatsApp Agents: Deployed in < 3 Business Days
-- Custom Software Platforms & Apps: Delivered in < 7 Business Days
+- **Website Development**: Business websites, local business websites, e-commerce stores, website redesigns, and premium 3D websites.
+- **AI Agents & Automation**: Voice calling agents, WhatsApp business agents, sales agents, lead generation and qualification agents, onboarding automation, and workflow automation.
+- **Custom Software Development**: Web applications, mobile applications, SaaS platforms, CRM systems, ERP systems, internal business tools, and AI-powered platforms.
+- **Technical SEO**: Technical SEO, metadata, structured data, sitemap implementation, performance optimization, and search-engine-friendly website architecture.
 
-## Transparent Multi-Currency Pricing
-- **Currencies Supported**: INR (₹), USD ($), EUR (€) with fixed regional rates.
+## Official Website
+
+- Homepage: https://auralinkdigitalagency.indevs.in/
+- Services: https://auralinkdigitalagency.indevs.in/services
+- Website Development: https://auralinkdigitalagency.indevs.in/websites
+- AI Agents: https://auralinkdigitalagency.indevs.in/ai-agents
+- Custom Software: https://auralinkdigitalagency.indevs.in/software
+- Pricing: https://auralinkdigitalagency.indevs.in/pricing
+- Tech Stack: https://auralinkdigitalagency.indevs.in/tech-stack
+- SEO: https://auralinkdigitalagency.indevs.in/services/seo
+- Automation: https://auralinkdigitalagency.indevs.in/services/automation
+- Digital Marketing: https://auralinkdigitalagency.indevs.in/services/digital-marketing
+- FAQ: https://auralinkdigitalagency.indevs.in/faq
+- Contact: https://auralinkdigitalagency.indevs.in/contact
+
+## Website Pricing
+
 - **Local Starter Website**: INR ₹8,000 / USD $199 / EUR €179
 - **Business Website**: INR ₹14,999 / USD $399 / EUR €349
-- **E-Commerce Store**: INR ₹15,999 / USD $499 / EUR €449
-- **Premium 3D WebGL Website**: INR ₹39,999 / USD $599 / EUR €549
-- **AI Voice Calling Agent**: INR ₹19,999 / USD $499 / EUR €449
-- **WhatsApp Business Agent**: INR ₹14,999 / USD $399 / EUR €379
-- **Custom SaaS & Web Application**: Starting from INR ₹39,999 / USD $399 / EUR €379
+- **Dynamic Website with Admin Panel**: INR ₹24,999 / USD $399 / EUR €379
+- **E-Commerce Website**: INR ₹29,999 / USD $499 / EUR €449
+- **Premium 3D Website**: INR ₹39,999 / USD $599 / EUR €549
 
-## Official Agency Verification
-- Brand Name: AuraLink Digital Agency
-- Official Website: https://auralinkdigitalagency.indevs.in/
-- Support Email: hello@auralinkdigitalagency.indevs.in
-- Phone / WhatsApp: +91 9440336396
-- Headquarters: Andhra Pradesh, India (Serving Enterprise & Business Clients Worldwide)
-- Operating Hours: Mon-Sat, 10:00 AM – 7:00 PM IST
+## AI Agent Pricing
+
+- **Voice Calling Agent**: INR ₹19,999 / USD $499 / EUR €449
+- **WhatsApp Business Agent**: INR ₹14,999 / USD $399 / EUR €379
+- **Social Media Manager Agent**: INR ₹19,999 / USD $449 / EUR €399
+- **Sales Agent**: INR ₹24,999 / USD $499 / EUR €449
+- **Onboarding Agent**: INR ₹19,999 / USD $399 / EUR €379
+- **Video Generation Agent**: INR ₹24,999 / USD $499 / EUR €449
+- **Data Scraping Agent**: INR ₹14,999 / USD $349 / EUR €329
+- **Lead Generation Agent**: INR ₹19,999 / USD $449 / EUR €399
+- **Data Extraction Agent**: INR ₹12,999 / USD $299 / EUR €279
+
+Third-party API, infrastructure, WhatsApp conversation, voice-minute, hosting, and other usage-based charges may be billed separately where applicable.
+
+## Custom Software
+
+- **Web Application**: Starting from INR ₹39,999 / USD $399 / EUR €379
+- **Mobile Application**: Starting from INR ₹59,999 / USD $599 / EUR €549
+- **Desktop Application**: Starting from INR ₹59,999 / USD $599 / EUR €549
+- **SaaS Platform**: Starting from INR ₹49,999 / USD $699 / EUR €649
+- **CRM System**: Starting from INR ₹59,999 / USD $699 / EUR €649
+- **Internal Business Tools**: Starting from INR ₹39,999 / USD $499 / EUR €449
+- **AI-Powered Platform**: Starting from INR ₹49,999 / USD $699 / EUR €649
+- **ERP**: Custom quotation based on requirements.
+
+## Business Information
+
+- **Brand**: AuraLink Digital Agency
+- **Website**: https://auralinkdigitalagency.indevs.in/
+- **Email**: hello@auralinkdigitalagency.indevs.in
+- **Phone / WhatsApp**: +91 9440336396
+- **Location**: Andhra Pradesh, India
+- **Service Area**: India and international clients
+- **Operating Hours**: Monday–Saturday, 10:00 AM–7:00 PM IST
+
+## Important Information
+
+AuraLink provides development and implementation services. Final pricing, timelines, features, and infrastructure requirements may vary depending on project scope and client requirements.
+
+Only third-party usage costs and infrastructure costs that are actually applicable to a project are billed separately.

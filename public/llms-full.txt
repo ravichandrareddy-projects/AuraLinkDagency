@@ -1,71 +1,74 @@
-# AuraLink Digital Agency — Complete AI Knowledge Base (llms-full.txt)
+# AuraLink Digital Agency
 
-> AuraLink Digital Agency is a full-service AI engineering and digital transformation agency headquartered in Andhra Pradesh, India. We build autonomous AI agents, full-stack software applications, responsive websites, and digital marketing workflows for startups, local businesses, and global enterprises.
+> AuraLink Digital Agency provides website development, e-commerce websites, custom software, AI agents, and business automation solutions for businesses in India and worldwide.
 
-## Table of Contents
-1. Core Competencies & Deliverables
-2. Rapid Turnaround Schedules
-3. Detailed Service Breakdown & Tech Stack
-4. Multi-Currency Packages & Pricing Registry
-5. Payment Infrastructure & Live Gateways
-6. Official Links & Contact Information
+## Core Services
 
----
+- **Website Development**: Business websites, local business websites, e-commerce stores, website redesigns, and premium 3D websites.
+- **AI Agents & Automation**: Voice calling agents, WhatsApp business agents, sales agents, lead generation and qualification agents, onboarding automation, and workflow automation.
+- **Custom Software Development**: Web applications, mobile applications, SaaS platforms, CRM systems, ERP systems, internal business tools, and AI-powered platforms.
+- **Technical SEO**: Technical SEO, metadata, structured data, sitemap implementation, performance optimization, and search-engine-friendly website architecture.
 
-## 1. Core Competencies & Deliverables
-- **Autonomous AI Voice Agents**: Inbound & outbound AI phone call handlers that conduct sales calls, schedule appointments, handle customer queries, and sync with CRMs.
-- **WhatsApp API Business Bots**: 24/7 automated messaging agents integrated with Meta WhatsApp Cloud API for lead capture, customer support, and automated follow-ups.
-- **Custom Web & Mobile Software**: Full-stack SaaS platforms, custom web portals, cross-platform iOS & Android mobile apps (React Native/Flutter), and administrative dashboards.
-- **High-Converting Websites**: Responsive local business websites, landing pages, E-Commerce stores, and interactive WebGL 3D websites.
-- **Technical SEO & Growth**: Technical audits, Schema.org JSON-LD microdata, Core Web Vitals optimization, local SEO, and Google Business Profile optimization.
+## Official Website
 
----
+- Homepage: https://auralinkdigitalagency.indevs.in/
+- Services: https://auralinkdigitalagency.indevs.in/services
+- Website Development: https://auralinkdigitalagency.indevs.in/websites
+- AI Agents: https://auralinkdigitalagency.indevs.in/ai-agents
+- Custom Software: https://auralinkdigitalagency.indevs.in/software
+- Pricing: https://auralinkdigitalagency.indevs.in/pricing
+- Tech Stack: https://auralinkdigitalagency.indevs.in/tech-stack
+- SEO: https://auralinkdigitalagency.indevs.in/services/seo
+- Automation: https://auralinkdigitalagency.indevs.in/services/automation
+- Digital Marketing: https://auralinkdigitalagency.indevs.in/services/digital-marketing
+- FAQ: https://auralinkdigitalagency.indevs.in/faq
+- Contact: https://auralinkdigitalagency.indevs.in/contact
 
-## 2. Rapid Turnaround Schedules
-- **Business Websites & Landing Pages**: Delivered in 48 Hours
-- **Autonomous AI Voice & WhatsApp Agents**: Deployed in < 3 Business Days
-- **Custom Software & SaaS Applications**: Delivered in < 7 Business Days
+## Website Pricing
 
----
+- **Local Starter Website**: INR ₹8,000 / USD $199 / EUR €179
+- **Business Website**: INR ₹14,999 / USD $399 / EUR €349
+- **Dynamic Website with Admin Panel**: INR ₹24,999 / USD $399 / EUR €379
+- **E-Commerce Website**: INR ₹29,999 / USD $499 / EUR €449
+- **Premium 3D Website**: INR ₹39,999 / USD $599 / EUR €549
 
-## 3. Technology Stack & Frameworks
-- **Frontend & Web**: Next.js 14 (App Router), React 18, TailwindCSS, Vanilla CSS, Three.js / WebGL, Framer Motion, HTML5, JavaScript (ES2024).
-- **Backend & Cloud**: Python FastAPI, Node.js, Express, PostgreSQL, Prisma ORM, Redis, Docker, Amazon Web Services (AWS), Vercel Enterprise.
-- **AI Models & Integrations**: OpenAI GPT-4o & O3, Anthropic Claude 3.5, ElevenLabs Conversational Voice API, Twilio Telephony, Meta WhatsApp Cloud API, LangChain, LlamaIndex, n8n.
-- **Payments**: Razorpay Live Gateway (UPI, NetBanking, Credit Cards, Cards), Stripe.
+## AI Agent Pricing
 
----
+- **Voice Calling Agent**: INR ₹19,999 / USD $499 / EUR €449
+- **WhatsApp Business Agent**: INR ₹14,999 / USD $399 / EUR €379
+- **Social Media Manager Agent**: INR ₹19,999 / USD $449 / EUR €399
+- **Sales Agent**: INR ₹24,999 / USD $499 / EUR €449
+- **Onboarding Agent**: INR ₹19,999 / USD $399 / EUR €379
+- **Video Generation Agent**: INR ₹24,999 / USD $499 / EUR €449
+- **Data Scraping Agent**: INR ₹14,999 / USD $349 / EUR €329
+- **Lead Generation Agent**: INR ₹19,999 / USD $449 / EUR €399
+- **Data Extraction Agent**: INR ₹12,999 / USD $299 / EUR €279
 
-## 4. Multi-Currency Pricing Registry
-Static fixed regional pricing without live hidden conversion fees:
+Third-party API, infrastructure, WhatsApp conversation, voice-minute, hosting, and other usage-based charges may be billed separately where applicable.
 
-### Web Development Packages
-- **Local Starter Website (1–3 Pages)**: ₹8,000 INR / $199 USD / €179 EUR
-- **Landing Page**: ₹9,999 INR / $149 USD / €139 EUR
-- **Business Website**: ₹14,999 INR / $399 USD / €349 EUR
-- **Startup Website**: ₹34,999 INR / $449 USD / €429 EUR
-- **E-Commerce Store**: ₹15,999 INR / $499 USD / €449 EUR
-- **Premium 3D WebGL Website**: ₹39,999 INR / $599 USD / €549 EUR
+## Custom Software
 
-### AI Agent Solutions
-- **Voice Calling Agent**: ₹19,999 INR / $499 USD / €449 EUR
-- **WhatsApp Agent**: ₹14,999 INR / $399 USD / €379 EUR
-- **Social Media Manager Agent**: ₹19,999 INR / $449 USD / €399 EUR
-- **Sales Representative Agent**: ₹24,999 INR / $499 USD / €449 EUR
-- **Onboarding Agent**: ₹19,999 INR / $399 USD / €379 EUR
-- **Lead Generation Agent**: ₹19,999 INR / $449 USD / €399 EUR
+- **Web Application**: Starting from INR ₹39,999 / USD $399 / EUR €379
+- **Mobile Application**: Starting from INR ₹59,999 / USD $599 / EUR €549
+- **Desktop Application**: Starting from INR ₹59,999 / USD $599 / EUR €549
+- **SaaS Platform**: Starting from INR ₹49,999 / USD $699 / EUR €649
+- **CRM System**: Starting from INR ₹59,999 / USD $699 / EUR €649
+- **Internal Business Tools**: Starting from INR ₹39,999 / USD $499 / EUR €449
+- **AI-Powered Platform**: Starting from INR ₹49,999 / USD $699 / EUR €649
+- **ERP**: Custom quotation based on requirements.
 
-### Custom Software
-- **Custom Web Application**: Starting from ₹39,999 INR / $399 USD / €379 EUR
-- **Mobile Application**: Starting from ₹59,999 INR / $599 USD / €549 EUR
-- **Custom SaaS Platform**: Starting from ₹79,999 INR / $799 USD / €749 EUR
+## Business Information
 
----
-
-## 5. Contact & Support Information
 - **Brand**: AuraLink Digital Agency
-- **Website URL**: https://auralinkdigitalagency.indevs.in/
-- **Official Support Email**: hello@auralinkdigitalagency.indevs.in
-- **Mobile Phone / WhatsApp**: +91 9440336396
-- **Address / Location**: Andhra Pradesh, India
-- **Global Coverage**: Serving clients across North America, Europe, India, Asia-Pacific, and Middle East.
+- **Website**: https://auralinkdigitalagency.indevs.in/
+- **Email**: hello@auralinkdigitalagency.indevs.in
+- **Phone / WhatsApp**: +91 9440336396
+- **Location**: Andhra Pradesh, India
+- **Service Area**: India and international clients
+- **Operating Hours**: Monday–Saturday, 10:00 AM–7:00 PM IST
+
+## Important Information
+
+AuraLink provides development and implementation services. Final pricing, timelines, features, and infrastructure requirements may vary depending on project scope and client requirements.
+
+Only third-party usage costs and infrastructure costs that are actually applicable to a project are billed separately.
