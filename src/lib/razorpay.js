@@ -39,58 +39,74 @@ export const initiateRazorpayCheckout = async ({
     return;
   }
 
-  const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_test_AuraLinkAgencyKey';
+  try {
+    const res = await fetch('/api/razorpay', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount, currency, serviceName }),
+    });
 
-  // Calculate subunits (paise for INR, cents for USD/EUR)
-  const amountInSubunits = Math.round(amount * 100);
-
-  const options = {
-    key: razorpayKey,
-    amount: amountInSubunits,
-    currency: currency.toUpperCase(),
-    name: 'AuraLink Digital Agency',
-    description: `${serviceName} — ${description}`,
-    image: '/logo.png',
-    handler: function (response) {
-      if (onSuccess) {
-        onSuccess({
-          paymentId: response.razorpay_payment_id,
-          orderId: response.razorpay_order_id,
-          signature: response.razorpay_signature,
-          serviceName,
-          amount,
-          currency,
-        });
-      } else {
-        alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
-      }
-    },
-    prefill: {
-      name: clientName || '',
-      email: clientEmail || '',
-      contact: clientPhone || '',
-    },
-    notes: {
-      agency: 'AuraLink Digital Agency',
-      service: serviceName,
-    },
-    theme: {
-      color: '#8b5cf6', // AuraLink Purple accent
-      backdrop_color: 'rgba(10, 10, 25, 0.85)',
-    },
-  };
-
-  const paymentObject = new window.Razorpay(options);
-
-  paymentObject.on('payment.failed', function (response) {
-    console.error('Razorpay Payment Failed:', response.error);
-    const failureMsg = response.error?.description || 'Payment was canceled or failed.';
-    if (onError) {
-      onError(response.error);
-    } else {
-      alert(`Payment Failed: ${failureMsg}`);
+    const data = await res.json();
+    if (!res.ok || !data.success || !data.order) {
+      const errMsg = data.error || 'Failed to create payment order.';
+      alert(errMsg);
+      if (onError) onError(new Error(errMsg));
+      return;
     }
-  });
 
-  paymentObject.open();
+    const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_live_TWqPNjXXmOG6Fu';
+
+    const options = {
+      key: razorpayKey,
+      amount: data.order.amount,
+      currency: data.order.currency,
+      order_id: data.order.id,
+      name: 'AuraLink Digital Agency',
+      description: `${serviceName} — ${description}`,
+      image: '/logo.png',
+      handler: function (response) {
+        if (onSuccess) {
+          onSuccess({
+            paymentId: response.razorpay_payment_id,
+            orderId: response.razorpay_order_id,
+            signature: response.razorpay_signature,
+            serviceName,
+            amount,
+            currency,
+          });
+        } else {
+          alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+        }
+      },
+      prefill: {
+        name: clientName || '',
+        email: clientEmail || '',
+        contact: clientPhone || '',
+      },
+      notes: {
+        agency: 'AuraLink Digital Agency',
+        service: serviceName,
+      },
+      theme: {
+        color: '#8b5cf6',
+        backdrop_color: 'rgba(10, 10, 25, 0.85)',
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+
+    paymentObject.on('payment.failed', function (response) {
+      console.error('Razorpay Payment Failed:', response.error);
+      const failureMsg = response.error?.description || 'Payment was canceled or failed.';
+      if (onError) onError(response.error);
+      else alert(`Payment Failed: ${failureMsg}`);
+    });
+
+    paymentObject.open();
+  } catch (err) {
+    console.error('Razorpay Checkout error:', err);
+    alert(err.message || 'Payment initiation failed');
+    if (onError) onError(err);
+  }
 };
+
