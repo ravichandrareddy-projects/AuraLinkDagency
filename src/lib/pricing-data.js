@@ -28,115 +28,15 @@ export function formatCurrencyAmount(amount, currencyCode = 'USD', isStarting = 
   return `${prefix}${formatted}${suffix}`;
 }
 
-// ─── Standard Packages ───
-export const packages = [
-  {
-    id: 'local-launch',
-    name: 'Local Launch Package',
-    tagline: 'Ideal for small local businesses & micro-shops',
-    popular: false,
-    cta: 'Get Started',
-    prices: { INR: 8000, USD: 199, EUR: 179 },
-    features: [
-      '1–3 Page Static Website',
-      'WhatsApp & Phone Button',
-      'Google Maps Integration',
-      'Basic SEO & Metadata',
-      'Speed & Mobile Optimization',
-      'Free Deployment',
-    ],
-  },
-  {
-    id: 'starter-website',
-    name: 'Starter Website Package',
-    tagline: 'Professional 5-page site to establish online authority',
-    popular: false,
-    cta: 'Get Started',
-    prices: { INR: 14999, USD: 199, EUR: 189 },
-    features: [
-      'Up to 5 Pages',
-      'Mobile Responsive Layout',
-      'Interactive Contact Forms',
-      'Basic SEO Setup',
-      'Analytics Setup',
-      '1 Month Support',
-    ],
-  },
-  {
-    id: 'business-growth',
-    name: 'Business Growth Package',
-    tagline: 'Complete digital presence built for lead conversion',
-    popular: true,
-    cta: 'Get Started',
-    prices: { INR: 24999, USD: 399, EUR: 349 },
-    features: [
-      'Business Website',
-      'WhatsApp Integration',
-      'Lead & Contact Forms',
-      'Google Analytics Setup',
-      'Complete Technical SEO',
-      'Free Deployment',
-      '3 Months Support',
-    ],
-  },
-  {
-    id: 'digital-business',
-    name: 'Digital Business Package',
-    tagline: 'Dynamic site with CMS admin panel and lead workflow',
-    popular: false,
-    cta: 'Go Digital',
-    prices: { INR: 39999, USD: 599, EUR: 549 },
-    features: [
-      'Dynamic Website + Admin Panel',
-      'Lead Management System',
-      'WhatsApp Integration',
-      'Advanced Analytics & Tracking',
-      'Complete Technical SEO',
-      'Basic Workflow Automation',
-      'Free Deployment',
-    ],
-  },
-  {
-    id: 'ai-growth',
-    name: 'AI Growth Package',
-    tagline: 'Modern website integrated with an intelligent AI Agent',
-    popular: false,
-    cta: 'Deploy AI',
-    prices: { INR: 39999, USD: 599, EUR: 549 },
-    features: [
-      'Full Business Website',
-      '1 Custom AI Agent (Voice / WhatsApp / Sales)',
-      'Automated Lead Capture',
-      'WhatsApp API Integration',
-      'Basic Workflow Automation',
-      'Full Analytics & Technical SEO',
-    ],
-    note: 'Third-party API & usage charges extra as applicable.',
-  },
-  {
-    id: 'premium-experience',
-    name: 'Premium Experience Package',
-    tagline: 'Cutting-edge 3D animations and bespoke digital experiences',
-    popular: false,
-    cta: 'Go Premium',
-    prices: { INR: 49999, USD: 599, EUR: 549 },
-    features: [
-      'Premium Design & UX',
-      'Custom 3D / GSAP Animations',
-      'AI Agent Integration',
-      'Ultra Performance & Speed',
-      'Complete Technical SEO',
-      '6 Months Support',
-    ],
-  },
-];
+// ─── Standard Packages (Empty per request) ───
+export const packages = [];
 
 // ─── Detailed Services Catalog ───
 export const customServices = {
   websites: [
     {
       id: 'local-starter-website',
-      name: 'Local Starter / Small Business Website',
+      name: 'Local Business Website',
       description: '1–3 page sleek website tailored for local shops, barbers, cafes, tutors, and micro-businesses.',
       prices: { INR: 8000, USD: 199, EUR: 179 },
       features: ['1–3 Pages', 'WhatsApp Button', 'Google Maps', 'Mobile Responsive'],
@@ -156,20 +56,6 @@ export const customServices = {
       features: ['Multi-page structure', 'Contact & Booking', 'SEO Optimized'],
     },
     {
-      id: 'startup-website',
-      name: 'Startup Website',
-      description: 'High-impact launch website engineered for growth, speed, and investor appeal.',
-      prices: { INR: 34999, USD: 449, EUR: 429 },
-      features: ['Modern Tech Aesthetic', 'Investor Deck Embeds', 'Speed Optimized'],
-    },
-    {
-      id: 'dynamic-website',
-      name: 'Dynamic Website + Admin Panel',
-      description: 'Dynamic content management system with custom admin dashboard for easy updates.',
-      prices: { INR: 24999, USD: 399, EUR: 379 },
-      features: ['Admin Control Panel', 'Dynamic Content', 'Role Management'],
-    },
-    {
       id: 'ecommerce-store',
       name: 'E-Commerce Store',
       description: 'Full-featured online store with product catalogs, shopping cart, and payment gateway.',
@@ -177,39 +63,11 @@ export const customServices = {
       features: ['Product Catalog', 'Payment Gateways', 'Order Management'],
     },
     {
-      id: 'portfolio-website',
-      name: 'Portfolio Website',
-      description: 'Showcase your creative work, case studies, and achievements with visual elegance.',
-      prices: { INR: 14999, USD: 249, EUR: 229 },
-      features: ['Gallery Showcase', 'Project Case Studies', 'Smooth Animations'],
-    },
-    {
-      id: 'restaurant-website',
-      name: 'Restaurant Website',
-      description: 'Digital menus, online table booking, location maps, and order integration.',
-      prices: { INR: 19999, USD: 299, EUR: 279 },
-      features: ['Interactive Menu', 'Table Booking', 'Google Maps Sync'],
-    },
-    {
-      id: 'real-estate-website',
-      name: 'Real Estate Website',
-      description: 'Property listings, filter search, virtual tours, and agent lead forms.',
-      prices: { INR: 29999, USD: 449, EUR: 429 },
-      features: ['Property Listings', 'Search Filters', 'Agent Contact Forms'],
-    },
-    {
-      id: 'healthcare-website',
-      name: 'Healthcare Website',
-      description: 'Patient-focused website with appointment scheduling, doctor profiles, and clinic info.',
-      prices: { INR: 29999, USD: 449, EUR: 429 },
-      features: ['Doctor Profiles', 'Appointment Booking', 'Patient Resources'],
-    },
-    {
-      id: 'blog-system',
-      name: 'Blog System',
-      description: 'Custom content publication system with categories, search, newsletter, and SEO setup.',
-      prices: { INR: 19999, USD: 299, EUR: 279 },
-      features: ['CMS Publishing', 'Category Filtering', 'Newsletter Opt-in'],
+      id: 'fashion-website',
+      name: "Fashion Website (Men's & Women's)",
+      description: "Custom e-commerce & showcase platform for men's and women's fashion, apparel, and lifestyle brands.",
+      prices: { INR: 19999, USD: 449, EUR: 399 },
+      features: ['Men & Women Collections', 'Size Guides & Lookbooks', 'Integrated Checkout'],
     },
     {
       id: 'website-redesign',
@@ -229,27 +87,12 @@ export const customServices = {
 
   aiAgents: [
     {
-      id: 'voice-calling',
-      name: 'Voice Calling Agent',
-      description: 'Human-like AI phone agent that handles inbound customer support, outbound calls, and bookings.',
-      prices: { INR: 19999, USD: 499, EUR: 449 },
-      features: ['Natural Voice Flow', 'CRM Auto Sync', 'Call Transcripts'],
-      usageNotice: 'Voice telephony minutes & carrier costs billed separately.',
-    },
-    {
       id: 'whatsapp-agent',
       name: 'WhatsApp Business Agent',
       description: 'Automated 24/7 WhatsApp API agent for instant customer support, lead capture, and orders.',
       prices: { INR: 14999, USD: 399, EUR: 379 },
       features: ['24/7 Auto Replies', 'Catalog Sharing', 'Payment Link Integration'],
       usageNotice: 'Meta WhatsApp Business API conversation charges billed separately.',
-    },
-    {
-      id: 'social-media-agent',
-      name: 'Social Media Manager Agent',
-      description: 'AI agent that creates posts, schedules content, responds to comments, and tracks performance.',
-      prices: { INR: 19999, USD: 449, EUR: 399 },
-      features: ['Automated Content Plan', 'Multi-Platform Sync', 'Analytics Dashboard'],
     },
     {
       id: 'sales-agent',
@@ -259,25 +102,11 @@ export const customServices = {
       features: ['Lead Qualification', 'Email Sequences', 'Calendar Booking'],
     },
     {
-      id: 'onboarding-agent',
-      name: 'Onboarding Agent',
-      description: 'Automated customer and employee onboarding workflow with document collection and progress tracking.',
-      prices: { INR: 19999, USD: 399, EUR: 379 },
-      features: ['Step-by-step Flows', 'Document Collection', 'Automated Verification'],
-    },
-    {
-      id: 'video-generation-agent',
-      name: 'Video Generation Agent',
-      description: 'AI-driven video creator for social reels, ads, marketing demos, and explainer clips.',
-      prices: { INR: 24999, USD: 499, EUR: 449 },
-      features: ['Script to Video', 'Voiceover Generation', 'Multi-Format Export'],
-    },
-    {
-      id: 'data-scraping-agent',
-      name: 'Data Scraping Agent',
-      description: 'Intelligent scraper agent that extracts, structures, and exports web data automatically.',
-      prices: { INR: 14999, USD: 349, EUR: 329 },
-      features: ['Anti-block Rotation', 'CSV/JSON Export', 'Scheduled Runs'],
+      id: 'social-media-agent',
+      name: 'Social Media Manager Agent',
+      description: 'AI agent that creates posts, schedules content, responds to comments, and tracks performance.',
+      prices: { INR: 19999, USD: 449, EUR: 399 },
+      features: ['Automated Content Plan', 'Multi-Platform Sync', 'Analytics Dashboard'],
     },
     {
       id: 'lead-generation-agent',
@@ -287,11 +116,11 @@ export const customServices = {
       features: ['Prospect Enrichment', 'Multi-channel Discovery', 'CRM Integration'],
     },
     {
-      id: 'data-extraction-agent',
-      name: 'Data Extraction / Scraper Agent',
-      description: 'Advanced data harvester with NLP document processing, table parsing, and data cleaning.',
-      prices: { INR: 12999, USD: 299, EUR: 279 },
-      features: ['PDF/Image Extraction', 'NLP Parsing', 'Automated Reports'],
+      id: 'data-scraping-agent',
+      name: 'Data Scraping Agent',
+      description: 'Intelligent scraper agent that extracts, structures, and exports web data automatically.',
+      prices: { INR: 14999, USD: 349, EUR: 329 },
+      features: ['Anti-block Rotation', 'CSV/JSON Export', 'Scheduled Runs'],
     },
   ],
 
@@ -400,14 +229,14 @@ export const homepagePricingHighlights = [
     category: 'Websites & E-Commerce',
     startingLabel: 'From',
     prices: { INR: 8000, USD: 199, EUR: 179 },
-    popularFor: 'Local Shops, Business Sites & Stores',
+    popularFor: 'Local Business, Fashion & E-Commerce',
     link: '/websites',
   },
   {
     category: 'AI Agents',
     startingLabel: 'From',
-    prices: { INR: 12999, USD: 299, EUR: 279 },
-    popularFor: 'Voice, WhatsApp & Sales Automation',
+    prices: { INR: 14999, USD: 349, EUR: 329 },
+    popularFor: 'WhatsApp, Sales & Scraper Agents',
     link: '/ai-agents',
   },
   {

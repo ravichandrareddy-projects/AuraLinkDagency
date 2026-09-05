@@ -13,15 +13,11 @@ import HoverText from '@/components/ui/HoverText';
 import { useCurrency } from '@/lib/currency-context';
 
 const categories = [
-  { icon: Globe, name: 'Local Starter Website', desc: '1–3 page sleek website tailored for local shops, barbers, cafes, and micro-businesses.', prices: { INR: 8000, USD: 199, EUR: 179 }, features: ['1–3 Pages', 'WhatsApp Button', 'Google Maps', 'Mobile Responsive'] },
+  { icon: Globe, name: 'Local Business Website', desc: '1–3 page sleek website tailored for local shops, barbers, cafes, tutors, and micro-businesses.', prices: { INR: 8000, USD: 199, EUR: 179 }, features: ['1–3 Pages', 'WhatsApp Button', 'Google Maps', 'Mobile Responsive'] },
   { icon: Layout, name: 'Landing Page', desc: 'High-converting single-page website with modern design optimized for ad campaigns.', prices: { INR: 9999, USD: 149, EUR: 139 }, features: ['High Conversion Design', 'Lead Capture Form', 'Fast Loading Speed'] },
   { icon: Globe, name: 'Business Website', desc: 'Professional online presence that establishes trust and credibility for your brand.', prices: { INR: 14999, USD: 399, EUR: 349 }, features: ['Custom design', 'Contact forms', 'Mobile responsive'] },
-  { icon: Rocket, name: 'Startup Website', desc: 'Launch with impact — fast, modern websites built for growth and conversion.', prices: { INR: 34999, USD: 449, EUR: 429 }, features: ['Modern design', 'Fast loading', 'SEO ready'] },
-  { icon: ShoppingCart, name: 'E-Commerce Store', desc: 'Sell online seamlessly with fully integrated product catalogs and payments.', prices: { INR: 15999, USD: 499, EUR: 449 }, features: ['Product catalog', 'Payment gateway', 'Inventory management'] },
-  { icon: Briefcase, name: 'Portfolio Website', desc: 'Showcase your work with stunning visual layouts and smooth animations.', prices: { INR: 14999, USD: 249, EUR: 229 }, features: ['Gallery layouts', 'Project showcases', 'Smooth animations'] },
-  { icon: UtensilsCrossed, name: 'Restaurant Website', desc: 'Digital menus, table booking, and online ordering for modern restaurants.', prices: { INR: 19999, USD: 299, EUR: 279 }, features: ['Digital menu', 'Online booking', 'Order system'] },
-  { icon: Building2, name: 'Real Estate Website', desc: 'Property listings, virtual tours, and agent profiles for real estate businesses.', prices: { INR: 29999, USD: 449, EUR: 429 }, features: ['Property listings', 'Search filters', 'Agent profiles'] },
-  { icon: HeartPulse, name: 'Healthcare Website', desc: 'Patient-focused design with appointment booking and health information.', prices: { INR: 29999, USD: 449, EUR: 429 }, features: ['Appointment booking', 'Patient portal', 'HIPAA compliance'] },
+  { icon: ShoppingCart, name: 'E-Commerce Store', desc: 'Sell online seamlessly with fully integrated product catalogs and payment gateways.', prices: { INR: 15999, USD: 499, EUR: 449 }, features: ['Product catalog', 'Payment gateways', 'Order management'] },
+  { icon: Palette, name: "Fashion Website (Men's & Women's)", desc: "Custom e-commerce & showcase platform for men's and women's fashion, apparel, and lifestyle brands.", prices: { INR: 19999, USD: 449, EUR: 399 }, features: ['Men & Women Collections', 'Size Guides & Lookbooks', 'Integrated Checkout'] },
   { icon: RefreshCw, name: 'Website Redesign', desc: 'Modernize your existing site with fresh design, better performance, and improved SEO.', prices: { INR: 24999, USD: 399, EUR: 379 }, features: ['Brand refresh', 'Performance boost', 'SEO overhaul'] },
   { icon: Zap, name: 'Premium 3D Website', desc: 'Immersive WebGL / Three.js 3D experience with bespoke visual motion design.', prices: { INR: 39999, USD: 599, EUR: 549 }, features: ['3D WebGL Motion', 'Custom Shaders', 'Bespoke UI/UX'] },
 ];

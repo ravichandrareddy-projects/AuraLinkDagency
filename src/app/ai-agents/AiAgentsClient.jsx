@@ -37,15 +37,11 @@ const colorMap = {
 };
 
 const agents = [
-  { id: 'voice-calling', name: 'Voice Calling Agent', tagline: 'Automate outbound & inbound calls', prices: { INR: 19999, USD: 499, EUR: 449 }, capabilities: ['Outbound calling campaigns', 'Appointment booking & reminders', 'Automated follow-ups', 'Customer support handling'] },
-  { id: 'whatsapp', name: 'WhatsApp Agent', tagline: 'Engage customers on WhatsApp 24/7', prices: { INR: 14999, USD: 399, EUR: 379 }, capabilities: ['Automated conversations', 'Lead capture & qualification', 'Customer support chatbot', 'Order updates & tracking'] },
-  { id: 'social-media', name: 'Social Media Manager', tagline: 'Automate your social presence', prices: { INR: 19999, USD: 449, EUR: 399 }, capabilities: ['AI post generation', 'Smart scheduling', 'Content planning & calendar', 'Performance analytics'] },
+  { id: 'whatsapp', name: 'WhatsApp Business Agent', tagline: 'Engage customers on WhatsApp 24/7', prices: { INR: 14999, USD: 399, EUR: 379 }, capabilities: ['Automated conversations', 'Lead capture & qualification', 'Customer support chatbot', 'Order updates & tracking'] },
   { id: 'sales', name: 'Sales Agent', tagline: 'Close more deals on autopilot', prices: { INR: 24999, USD: 499, EUR: 449 }, capabilities: ['Lead qualification & scoring', 'Follow-up automation', 'CRM integration', 'Meeting booking'] },
-  { id: 'onboarding', name: 'Onboarding Agent', tagline: 'Streamline employee & client onboarding', prices: { INR: 19999, USD: 399, EUR: 379 }, capabilities: ['Employee onboarding flows', 'Customer onboarding', 'Document collection', 'Progress tracking'] },
-  { id: 'video-generation', name: 'Video Generation Agent', tagline: 'Create videos with AI', prices: { INR: 24999, USD: 499, EUR: 449 }, capabilities: ['Reels & shorts creation', 'Marketing video production', 'Product demo videos', 'AI-powered editing'] },
-  { id: 'data-scraping', name: 'Data Scraping Agent', tagline: 'Extract business intelligence', prices: { INR: 14999, USD: 349, EUR: 329 }, capabilities: ['Lead scraping at scale', 'Business data extraction', 'Competitor monitoring', 'Market research'] },
+  { id: 'social-media', name: 'Social Media Manager Agent', tagline: 'Automate your social presence', prices: { INR: 19999, USD: 449, EUR: 399 }, capabilities: ['AI post generation', 'Smart scheduling', 'Content planning & calendar', 'Performance analytics'] },
   { id: 'lead-generation', name: 'Lead Generation Agent', tagline: 'Fill your pipeline automatically', prices: { INR: 19999, USD: 449, EUR: 399 }, capabilities: ['Multi-channel lead capture', 'Lead scoring & prioritization', 'Funnel automation', 'Campaign tracking'] },
-  { id: 'data-scraper', name: 'Data Scraper Agent', tagline: 'Build your data advantage', prices: { INR: 12999, USD: 299, EUR: 279 }, capabilities: ['Web scraping automation', 'Data enrichment', 'Automated reporting', 'Database building'] },
+  { id: 'data-scraping', name: 'Data Scraping Agent', tagline: 'Extract business intelligence', prices: { INR: 14999, USD: 349, EUR: 329 }, capabilities: ['Lead scraping at scale', 'Business data extraction', 'Competitor monitoring', 'Market research'] },
 ];
 
 const steps = [
