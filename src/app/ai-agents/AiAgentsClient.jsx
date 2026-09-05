@@ -37,11 +37,11 @@ const colorMap = {
 };
 
 const agents = [
-  { id: 'whatsapp', name: 'WhatsApp Business Agent', tagline: 'Engage customers on WhatsApp 24/7', prices: { INR: 14999, USD: 399, EUR: 379 }, capabilities: ['Automated conversations', 'Lead capture & qualification', 'Customer support chatbot', 'Order updates & tracking'] },
-  { id: 'sales', name: 'Sales Agent', tagline: 'Close more deals on autopilot', prices: { INR: 24999, USD: 499, EUR: 449 }, capabilities: ['Lead qualification & scoring', 'Follow-up automation', 'CRM integration', 'Meeting booking'] },
-  { id: 'social-media', name: 'Social Media Manager Agent', tagline: 'Automate your social presence', prices: { INR: 19999, USD: 449, EUR: 399 }, capabilities: ['AI post generation', 'Smart scheduling', 'Content planning & calendar', 'Performance analytics'] },
-  { id: 'lead-generation', name: 'Lead Generation Agent', tagline: 'Fill your pipeline automatically', prices: { INR: 19999, USD: 449, EUR: 399 }, capabilities: ['Multi-channel lead capture', 'Lead scoring & prioritization', 'Funnel automation', 'Campaign tracking'] },
-  { id: 'data-scraping', name: 'Data Scraping Agent', tagline: 'Extract business intelligence', prices: { INR: 14999, USD: 349, EUR: 329 }, capabilities: ['Lead scraping at scale', 'Business data extraction', 'Competitor monitoring', 'Market research'] },
+  { id: 'whatsapp', name: 'WhatsApp Business Agent', tagline: 'Engage customers on WhatsApp 24/7', image: '/agents/whatsapp_agent.jpg', prices: { INR: [14999, 19999], USD: [499, 599], EUR: [449, 549] }, capabilities: ['Automated conversations', 'Lead capture & qualification', 'Customer support chatbot', 'Order updates & tracking'] },
+  { id: 'sales', name: 'Sales Agent', tagline: 'Close more deals on autopilot', image: '/agents/sales_agent.jpg', prices: { INR: [24999, 34999], USD: [599, 699], EUR: [549, 649] }, capabilities: ['Lead qualification & scoring', 'Follow-up automation', 'CRM integration', 'Meeting booking'] },
+  { id: 'social-media', name: 'Social Media Manager Agent', tagline: 'Automate your social presence', image: '/agents/social_media_agent.jpg', prices: { INR: [19999, 27999], USD: [549, 649], EUR: [499, 599] }, capabilities: ['AI post generation', 'Smart scheduling', 'Content planning & calendar', 'Performance analytics'] },
+  { id: 'lead-generation', name: 'Lead Generation Agent', tagline: 'Fill your pipeline automatically', image: '/agents/lead_generation_agent.jpg', prices: { INR: [19999, 29999], USD: [549, 649], EUR: [499, 599] }, capabilities: ['Multi-channel lead capture', 'Lead scoring & prioritization', 'Funnel automation', 'Campaign tracking'] },
+  { id: 'data-scraping', name: 'Data Scraping Agent', tagline: 'Extract business intelligence', image: '/agents/data_scraping_agent.jpg', prices: { INR: [14999, 22999], USD: [449, 549], EUR: [399, 499] }, capabilities: ['Lead scraping at scale', 'Business data extraction', 'Competitor monitoring', 'Market research'] },
 ];
 
 const steps = [
@@ -118,7 +118,7 @@ export default function AIAgentsPage() {
       {/* Agent Cards */}
       <section id="agents" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading title="Our AI Agent Suite" subtitle="Nine specialized AI agents designed to automate every aspect of your business" centered gradient />
+          <SectionHeading title="Our AI Agent Suite" subtitle="Specialized AI agents designed to automate customer communication, lead generation, and operations" centered gradient />
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -127,28 +127,41 @@ export default function AIAgentsPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
           >
             {agents.map((agent) => {
-              const Icon = iconMap[agent.id];
+              const Icon = iconMap[agent.id] || Zap;
               return (
                 <motion.div key={agent.id} variants={fadeUp}>
-                  <GlassCard hover className="p-6 h-full flex flex-col group">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colorMap[agent.id]} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon size={24} className="text-white" />
+                  <GlassCard hover className="p-0 h-full flex flex-col group overflow-hidden border border-white/[0.08] shadow-2xl">
+                    <div className="relative h-44 w-full overflow-hidden bg-black/40">
+                      <img
+                        src={agent.image}
+                        alt={agent.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(230,20%,8%)] via-black/30 to-transparent" />
+                      <div className="absolute top-3 left-3 w-10 h-10 rounded-xl bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg">
+                        <Icon size={20} className="text-[hsl(270,95%,65%)]" />
+                      </div>
                     </div>
-                    <h3 className="font-display text-xl font-bold text-white mb-1">{agent.name}</h3>
-                    <p className="text-[hsl(230,15%,55%)] text-sm mb-4">{agent.tagline}</p>
-                    <ul className="space-y-2 mb-6 flex-1">
-                      {agent.capabilities.map((cap, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-[hsl(230,15%,65%)]">
-                          <Check size={16} className="text-[hsl(185,100%,55%)] mt-0.5 shrink-0" />
-                          <span>{cap}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="pt-2 flex items-center justify-between gap-3">
-                      <span className="text-base font-extrabold gradient-text">
-                        {formatPrice(agent.prices)}
-                      </span>
-                      <Button variant="ghost" size="sm" href="/contact">Book Demo</Button>
+
+                    <div className="p-6 flex flex-col flex-1 justify-between">
+                      <div>
+                        <h3 className="font-display text-xl font-bold text-white mb-1">{agent.name}</h3>
+                        <p className="text-[hsl(230,15%,55%)] text-xs mb-4">{agent.tagline}</p>
+                        <ul className="space-y-2 mb-6">
+                          {agent.capabilities.map((cap, i) => (
+                            <li key={i} className="flex items-start gap-2 text-xs text-[hsl(230,15%,75%)]">
+                              <Check size={14} className="text-[hsl(185,100%,55%)] mt-0.5 shrink-0" />
+                              <span>{cap}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-3">
+                        <span className="text-base font-extrabold gradient-text">
+                          {formatPrice(agent.prices)}
+                        </span>
+                        <Button variant="ghost" size="sm" href="/contact">Book Demo</Button>
+                      </div>
                     </div>
                   </GlassCard>
                 </motion.div>

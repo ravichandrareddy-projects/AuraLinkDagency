@@ -187,37 +187,49 @@ export default function PricingPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {customServices.aiAgents.map((agent, i) => (
                 <ScrollReveal key={agent.id} delay={i * 0.05}>
-                  <GlassCard hover className="p-6 h-full flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-[hsl(270,95%,65%)]">AI Agent Solution</span>
-                      <h3 className="font-display text-lg font-bold text-white mt-1 mb-2">{agent.name}</h3>
-                      <p className="text-[hsl(230,15%,60%)] text-xs mb-4 leading-relaxed">{agent.description}</p>
+                  <GlassCard hover className="p-0 h-full flex flex-col justify-between overflow-hidden border border-white/[0.08] shadow-2xl">
+                    <div className="relative h-44 w-full overflow-hidden bg-black/40">
+                      <img
+                        src={agent.image || '/agents/whatsapp_agent.jpg'}
+                        alt={agent.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(230,20%,8%)] via-black/30 to-transparent" />
+                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/20 text-[10px] font-mono uppercase tracking-wider text-[hsl(270,95%,65%)] font-bold">
+                        AI Agent Solution
+                      </span>
+                    </div>
+                    <div className="p-6 flex flex-col flex-1 justify-between">
+                      <div>
+                        <h3 className="font-display text-lg font-bold text-white mb-2">{agent.name}</h3>
+                        <p className="text-[hsl(230,15%,60%)] text-xs mb-4 leading-relaxed">{agent.description}</p>
 
-                      <div className="mb-4">
-                        <span className="text-2xl font-bold gradient-text">{formatPrice(agent.prices)}</span>
+                        <div className="mb-4">
+                          <span className="text-xl font-extrabold gradient-text">{formatPrice(agent.prices)}</span>
+                        </div>
+
+                        <ul className="space-y-2 mb-4">
+                          {agent.features.map((f, idx) => (
+                            <li key={idx} className="flex items-center gap-2 text-xs text-[hsl(230,15%,75%)]">
+                              <Check size={14} className="text-[hsl(185,100%,55%)] shrink-0" />
+                              <span>{f}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        {agent.usageNotice && (
+                          <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] text-[hsl(230,15%,60%)] mb-6">
+                            ℹ️ <span className="italic">{agent.usageNotice}</span>
+                          </div>
+                        )}
                       </div>
 
-                      <ul className="space-y-2 mb-4">
-                        {agent.features.map((f, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-xs text-[hsl(230,15%,70%)]">
-                            <Check size={14} className="text-[hsl(185,100%,55%)] shrink-0" />
-                            <span>{f}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      {agent.usageNotice && (
-                        <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] text-[hsl(230,15%,60%)] mb-6">
-                          ℹ️ <span className="italic">{agent.usageNotice}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <RazorpayButton amountMap={agent.prices} serviceName={agent.name} className="w-full" buttonText="Pay & Deploy Agent" />
-                      <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
-                        Book Demo Call <ArrowRight size={14} />
-                      </Button>
+                      <div className="space-y-2">
+                        <RazorpayButton amountMap={agent.prices} serviceName={agent.name} className="w-full" buttonText="Pay & Deploy Agent" />
+                        <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
+                          Book Demo Call <ArrowRight size={14} />
+                        </Button>
+                      </div>
                     </div>
                   </GlassCard>
                 </ScrollReveal>

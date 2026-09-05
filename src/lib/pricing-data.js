@@ -98,7 +98,7 @@ export const customServices = {
     {
       id: 'website-redesign',
       name: 'Website Redesign',
-      image: '/services/ecommerce_website.jpg',
+      image: '/services/website_redesign.jpg',
       description: 'Modernize your outdated website with superior design, fast performance, and UX revamp.',
       prices: { INR: [15000, 22000], USD: [399, 499], EUR: [369, 469] },
       features: ['Complete Visual Overhaul', 'Speed & Mobile Optimization', 'Core Web Vitals Boost', 'SEO Migration'],
@@ -106,7 +106,7 @@ export const customServices = {
     {
       id: 'business-website',
       name: 'Business Website',
-      image: '/services/local_business_website.jpg',
+      image: '/services/business_website.jpg',
       description: 'Professional multi-page business site with admin panel to edit content and blogs.',
       prices: { INR: [23000, 30000], USD: [549, 649], EUR: [499, 599] },
       features: [
@@ -136,6 +136,7 @@ export const customServices = {
     {
       id: 'whatsapp-agent',
       name: 'WhatsApp Business Agent',
+      image: '/agents/whatsapp_agent.jpg',
       description: 'Automated 24/7 WhatsApp API agent for instant customer support, lead capture, and orders.',
       prices: { INR: [14999, 19999], USD: [499, 599], EUR: [449, 549] },
       features: ['24/7 Auto Replies', 'Catalog Sharing', 'Payment Link Integration'],
@@ -144,6 +145,7 @@ export const customServices = {
     {
       id: 'sales-agent',
       name: 'Sales Agent',
+      image: '/agents/sales_agent.jpg',
       description: 'AI sales specialist that qualifies leads, handles objections, and schedules meetings.',
       prices: { INR: [24999, 34999], USD: [599, 699], EUR: [549, 649] },
       features: ['Lead Qualification', 'Email Sequences', 'Calendar Booking'],
@@ -151,6 +153,7 @@ export const customServices = {
     {
       id: 'social-media-agent',
       name: 'Social Media Manager Agent',
+      image: '/agents/social_media_agent.jpg',
       description: 'AI agent that creates posts, schedules content, responds to comments, and tracks performance.',
       prices: { INR: [19999, 27999], USD: [549, 649], EUR: [499, 599] },
       features: ['Automated Content Plan', 'Multi-Platform Sync', 'Analytics Dashboard'],
@@ -158,6 +161,7 @@ export const customServices = {
     {
       id: 'lead-generation-agent',
       name: 'Lead Generation Agent',
+      image: '/agents/lead_generation_agent.jpg',
       description: 'Autonomous agent that finds targeted prospects, enriches contact details, and feeds warm leads to sales.',
       prices: { INR: [19999, 29999], USD: [549, 649], EUR: [499, 599] },
       features: ['Prospect Enrichment', 'Multi-channel Discovery', 'CRM Integration'],
@@ -165,6 +169,7 @@ export const customServices = {
     {
       id: 'data-scraping-agent',
       name: 'Data Scraping Agent',
+      image: '/agents/data_scraping_agent.jpg',
       description: 'Intelligent scraper agent that extracts, structures, and exports web data automatically.',
       prices: { INR: [14999, 22999], USD: [449, 549], EUR: [399, 499] },
       features: ['Anti-block Rotation', 'CSV/JSON Export', 'Scheduled Runs'],
