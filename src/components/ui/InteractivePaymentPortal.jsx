@@ -80,6 +80,7 @@ export default function InteractivePaymentPortal() {
     if (!selectedService || !selectedService.prices) return 0;
     if (typeof selectedService.prices === 'number') return selectedService.prices;
     const priceInCurrency = selectedService.prices[currency.code] || selectedService.prices['USD'] || selectedService.prices['INR'];
+    if (Array.isArray(priceInCurrency)) return Number(priceInCurrency[0]);
     return typeof priceInCurrency === 'number' ? priceInCurrency : 0;
   }, [useCustomAmount, customAmount, selectedService, currency]);
 

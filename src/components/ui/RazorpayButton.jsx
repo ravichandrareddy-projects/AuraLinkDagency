@@ -31,7 +31,8 @@ export default function RazorpayButton({
   } else if (amount !== undefined && amount !== null && typeof amount !== 'object') {
     finalAmount = Number(amount);
   } else if (amountMap && typeof amountMap === 'object') {
-    finalAmount = Number(amountMap[activeCurrency] || amountMap['INR'] || amountMap['USD'] || 0);
+    const val = amountMap[activeCurrency] || amountMap['INR'] || amountMap['USD'] || 0;
+    finalAmount = Array.isArray(val) ? Number(val[0]) : Number(val);
   }
 
   const finalServiceName = serviceName || planName;
