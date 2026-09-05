@@ -13,9 +13,9 @@ import LogoModal from '@/components/ui/LogoModal';
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
+  { href: '/websites', label: 'Websites' },
   { href: '/ai-agents', label: 'AI Agents' },
   { href: '/software', label: 'Software' },
-  { href: '/websites', label: 'Websites' },
   { href: '/tech-stack', label: 'Tech Stack' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/contact', label: 'Contact' },
