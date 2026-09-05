@@ -6,9 +6,9 @@ import { ArrowRight, Mail, MapPin, Phone, Github, Linkedin, Twitter, Instagram }
 import { motion } from 'framer-motion';
 
 const serviceLinks = [
+  { href: '/websites', label: 'Website Development' },
   { href: '/ai-agents', label: 'AI Agents' },
   { href: '/software', label: 'Software Products' },
-  { href: '/websites', label: 'Website Development' },
   { href: '/pricing', label: 'Pricing & Billing' },
 ];
 
