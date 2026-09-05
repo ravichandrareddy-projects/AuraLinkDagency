@@ -17,7 +17,6 @@ import { useCurrency } from '@/lib/currency-context';
 import { packages, customServices } from '@/lib/pricing-data';
 
 const categoryIcons = {
-  packages: Layers,
   websites: Globe,
   aiAgents: Bot,
   software: Code,
@@ -25,7 +24,6 @@ const categoryIcons = {
 };
 
 const categoryLabels = {
-  packages: 'Packages & Bundles',
   websites: 'Websites & E-Commerce',
   aiAgents: 'AI Agent Solutions',
   software: 'Custom Software',
@@ -34,7 +32,7 @@ const categoryLabels = {
 
 export default function PricingPage() {
   const { currency, formatPrice } = useCurrency();
-  const [activeTab, setActiveTab] = useState('packages');
+  const [activeTab, setActiveTab] = useState('websites');
   const [selectedServices, setSelectedServices] = useState([]);
 
   const toggleService = (serviceId) => {
@@ -133,64 +131,7 @@ export default function PricingPage() {
       {/* Tab Content Display */}
       <section className="py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Packages View */}
-          {activeTab === 'packages' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {packages.map((pkg, i) => (
-                <ScrollReveal key={pkg.id} delay={i * 0.08}>
-                  <GlassCard
-                    hover
-                    className={`p-6 h-full flex flex-col justify-between relative ${
-                      pkg.popular ? 'ring-2 ring-[hsl(270,95%,65%)] shadow-xl shadow-purple-500/15' : ''
-                    }`}
-                  >
-                    {pkg.popular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                        <Badge variant="purple">Most Popular</Badge>
-                      </div>
-                    )}
-                    <div>
-                      <h3 className="font-display text-xl font-bold text-white mb-1">{pkg.name}</h3>
-                      <p className="text-[hsl(230,15%,55%)] text-xs mb-4">{pkg.tagline}</p>
 
-                      <div className="mb-6">
-                        <span className="text-3xl sm:text-4xl font-extrabold text-white">
-                          {formatPrice(pkg.prices)}
-                        </span>
-                      </div>
-
-                      <ul className="space-y-3 mb-6">
-                        {pkg.features.map((feat, j) => (
-                          <li key={j} className="flex items-start gap-2.5 text-xs sm:text-sm text-[hsl(230,15%,70%)]">
-                            <Check size={16} className="text-[hsl(185,100%,55%)] shrink-0 mt-0.5" />
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      {pkg.note && (
-                        <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs mb-6">
-                          ⚠️ {pkg.note}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <RazorpayButton
-                        amountMap={pkg.prices}
-                        serviceName={pkg.name}
-                        className="w-full"
-                        buttonText="Pay & Book Now (Razorpay)"
-                      />
-                      <Button variant="ghost" size="sm" href="/contact" className="w-full justify-center">
-                        {pkg.cta} <ArrowRight size={14} />
-                      </Button>
-                    </div>
-                  </GlassCard>
-                </ScrollReveal>
-              ))}
-            </div>
-          )}
 
           {/* Websites View */}
           {activeTab === 'websites' && (
