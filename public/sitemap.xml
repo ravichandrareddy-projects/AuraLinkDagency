@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://auralinkdigitalagency.indevs.in/</loc>
+    <loc>https://auralinkdigitalagency.indevs.in</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -67,16 +67,6 @@
   </url>
   <url>
     <loc>https://auralinkdigitalagency.indevs.in/terms</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://auralinkdigitalagency.indevs.in/llms.txt</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://auralinkdigitalagency.indevs.in/llms-full.txt</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

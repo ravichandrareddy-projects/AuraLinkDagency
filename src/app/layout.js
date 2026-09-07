@@ -47,7 +47,7 @@ export const metadata = {
     apple: [{ url: '/apple-icon.png' }],
   },
   alternates: {
-    canonical: 'https://auralinkdigitalagency.indevs.in',
+    canonical: './',
   },
   openGraph: {
     title: 'AuraLink Digital Agency | AI Agents, Custom Software & Websites',

@@ -5,13 +5,13 @@ export const metadata = {
   description:
     'AuraLink Digital Agency builds autonomous AI voice & WhatsApp agents, custom software, E-Commerce stores, and conversion-focused websites for modern businesses.',
   alternates: {
-    canonical: 'https://auralinkdigitalagency.indevs.in/',
+    canonical: 'https://auralinkdigitalagency.indevs.in',
   },
   openGraph: {
     title: 'AuraLink Digital Agency | Autonomous AI Agents, Custom Software & Websites',
     description:
       'Engineered for growth: Autonomous AI voice/WhatsApp agents, full-stack software, and conversion-focused websites.',
-    url: 'https://auralinkdigitalagency.indevs.in/',
+    url: 'https://auralinkdigitalagency.indevs.in',
     siteName: 'AuraLink Digital Agency',
     locale: 'en_US',
     type: 'website',

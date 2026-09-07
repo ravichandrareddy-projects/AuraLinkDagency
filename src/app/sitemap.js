@@ -17,8 +17,6 @@ export default async function sitemap() {
     { url: '/faq', priority: 0.8, changeFrequency: 'weekly' },
     { url: '/privacy', priority: 0.5, changeFrequency: 'monthly' },
     { url: '/terms', priority: 0.5, changeFrequency: 'monthly' },
-    { url: '/llms.txt', priority: 0.5, changeFrequency: 'monthly' },
-    { url: '/llms-full.txt', priority: 0.5, changeFrequency: 'monthly' },
   ];
 
   return routes.map((item) => ({
