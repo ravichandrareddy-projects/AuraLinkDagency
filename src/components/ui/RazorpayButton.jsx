@@ -89,7 +89,7 @@ export default function RazorpayButton({
       }
 
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_live_REDACTED',
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: data.order.amount,
         currency: data.order.currency,
         name: 'AuraLink Digital Agency',

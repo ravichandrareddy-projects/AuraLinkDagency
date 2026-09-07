@@ -54,7 +54,7 @@ export const initiateRazorpayCheckout = async ({
       return;
     }
 
-    const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_live_REDACTED';
+    const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 
     const options = {
       key: razorpayKey,
