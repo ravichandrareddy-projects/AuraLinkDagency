@@ -157,6 +157,7 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/admin/analytics" className="text-[hsl(230,10%,30%)] hover:text-cyan-400 text-xs transition-colors" title="Authorized Agency Access">Admin Portal</Link>
           </div>
         </div>
       </div>

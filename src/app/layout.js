@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer';
 import { CurrencyProvider } from '@/lib/currency-context';
 import { ThemeProvider } from '@/lib/theme-context';
 import JsonLd from '@/components/seo/JsonLd';
+import VisitorTracker from '@/components/analytics/VisitorTracker';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -111,6 +112,7 @@ export default function RootLayout({ children }) {
 
             {/* Foreground Content Layer */}
             <div className="relative z-0 flex flex-col min-h-screen">
+              <VisitorTracker />
               <Navbar />
               <main className="flex-grow">{children}</main>
               <Footer />
