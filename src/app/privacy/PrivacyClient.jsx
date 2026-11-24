@@ -66,9 +66,14 @@ export default function PrivacyPolicyPage() {
           <p className="text-sm text-[hsl(230,15%,70%)] leading-relaxed mb-4">
             You have the right to request access to, correction of, or deletion of your personal data held by AuraLink Digital Agency.
           </p>
-          <p className="text-sm text-[hsl(230,15%,70%)]">
-            For privacy inquiries or data requests, contact our Data Officer at <strong>privacy@auralink.agency</strong> or call <strong>+91 98765 43210</strong>.
+          <p className="text-sm text-[hsl(230,15%,70%)] leading-relaxed mb-4">
+            For privacy inquiries, data deletion requests, or information regarding our security measures, contact our Compliance Team:
           </p>
+          <div className="space-y-1 text-sm text-[hsl(230,15%,70%)] font-mono">
+            <p>Email: <a href="mailto:hello@auralinkdigitalagency.indevs.in" className="text-cyan-300 hover:underline">hello@auralinkdigitalagency.indevs.in</a></p>
+            <p>WhatsApp / Phone: <a href="tel:+919440336396" className="text-cyan-300 hover:underline">+91 9440336396</a></p>
+            <p>Official Address: AuraLink Digital Agency, Andhra Pradesh, India</p>
+          </div>
         </GlassCard>
       </section>
     </div>

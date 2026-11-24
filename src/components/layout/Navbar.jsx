@@ -1,24 +1,89 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sparkles, Sun, Moon } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Sparkles,
+  Sun,
+  Moon,
+  MoreHorizontal,
+  Code2,
+  Cpu,
+  Users,
+  HelpCircle,
+  BarChart3,
+  ExternalLink,
+  ShieldAlert,
+} from 'lucide-react';
 import CurrencySelector from '@/components/ui/CurrencySelector';
 import { useTheme } from '@/lib/theme-context';
 import LogoModal from '@/components/ui/LogoModal';
 
-const navLinks = [
+// Primary desktop navigation links
+const primaryNavLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/websites', label: 'Websites' },
+  { href: '/ai-agents', label: 'AI Agents' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/contact', label: 'Contact' },
+];
+
+// Overflow features available under the 3-Dots (...) Menu
+const moreNavFeatures = [
+  {
+    href: '/software',
+    label: 'Custom Software',
+    desc: 'SaaS platforms, Web & Mobile apps',
+    icon: Code2,
+    badge: 'Popular',
+  },
+  {
+    href: '/clients',
+    label: 'Our Clients',
+    desc: 'Client roster, case studies & proof',
+    icon: Users,
+    badge: 'New',
+  },
+  {
+    href: '/tech-stack',
+    label: 'Tech Stack & Speeds',
+    desc: 'Guaranteed 48h to 7-day turnaround',
+    icon: Cpu,
+  },
+  {
+    href: '/faq',
+    label: 'FAQ & Guidance',
+    desc: 'Pricing, delivery, APIs & integrations',
+    icon: HelpCircle,
+  },
+  {
+    href: '/admin',
+    label: 'Admin Portal',
+    desc: 'Live visitor tracking & geo-analytics',
+    icon: BarChart3,
+    badge: 'Secure',
+  },
+];
+
+// All links for mobile drawer
+const allNavLinks = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/websites', label: 'Websites' },
   { href: '/ai-agents', label: 'AI Agents' },
   { href: '/software', label: 'Software' },
+  { href: '/clients', label: 'Our Clients' },
   { href: '/tech-stack', label: 'Tech Stack' },
   { href: '/pricing', label: 'Pricing' },
+  { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
+  { href: '/admin', label: 'Admin Portal' },
 ];
 
 export default function Navbar() {
@@ -27,8 +92,26 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLogoModalOpen, setIsLogoModalOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const moreMenuRef = useRef(null);
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
+
+  // Check if current route is within the "More" items
+  const isMoreActive = moreNavFeatures.some((item) => pathname === item.href);
+
+  // Close "More" dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (moreMenuRef.current && !moreMenuRef.current.contains(e.target)) {
+        setIsMoreOpen(false);
+      }
+    };
+    if (isMoreOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMoreOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +120,7 @@ export default function Navbar() {
 
       if (currentScrollY > 100 && currentScrollY > lastScrollY) {
         setIsVisible(false);
+        setIsMoreOpen(false);
       } else {
         setIsVisible(true);
       }
@@ -49,6 +133,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsMoreOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -68,18 +153,18 @@ export default function Navbar() {
         transition={{ duration: 0.4, ease: 'easeInOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-slate-900/90 dark:bg-slate-950/90 border-b border-white/15 shadow-2xl py-3 backdrop-blur-2xl'
-            : 'bg-white/10 dark:bg-white/[0.06] border-b border-white/20 shadow-xl py-4 backdrop-blur-xl'
+            ? 'bg-slate-900/90 dark:bg-slate-950/90 border-b border-white/15 shadow-2xl py-2.5 sm:py-3 backdrop-blur-2xl'
+            : 'bg-white/10 dark:bg-white/[0.06] border-b border-white/20 shadow-xl py-3 sm:py-4 backdrop-blur-xl'
         }`}
       >
-        <div className="w-full px-4 sm:px-6">
-          <div className="flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
+          <div className="flex items-center justify-between gap-2 sm:gap-4">
             {/* Brand Logo - Aligned Far Left */}
-            <div className="flex items-center gap-2 sm:gap-3.5 group shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 group shrink-0">
               <div
                 onClick={() => setIsLogoModalOpen(true)}
                 onContextMenu={(e) => e.preventDefault()}
-                className="relative w-8 h-8 sm:w-11 sm:h-11 cursor-pointer transition-transform duration-300 group-hover:scale-105 select-none"
+                className="relative w-8 h-8 sm:w-10 sm:h-10 cursor-pointer transition-transform duration-300 group-hover:scale-105 select-none"
                 title="Click to view protected emblem"
               >
                 <Image
@@ -93,27 +178,27 @@ export default function Navbar() {
               </div>
               <Link href="/" className="flex flex-col sm:flex-row sm:items-center items-start leading-none gap-0.5 sm:gap-2">
                 <div className="flex items-center gap-0.5">
-                  <span className="aura-text-shine font-black text-lg sm:text-2xl tracking-[0.14em]">AURA</span>
-                  <span className="link-text-shine font-black text-lg sm:text-2xl tracking-[0.14em]">LINK</span>
+                  <span className="aura-text-shine font-black text-base sm:text-xl xl:text-2xl tracking-[0.12em]">AURA</span>
+                  <span className="link-text-shine font-black text-base sm:text-xl xl:text-2xl tracking-[0.12em]">LINK</span>
                 </div>
-                <span className="text-[8px] sm:text-xs font-mono font-extrabold tracking-[0.18em] text-cyan-200 uppercase sm:border-l-2 sm:border-cyan-400/50 sm:pl-2 drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]">
+                <span className="hidden sm:inline-block text-[8px] xl:text-[10px] font-mono font-extrabold tracking-[0.16em] text-cyan-200 uppercase sm:border-l-2 sm:border-cyan-400/50 sm:pl-2 drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]">
                   DIGITAL AGENCY
                 </span>
               </Link>
             </div>
 
-            {/* Full Screen Desktop Navigation Links - Bigger Blue-White Font */}
-            <nav className="hidden lg:flex items-center gap-1.5">
-              {navLinks.map((link) => {
+            {/* Desktop / Laptop Navigation: Adapts smoothly on short & wide laptop screens */}
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+              {primaryNavLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-4 py-2 text-sm sm:text-base font-bold rounded-full transition-all duration-200 ${
+                    className={`relative px-2.5 xl:px-3.5 py-1.5 text-xs xl:text-sm font-bold rounded-full transition-all duration-200 ${
                       isActive
                         ? 'text-white font-extrabold'
-                        : 'text-cyan-100/90 hover:text-white hover:bg-cyan-500/20'
+                        : 'text-cyan-100/85 hover:text-white hover:bg-cyan-500/20'
                     }`}
                   >
                     {isActive && (
@@ -123,32 +208,124 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+
+              {/* 3-Dots (...) Top Bar Feature Menu */}
+              <div className="relative" ref={moreMenuRef}>
+                <button
+                  onClick={() => setIsMoreOpen(!isMoreOpen)}
+                  aria-expanded={isMoreOpen}
+                  aria-label="More Features"
+                  title="More Features (Software, Clients, Tech Stack, FAQ, Admin)"
+                  className={`relative flex items-center gap-1 px-2.5 py-1.5 text-xs xl:text-sm font-bold rounded-full transition-all duration-200 ${
+                    isMoreActive || isMoreOpen
+                      ? 'bg-gradient-to-r from-purple-500/30 to-cyan-500/30 border border-cyan-400/40 text-white shadow-md shadow-cyan-500/20'
+                      : 'text-cyan-100/85 hover:text-white hover:bg-cyan-500/20 border border-transparent'
+                  }`}
+                >
+                  <MoreHorizontal size={18} className={isMoreActive ? 'text-cyan-300' : 'text-cyan-200'} />
+                  <span className="hidden xl:inline text-xs font-mono uppercase tracking-wider text-cyan-200/90">More</span>
+                  {isMoreActive && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  )}
+                </button>
+
+                {/* 3-Dots Dropdown Panel */}
+                <AnimatePresence>
+                  {isMoreOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.18 }}
+                      className="absolute right-0 mt-2 w-72 p-2 rounded-2xl bg-slate-950/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 backdrop-blur-2xl z-50 overflow-hidden"
+                    >
+                      <div className="px-3 py-2 border-b border-white/[0.08] flex items-center justify-between">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-300 font-bold">
+                          Feature Suite
+                        </span>
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-200 font-mono">
+                          AuraLink
+                        </span>
+                      </div>
+
+                      <div className="py-1 space-y-1">
+                        {moreNavFeatures.map((item) => {
+                          const Icon = item.icon;
+                          const isActive = pathname === item.href;
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={() => setIsMoreOpen(false)}
+                              className={`flex items-start gap-3 p-2.5 rounded-xl transition-all duration-200 group ${
+                                isActive
+                                  ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 text-white'
+                                  : 'hover:bg-white/[0.06] text-slate-300 hover:text-white'
+                              }`}
+                            >
+                              <div className={`p-2 rounded-lg shrink-0 mt-0.5 ${
+                                isActive
+                                  ? 'bg-cyan-500/30 text-cyan-200 border border-cyan-400/40'
+                                  : 'bg-white/[0.05] text-cyan-400 group-hover:bg-cyan-500/20 group-hover:text-cyan-200'
+                              }`}>
+                                <Icon size={16} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between gap-1">
+                                  <span className="text-xs font-bold text-white group-hover:text-cyan-200 transition-colors">
+                                    {item.label}
+                                  </span>
+                                  {item.badge && (
+                                    <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-purple-500/25 text-purple-200 border border-purple-400/30">
+                                      {item.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="text-[11px] text-slate-400 truncate mt-0.5">
+                                  {item.desc}
+                                </p>
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
+
+                      <div className="mt-1 pt-2 border-t border-white/[0.08] px-2 py-1 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                        <span>Direct Dial:</span>
+                        <a href="tel:+919440336396" className="text-cyan-300 hover:underline">
+                          +91 9440336396
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </nav>
 
             {/* Right Action Tools: Theme Switcher, Currency Selector & CTA */}
-            <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
               {/* Light / Dark Mode Toggle Button */}
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all"
+                className="p-1.5 xl:p-2 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all"
                 title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
                 aria-label="Toggle Theme"
               >
-                {theme === 'dark' ? <Sun size={16} className="text-amber-300" /> : <Moon size={16} className="text-purple-300" />}
+                {theme === 'dark' ? <Sun size={15} className="text-amber-300" /> : <Moon size={15} className="text-purple-300" />}
               </button>
 
               <CurrencySelector compact />
 
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-extrabold rounded-full bg-white text-slate-950 hover:bg-slate-100 shadow-lg shadow-white/10 transition-all duration-300 hover:scale-[1.04] active:scale-[0.97]"
+                className="inline-flex items-center gap-1.5 px-3 xl:px-4 py-1.5 xl:py-2 text-[11px] xl:text-xs font-extrabold rounded-full bg-white text-slate-950 hover:bg-slate-100 shadow-lg shadow-white/10 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
               >
-                <Sparkles size={14} className="text-slate-950" />
-                <span>Book Consultation</span>
+                <Sparkles size={13} className="text-slate-950" />
+                <span>Consultation</span>
               </Link>
             </div>
 
-            {/* Mobile Controls - Currency Selector & High Visibility 3 Lines Menu Button */}
+            {/* Mobile / Tablet Controls */}
             <div className="flex items-center gap-1.5 lg:hidden shrink-0">
               <CurrencySelector compact />
               <button
@@ -161,7 +338,7 @@ export default function Navbar() {
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 border border-cyan-400/50 text-cyan-200 hover:bg-cyan-500/30 transition-all shadow-md shadow-cyan-500/20"
-                aria-label="Toggle Navigation Menu (3 Lines)"
+                aria-label="Toggle Navigation Menu"
                 title="Navigation Menu"
               >
                 {isMobileMenuOpen ? <X size={22} className="text-cyan-200" /> : <Menu size={22} className="text-cyan-200" />}
@@ -212,14 +389,14 @@ export default function Navbar() {
                   </button>
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  {navLinks.map((link) => (
+                <div className="flex flex-col gap-1.5 max-h-[60vh] overflow-y-auto pr-1">
+                  {allNavLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`block px-4 py-3 rounded-xl text-sm font-bold transition-all ${
+                      className={`block px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
                         pathname === link.href
-                          ? 'bg-white/20 text-white shadow-md border border-white/30'
+                          ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-white shadow-md border border-cyan-400/30'
                           : 'text-white/80 hover:text-white hover:bg-white/10'
                       }`}
                     >

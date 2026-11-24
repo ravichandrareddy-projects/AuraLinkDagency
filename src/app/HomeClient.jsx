@@ -12,6 +12,7 @@ import { staggerContainer, fadeInUp } from '@/lib/animations'
 import HoverText from '@/components/ui/HoverText'
 import ProblemSearch from '@/components/ui/ProblemSearch'
 import RevenueCalculator from '@/components/ui/RevenueCalculator'
+import OurClientsSection from '@/components/ui/OurClientsSection'
 import { homepagePricingHighlights } from '@/lib/pricing-data'
 import { useCurrency } from '@/lib/currency-context'
 
@@ -859,6 +860,8 @@ export default function HomePage() {
       <HomeTechStackSection />
       <div className="divider max-w-7xl mx-auto px-6" />
       <ServicesSection />
+      <div className="divider max-w-7xl mx-auto px-6" />
+      <OurClientsSection />
       <div className="divider max-w-7xl mx-auto px-6" />
       <HomepagePricingSection />
       <div className="divider max-w-7xl mx-auto px-6" />

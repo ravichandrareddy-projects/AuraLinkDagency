@@ -154,10 +154,11 @@ export default function Footer() {
           <p className="text-[hsl(230,10%,40%)] text-sm">
             © 2026 AuraLink Digital Agency. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-[hsl(230,10%,40%)] text-sm hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="/admin/analytics" className="text-[hsl(230,10%,30%)] hover:text-cyan-400 text-xs transition-colors" title="Authorized Agency Access">Admin Portal</Link>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+            <Link href="/privacy" className="text-[hsl(230,10%,50%)] text-sm hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[hsl(230,10%,50%)] text-sm hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/refund-policy" className="text-[hsl(230,10%,50%)] text-sm hover:text-cyan-300 transition-colors">Refund Policy</Link>
+            <Link href="/admin" className="text-[hsl(230,10%,40%)] hover:text-cyan-400 text-xs transition-colors" title="Authorized Agency Access">Admin Portal</Link>
           </div>
         </div>
       </div>
