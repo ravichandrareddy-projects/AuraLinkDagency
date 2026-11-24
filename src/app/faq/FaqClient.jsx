@@ -13,6 +13,39 @@ import { fadeInUp, staggerContainer } from '@/lib/animations'
 
 const faqCategories = [
   {
+    id: 'business-websites',
+    title: 'Website & Online Presence FAQ',
+    icon: Globe,
+    color: 'accent-cyan',
+    items: [
+      {
+        question: 'I need a website for my business — how do I start with AuraLink?',
+        answer:
+          'If you need a website for your business, AuraLink Digital Agency delivers complete turnkey websites in just 48 hours. Simply choose your business model (Local Business, E-Commerce, or Service Brand) and message us directly on WhatsApp (+91 9440336396) or email hello@auralinkdigitalagency.indevs.in. We take care of design, domain, cloud hosting, and WhatsApp lead capture.',
+      },
+      {
+        question: 'How to build a website for my business?',
+        answer:
+          'Building a successful business website requires: 1) Defining conversion goals (leads, inquiries, or e-commerce checkouts); 2) High-speed architecture (Next.js & Tailwind CSS) for sub-second page loads; 3) Frictionless contact points like WhatsApp click-to-chat; 4) On-page technical SEO so local and AI search engines index your brand. AuraLink engineers handle this full pipeline with express 48-hour delivery.',
+      },
+      {
+        question: 'Why does my business need an online presence in 2026?',
+        answer:
+          'Over 93% of customer purchase decisions begin on Google Search, Instagram, or AI assistants (ChatGPT, Google AI Overview, Perplexity). An online presence with AuraLink gives your business 24/7 credibility, automated customer acquisition, and direct WhatsApp sales without losing margin to middleman directories.',
+      },
+      {
+        question: 'Who is Aura / AuraLink Digital Agency?',
+        answer:
+          'AuraLink Digital Agency (widely searched as AURA or Aura Agency) is an elite digital engineering firm building autonomous AI agents (voice calling & WhatsApp bots), custom SaaS platforms, and conversion-optimized websites for startups, founders, and enterprises globally.',
+      },
+      {
+        question: 'How much does it cost to get a website made?',
+        answer:
+          'AuraLink offers transparent fixed pricing: Local Business Websites (1–3 pages) start at ₹7,000 / $249; High-Converting Landing Pages at ₹8,000 / $249; full E-Commerce Stores with Admin Panels at ₹13,000 / $399; and Multi-Page Business Platforms at ₹23,000 / $549 with 1 year free domain & hosting included.',
+      },
+    ],
+  },
+  {
     id: 'general',
     title: 'General Questions',
     icon: HelpCircle,
