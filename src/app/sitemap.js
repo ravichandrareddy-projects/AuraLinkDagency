@@ -11,6 +11,8 @@ export default async function sitemap() {
     { url: '/tech-stack', priority: 0.9, changeFrequency: 'daily' },
     { url: '/pricing', priority: 0.9, changeFrequency: 'daily' },
     { url: '/clients', priority: 0.9, changeFrequency: 'daily' },
+    { url: '/lp/meta-ads', priority: 0.9, changeFrequency: 'daily' },
+    { url: '/ads', priority: 0.9, changeFrequency: 'daily' },
     { url: '/faq', priority: 0.9, changeFrequency: 'daily' },
     { url: '/contact', priority: 0.9, changeFrequency: 'daily' },
     { url: '/services/automation', priority: 0.8, changeFrequency: 'weekly' },
