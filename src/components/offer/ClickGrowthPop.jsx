@@ -16,11 +16,11 @@ import {
 
 const GROWTH_POP_MESSAGES = [
   { headline: 'WOW!', keyword: 'AuraLink is the Best', badge: 'Top Agency', icon: Award },
-  { headline: 'CHEAP PRICES!', keyword: 'Best Value Guaranteed', badge: 'Year-End Sale', icon: Tag },
+  { headline: 'CUSTOMIZED & BEST!', keyword: 'Your Website Proves Your Brand', badge: 'No Cheap Look', icon: Crown },
   { headline: 'THE BEST!', keyword: 'Unmatched Agency Quality', badge: '4.9★ Rated', icon: Crown },
-  { headline: 'LIVE IN 2 DAYS!', keyword: '48-Hour Superfast Launch', badge: 'Express Build', icon: Zap },
+  { headline: 'DELIVERED IN 2 DAYS!', keyword: '48-Hour Superfast Delivery', badge: 'Express Build', icon: Zap },
   { headline: 'WOW!', keyword: 'Sales Increased', badge: '+140% Reach', icon: TrendingUp },
-  { headline: 'WINTER SALE!', keyword: 'Huge Year-End Savings', badge: 'Save ₹12,000', icon: Tag },
+  { headline: 'OFFER IS LIVE!', keyword: 'Year-End Winter Sale Active', badge: 'Save ₹12,000', icon: Tag },
   { headline: 'COOL!', keyword: 'Business Growth', badge: '24/7 Live', icon: Sparkles },
   { headline: 'SMART ADMIN!', keyword: 'Control Stock & Products', badge: 'E-Commerce', icon: ShoppingBag },
   { headline: 'MAXIMIZED!', keyword: 'Direct WhatsApp Leads', badge: 'Instant Chat', icon: Zap },
@@ -46,7 +46,7 @@ export default function ClickGrowthPop() {
 
       // Light throttle so rapid tapping stays smooth at 60fps
       const now = Date.now();
-      if (now - lastPopAtRef.current < 140) return;
+      if (now - lastPopAtRef.current < 160) return;
       lastPopAtRef.current = now;
 
       const vw = typeof window !== 'undefined' ? window.innerWidth : 360;
@@ -55,20 +55,27 @@ export default function ClickGrowthPop() {
       // Clamp X and Y so the curved rectangle card never clips off 360px screens
       const rawX = e.clientX || vw / 2;
       const rawY = e.clientY || vh / 2;
-      const cardHalfWidth = 120;
+      const cardHalfWidth = 122;
       const clampedX = Math.max(cardHalfWidth + 10, Math.min(vw - cardHalfWidth - 10, rawX));
-      const clampedY = Math.max(76, Math.min(vh - 28, rawY));
+      const clampedY = Math.max(84, Math.min(vh - 30, rawY));
 
       const msg = GROWTH_POP_MESSAGES[indexRef.current % GROWTH_POP_MESSAGES.length];
       indexRef.current += 1;
 
       const id = `pop_${now}_${Math.random().toString(36).slice(2, 6)}`;
 
-      setPops((prev) => [...prev.slice(-4), { id, x: clampedX, y: clampedY, ...msg }]);
+      setPops((prev) => [...prev.slice(-4), { id, x: clampedX, y: clampedY, popping: false, ...msg }]);
+
+      // Trigger bubble-pop burst right before removal at 4 seconds
+      setTimeout(() => {
+        setPops((prev) =>
+          prev.map((item) => (item.id === id ? { ...item, popping: true } : item))
+        );
+      }, 3720);
 
       setTimeout(() => {
         setPops((prev) => prev.filter((item) => item.id !== id));
-      }, 1300);
+      }, 4000);
     };
 
     document.addEventListener('click', handlePageInteraction, { passive: true });
@@ -89,12 +96,30 @@ export default function ClickGrowthPop() {
               style={{ left: pop.x, top: pop.y }}
               className="fixed -translate-x-1/2 -translate-y-full pointer-events-none"
             >
+              {/* Glossy Bubble Pop Ring Effect at ~4s */}
+              {pop.popping && (
+                <motion.div
+                  initial={{ opacity: 0.85, scale: 0.7 }}
+                  animate={{ opacity: 0, scale: 1.75 }}
+                  transition={{ duration: 0.28, ease: 'easeOut' }}
+                  className="absolute inset-0 -top-9 rounded-full border-2 border-amber-400/80 bg-gradient-to-tr from-emerald-300/20 via-amber-200/30 to-sky-300/20 blur-[1px]"
+                />
+              )}
+
               <motion.div
-                initial={{ opacity: 0, scale: 0.72, y: 8 }}
-                animate={{ opacity: 1, scale: 1.03, y: -34 }}
-                exit={{ opacity: 0, scale: 0.9, y: -64 }}
-                transition={{ type: 'spring', stiffness: 420, damping: 24, mass: 0.7 }}
-                className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-gradient-to-br from-white/95 via-amber-50/90 to-white/95 backdrop-blur-xl border border-amber-400/70 shadow-[0_14px_34px_rgba(180,83,9,0.16),0_0_0_1px_rgba(255,255,255,0.95)_inset] min-w-[220px] max-w-[260px]"
+                initial={{ opacity: 0, scale: 0.65, y: 10 }}
+                animate={
+                  pop.popping
+                    ? { opacity: 0, scale: 1.24, y: -46 }
+                    : { opacity: 1, scale: 1, y: -34 }
+                }
+                exit={{ opacity: 0, scale: 0.2, y: -52 }}
+                transition={
+                  pop.popping
+                    ? { duration: 0.26, ease: 'easeOut' }
+                    : { type: 'spring', stiffness: 360, damping: 22, mass: 0.75 }
+                }
+                className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-gradient-to-br from-white/95 via-amber-50/90 to-white/95 backdrop-blur-xl border border-amber-400/75 shadow-[0_14px_34px_rgba(180,83,9,0.18),0_0_0_1px_rgba(255,255,255,0.95)_inset] min-w-[220px] max-w-[260px]"
               >
                 <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-amber-500 via-yellow-500 to-emerald-600 flex items-center justify-center shrink-0 shadow-sm">
                   <IconComponent size={14} className="text-[#ffffff]" />

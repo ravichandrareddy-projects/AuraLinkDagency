@@ -30,10 +30,11 @@ import CurrencySelector from '@/components/ui/CurrencySelector';
 import { useCurrency } from '@/lib/currency-context';
 import { formatCurrencyAmount } from '@/lib/pricing-data';
 import ClickGrowthPop from '@/components/offer/ClickGrowthPop';
+import ClientDeliveryAndRoiSection from '@/components/offer/ClientDeliveryAndRoiSection';
 
 const WHATSAPP_NUMBER = '919440336396';
 const HERO_WA_TEXT = encodeURIComponent(
-  'Hi AuraLink Digital Agency! I saw your 2-Day Launch & Year-End Sale offer. I want a website for my business — please share details & a free sample.'
+  'Hi AuraLink Digital Agency! Your Year-End Sale offer is live — I want a customized website delivered in 2 days for my business. Please share a free sample.'
 );
 const HERO_WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${HERO_WA_TEXT}`;
 
@@ -41,12 +42,12 @@ const PROBLEMS = [
   {
     icon: Search,
     title: 'Buyers search Google before calling',
-    desc: 'Every day, customers search online for services and products near them. Without a fast website, ready buyers click your competitor.',
+    desc: 'Every day, customers search online for services and products near them. Without a fast, customized website, ready buyers click your competitor.',
   },
   {
     icon: AlertCircle,
-    title: 'Social pages cannot close high-ticket trust',
-    desc: 'An Instagram or Facebook page alone hides your rates, catalog, stock, timings, and direct checkout flow.',
+    title: 'Cheap-looking sites hurt brand trust',
+    desc: 'Your website proves your brand. A generic or social-only link hides your rates, catalog, stock, timings, and direct checkout flow.',
   },
   {
     icon: Smartphone,
@@ -56,29 +57,29 @@ const PROBLEMS = [
 ];
 
 const PACKAGE_INCLUDES = [
-  'Mobile-first website engineered for speed & conversions',
+  'Customized mobile-first website engineered for speed & conversions',
   'Direct WhatsApp enquiry & quick-order integration',
   'Google Map embed, opening hours & instant call tap',
   'Full Technical SEO, schema markup & speed optimization',
   'Lead capture enquiry form synced straight to your inbox',
   'Admin Panel & Smart Stock Control (in E-Commerce tier)',
-  '1-year domain guidance, cloud SSL & 2-day launch guarantee',
+  '1-year domain guidance, cloud SSL & 2-day delivery guarantee',
 ];
 
 const GOLDEN_PRICING_PLANS = [
   {
     id: 'starter',
     name: 'Starter',
-    saleBadge: 'EXPRESS 2-DAY OFFER',
-    tagline: 'Launch fast & start capturing direct WhatsApp customers.',
+    saleBadge: 'OFFER LIVE • 2-DAY DELIVERY',
+    tagline: 'Customized fast build to start capturing direct WhatsApp customers.',
     originalPrices: { INR: 15000, USD: 349, EUR: 319 },
     salePrices: { INR: [8000, 10000], USD: [249, 299], EUR: [229, 279] },
     includes: [
-      'High-speed 360px mobile-first business website',
+      'Customized 360px mobile-first business website',
       'Sticky green WhatsApp enquiry button',
       'Service rates, timings, photo gallery & map',
       'Basic Google SEO + SSL security setup',
-      'Live in just 2 Days (48 Hours)',
+      'Delivered in just 2 Days (48 Hours)',
     ],
     featured: false,
   },
@@ -86,15 +87,15 @@ const GOLDEN_PRICING_PLANS = [
     id: 'business',
     name: 'Business Growth',
     saleBadge: 'END OF YEAR WINTER SALE',
-    tagline: 'Built to dominate local & global search with full authority.',
+    tagline: 'Built to prove your brand authority on local & global search.',
     originalPrices: { INR: 27000, USD: 599, EUR: 549 },
     salePrices: { INR: [17000, 20000], USD: [399, 449], EUR: [369, 419] },
     includes: [
-      'Multi-section / multi-page conversion website',
+      'Customized multi-section conversion website',
       'Lead capture enquiry form + WhatsApp instant sync',
       'Full Technical SEO & Google Business Profile optimization',
-      'Custom glass UI design tailored to your brand',
-      'Priority 2-Day (48h) turnaround + free sample first',
+      'Premium glass UI design tailored to your brand',
+      'Priority 2-Day (48h) delivery + free sample first',
     ],
     featured: true,
   },
@@ -110,7 +111,7 @@ const GOLDEN_PRICING_PLANS = [
       'Add & remove products + pricing in seconds',
       'Smart Stock Count tracking with live availability',
       'Payment Gateways (UPI, Cards, Razorpay) + WhatsApp Order',
-      'Full Technical SEO, mobile speed & order management',
+      'Full Technical SEO, mobile speed & 2-day delivery',
     ],
     featured: false,
   },
@@ -139,15 +140,15 @@ const REAL_CAPABILITIES = [
 
 const PROCESS_STEPS = [
   { num: '01', title: 'WhatsApp us', desc: 'Share your business name, services, or store goals in 30 seconds.' },
-  { num: '02', title: 'See a free sample', desc: 'We prepare a custom design preview built for your brand first.' },
+  { num: '02', title: 'See a free sample', desc: 'We prepare a customized design preview built for your brand first.' },
   { num: '03', title: 'Approve the look', desc: 'Confirm prices, text, and colors until you are 100% happy.' },
-  { num: '04', title: 'Live in 2 days', desc: 'Your site or E-Commerce store launches live within 48 hours.' },
+  { num: '04', title: 'Delivered in 2 days', desc: 'Your customized website or E-Commerce store is delivered in 48 hours.' },
 ];
 
 const FAQS = [
   {
-    q: 'Can you really launch my website in 2 days?',
-    a: 'Yes! Once you approve your custom preview and share your business text/photos, our engineering team builds and launches your mobile-first website within 2 days (48 hours).',
+    q: 'Do you really deliver my customized website in 2 days?',
+    a: 'Yes! The offer is live now — once you approve your custom preview and share your business text/photos, our engineering team delivers your mobile-first website in 2 days (48 hours).',
   },
   {
     q: 'How does the E-Commerce Admin Panel & Smart Stock Count work?',
@@ -253,7 +254,7 @@ export default function OfferClient() {
           phone: formState.phone,
           businessType: formState.businessType || 'Business Website',
           area: formState.area || 'India / Global',
-          goal: '2-Day Launch & Year-End Sale Sample Request',
+          goal: '2-Day Delivery & Year-End Sale Sample Request',
           utmSource: 'offer_ads_subdomain',
           utmCampaign: 'year_end_winter_sale',
         }),
@@ -265,7 +266,7 @@ export default function OfferClient() {
         const waPrefill = encodeURIComponent(
           `Hi AuraLink Digital Agency! I am ${formState.name}. Business: ${
             formState.businessType || 'Business'
-          } (${formState.area || 'Global'}). Please send my free sample for the 2-Day Launch Sale. Phone: ${
+          } (${formState.area || 'Global'}). Please send my free customized sample for the 2-Day Delivery Offer. Phone: ${
             formState.phone
           }`
         );
@@ -282,7 +283,10 @@ export default function OfferClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafcff] text-slate-900 relative z-10 overflow-x-hidden selection:bg-amber-200 selection:text-slate-950">
+    <div
+      style={{ fontFamily: "'Lucida Sans Unicode', 'Lucida Grande', 'Inter', system-ui, sans-serif" }}
+      className="min-h-screen bg-[#fafcff] text-slate-900 relative z-10 overflow-x-hidden selection:bg-amber-200 selection:text-slate-950"
+    >
       {/* Slow-Moving Rainbow Smoke Keyframes */}
       <style jsx global>{`
         @keyframes rainbowSmokeDriftA {
@@ -326,6 +330,24 @@ export default function OfferClient() {
         }
         .smoke-drift-center {
           animation: rainbowSmokeCenter 24s ease-in-out infinite alternate;
+        }
+        @keyframes rainbowHighlightShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .rainbow-smoke-highlight {
+          background: linear-gradient(
+            115deg,
+            rgba(244, 114, 182, 0.22),
+            rgba(251, 191, 36, 0.28),
+            rgba(52, 211, 153, 0.24),
+            rgba(56, 189, 248, 0.24),
+            rgba(168, 85, 247, 0.22),
+            rgba(244, 114, 182, 0.22)
+          );
+          background-size: 240% 240%;
+          animation: rainbowHighlightShift 12s ease infinite;
         }
         .no-scrollbar::-webkit-scrollbar {
           display: none;
@@ -407,7 +429,7 @@ export default function OfferClient() {
                 <Image src="/logo.png" alt="AuraLink Digital Agency" fill className="object-contain p-1" priority />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="font-display font-black text-sm sm:text-base tracking-wider text-slate-900 uppercase">
+                <span className="font-sans font-black text-sm sm:text-base tracking-wider text-slate-900 uppercase">
                   AuraLink
                 </span>
                 <span className="text-[8.5px] sm:text-[9px] font-mono font-extrabold tracking-[0.14em] text-amber-700 uppercase">
@@ -418,7 +440,7 @@ export default function OfferClient() {
 
             <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50/90 border border-amber-300/80 shadow-sm text-[11px] font-extrabold text-amber-900 shrink-0">
               <Zap size={11} className="text-amber-600" />
-              <span>2-Day Launch • Sale Live</span>
+              <span>Offer Live Now • Delivered in 2 Days</span>
             </span>
           </div>
 
@@ -457,10 +479,10 @@ export default function OfferClient() {
           <div className="max-w-5xl mx-auto">
             <div className="rounded-3xl bg-white/70 backdrop-blur-2xl border border-white/90 shadow-[0_20px_60px_rgba(15,23,42,0.08),0_0_0_1px_rgba(255,255,255,0.8)_inset] p-4 sm:p-10 md:p-12">
               {/* Top Sale & Global Reach Strip */}
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-6">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-5">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 text-[#ffffff] text-[10px] sm:text-[11px] font-black tracking-wider uppercase shadow-md shadow-amber-600/20">
                   <Tag size={11} />
-                  <span>End of Year Sale • Live in 2 Days</span>
+                  <span>Offer Live Now • Delivered in 2 Days</span>
                 </span>
 
                 <div className="flex items-center gap-2">
@@ -474,11 +496,20 @@ export default function OfferClient() {
                 </div>
               </div>
 
-              {/* Single H1 */}
-              <h1 className="font-display font-black text-[28px] sm:text-5xl md:text-6xl tracking-tight text-slate-900 leading-[1.12] sm:leading-[1.08] mb-4 sm:mb-5">
-                A website for your business,{' '}
-                <span className="bg-gradient-to-r from-emerald-700 via-amber-600 to-slate-900 bg-clip-text text-transparent">
-                  live in 2 days.
+              {/* Rainbow Smoke Highlight Statement Banner */}
+              <div className="rainbow-smoke-highlight rounded-2xl border border-white/90 px-4 py-3 sm:px-5 sm:py-3.5 mb-5 shadow-[0_8px_28px_rgba(15,23,42,0.06)] backdrop-blur-xl">
+                <p className="text-xs sm:text-base font-extrabold text-slate-900 leading-snug tracking-normal">
+                  <Sparkles size={14} className="inline mr-1.5 text-amber-700 -mt-0.5" />
+                  Don&apos;t make your website look cheap — make it <span className="underline decoration-emerald-600 decoration-2 underline-offset-4">customized and the best</span>.{' '}
+                  <span className="text-emerald-800">Your website proves your brand.</span>
+                </p>
+              </div>
+
+              {/* Single H1 (Clean Lucida / Normal Typography + Rainbow Smoke Highlight) */}
+              <h1 className="font-bold text-[26px] sm:text-5xl md:text-[54px] tracking-tight text-slate-900 leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-5">
+                A customized website for your business,{' '}
+                <span className="inline-block px-2.5 py-0.5 rounded-2xl rainbow-smoke-highlight border border-white/80 text-slate-950 shadow-sm">
+                  delivered in 2 days.
                 </span>
               </h1>
 
@@ -507,7 +538,7 @@ export default function OfferClient() {
                   className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded-2xl bg-gradient-to-r from-amber-50 to-white border border-amber-300 text-slate-900 hover:from-amber-100 font-extrabold text-sm sm:text-base shadow-sm transition-all min-h-[54px] w-full sm:w-auto"
                 >
                   <Sparkles size={16} className="text-amber-600" />
-                  <span>See Year-End Sale Pricing</span>
+                  <span>Packages & Pricing</span>
                 </a>
               </div>
 
@@ -525,7 +556,7 @@ export default function OfferClient() {
               {/* Monopoly / Maximization KPI Bar */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 pt-7">
                 {[
-                  { value: '2 Days', label: 'Express 48-Hour Launch' },
+                  { value: '2 Days', label: 'Express 48-Hour Delivery' },
                   { value: '₹0 Risk', label: 'Free Sample Before Pay' },
                   { value: 'Smart Admin', label: 'Products & Stock Control' },
                   { value: 'Direct', label: '100% WhatsApp & UPI Leads' },
@@ -547,8 +578,225 @@ export default function OfferClient() {
           </div>
         </section>
 
-        {/* ─── 3. GOLDEN PREMIUM LIQUID GLASS PRICING SECTION ─── */}
-        <section id="pricing" className="py-8 sm:py-14 px-4 sm:px-6">
+        {/* ─── 3. CLIENT DELIVERY RATE, INTERACTIVE GROWTH MATTER & ROI CALCULATOR ─── */}
+        <ClientDeliveryAndRoiSection activeCurrency={activeCurrency} />
+
+        {/* ─── 4. PROBLEM SECTION ─── */}
+        <section className="py-10 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-6">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
+                Why Businesses Switch to AuraLink
+              </span>
+              <h2 className="font-sans font-black text-2xl sm:text-3xl text-slate-900 mt-1">
+                Stop losing ready-to-buy customers every day.
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {PROBLEMS.map((item) => {
+                const IconComp = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl bg-white/75 backdrop-blur-xl border border-white shadow-[0_10px_30px_rgba(15,23,42,0.05),0_0_0_1px_rgba(148,163,184,0.16)] p-5 sm:p-6"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-slate-900 text-[#ffffff] flex items-center justify-center mb-4 shadow-sm">
+                      <IconComp size={18} />
+                    </div>
+                    <h3 className="font-bold text-base sm:text-lg text-slate-900 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── 5. REAL CAPABILITIES & SMART E-COMMERCE ADMIN SHOWCASE ─── */}
+        <section className="py-10 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="rounded-3xl bg-white/75 backdrop-blur-2xl border border-white shadow-[0_18px_48px_rgba(15,23,42,0.06),0_0_0_1px_rgba(148,163,184,0.18)] p-6 sm:p-9">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-7 pb-5 border-b border-slate-200/80">
+                <div>
+                  <span className="text-xs font-extrabold uppercase tracking-widest text-amber-700">
+                    Real Business Control • Built for Profit
+                  </span>
+                  <h2 className="font-sans font-black text-2xl sm:text-3xl text-slate-900 mt-1">
+                    Full Admin Panel, Smart Stock Count & Technical SEO
+                  </h2>
+                </div>
+                <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-extrabold self-start">
+                  <Layers size={15} />
+                  Owner Controlled System
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-7">
+                {REAL_CAPABILITIES.map((cap) => {
+                  const IconComp = cap.icon;
+                  return (
+                    <div
+                      key={cap.title}
+                      className="rounded-2xl bg-white/85 border border-slate-200/80 p-5 shadow-sm"
+                    >
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-emerald-600 text-[#ffffff] flex items-center justify-center shadow-sm">
+                          <IconComp size={18} />
+                        </div>
+                        <span className="px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-[10px] font-black uppercase">
+                          {cap.badge}
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-base text-slate-900 mb-1.5">
+                        {cap.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        {cap.desc}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {PACKAGE_INCLUDES.map((point) => (
+                  <div
+                    key={point}
+                    className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50/85 border border-slate-200/70"
+                  >
+                    <CheckCircle2 size={17} className="text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-xs sm:text-sm font-semibold text-slate-800">
+                      {point}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── 6. HOW IT WORKS (4 STEPS — 2-DAY LAUNCH) ─── */}
+        <section className="py-10 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-6">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
+                Simple 4-Step Delivery
+              </span>
+              <h2 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 mt-1">
+                From WhatsApp message to custom delivery in 2 days.
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {PROCESS_STEPS.map((step) => (
+                <div
+                  key={step.num}
+                  className="rounded-2xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_28px_rgba(15,23,42,0.05),0_0_0_1px_rgba(148,163,184,0.16)] p-5"
+                >
+                  <div className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-mono text-xs font-black mb-3">
+                    STEP {step.num}
+                  </div>
+                  <h3 className="font-bold text-base sm:text-lg text-slate-900 mb-1.5">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── 7. TRUST & GUARANTEE BLOCK ─── */}
+        <section className="py-8 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="rounded-3xl bg-white/80 backdrop-blur-2xl border border-white shadow-[0_14px_38px_rgba(15,23,42,0.06),0_0_0_1px_rgba(148,163,184,0.18)] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="space-y-3 max-w-2xl">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-900 p-2 shadow-md shrink-0 relative">
+                    <Image src="/logo.png" alt="AuraLink Digital Agency" fill className="object-contain p-1.5" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
+                      AuraLink Digital Agency
+                    </span>
+                    <h2 className="font-sans font-black text-xl sm:text-2xl text-slate-900">
+                      Built Direct by Engineers — No Middlemen
+                    </h2>
+                  </div>
+                </div>
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                  Whether you run a local business or a nationwide D2C E-Commerce brand, you work directly with <strong>AuraLink Digital Agency</strong> — combining modern React/Next.js speed, clean Admin Dashboards, Smart Stock Control, and WhatsApp automation.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-gradient-to-br from-emerald-50 to-amber-50/70 border border-emerald-200 p-5 shrink-0 w-full md:w-80">
+                <div className="flex items-center gap-3 mb-2">
+                  <Award size={22} className="text-emerald-700 shrink-0" />
+                  <span className="font-black text-sm sm:text-base text-emerald-950">
+                    Zero-Risk Sample Guarantee
+                  </span>
+                </div>
+                <p className="text-xs text-emerald-900 leading-relaxed">
+                  &ldquo;No payment until you see and approve your sample.&rdquo; Delivered in 2 days once approved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── 8. FAQ ACCORDION ─── */}
+        <section className="py-10 px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-7">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
+                Quick Answers
+              </span>
+              <h2 className="font-sans font-black text-2xl sm:text-3xl text-slate-900 mt-1">
+                Common Questions
+              </h2>
+            </div>
+
+            <div className="space-y-3">
+              {FAQS.map((faq, idx) => {
+                const isOpen = openFaq === idx;
+                return (
+                  <div
+                    key={faq.q}
+                    className="rounded-2xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_6px_22px_rgba(15,23,42,0.04),0_0_0_1px_rgba(148,163,184,0.16)] overflow-hidden"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? -1 : idx)}
+                      aria-expanded={isOpen}
+                      className="w-full flex items-center justify-between gap-4 p-4 sm:p-5 text-left min-h-[54px]"
+                    >
+                      <span className="font-bold text-sm sm:text-base text-slate-900">
+                        {faq.q}
+                      </span>
+                      <ChevronDown
+                        size={18}
+                        className={`text-slate-500 shrink-0 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180 text-emerald-600' : ''
+                        }`}
+                      />
+                    </button>
+                    {isOpen && (
+                      <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── 9. PACKAGES & PRICING (RIGHT ABOVE READY TO BUY CTA) ─── */}
+        <section id="pricing" className="py-10 sm:py-14 px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5 sm:mb-8">
               <div>
@@ -556,11 +804,11 @@ export default function OfferClient() {
                   <Sparkles size={12} className="text-amber-600" />
                   Limited-Time Year-End Deals
                 </span>
-                <h2 className="font-display font-black text-2xl sm:text-4xl text-slate-900 mt-2">
-                  Golden Liquid Glass Sale Pricing
+                <h2 className="font-sans font-black text-2xl sm:text-4xl text-slate-900 mt-2">
+                  Packages &amp; Pricing
                 </h2>
                 <p className="text-xs sm:text-base text-slate-600 mt-1">
-                  Transparent seasonal pricing in Indian Rupees (auto-adapts globally). Launch in 2 days with zero hidden surprises.
+                  Transparent seasonal pricing in Indian Rupees (auto-adapts globally). Customized &amp; delivered in 2 days with zero hidden surprises.
                 </p>
               </div>
               <CurrencySelector light />
@@ -643,7 +891,7 @@ export default function OfferClient() {
                         )}
                       </div>
 
-                      <h3 className="font-display font-black text-xl sm:text-2xl text-slate-950">
+                      <h3 className="font-sans font-black text-xl sm:text-2xl text-slate-950">
                         {plan.name}
                       </h3>
                       <p className="text-xs sm:text-sm font-medium text-slate-600 mt-1 mb-4 sm:mb-5">
@@ -660,7 +908,7 @@ export default function OfferClient() {
                             {formatOfferPrice(plan.originalPrices)}
                           </span>
                         </div>
-                        <div className="font-display font-black text-2xl sm:text-3xl text-slate-950 tracking-tight">
+                        <div className="font-sans font-black text-2xl sm:text-3xl text-slate-950 tracking-tight">
                           {formatOfferPrice(plan.salePrices)}
                         </div>
                         <div className="text-[11px] font-bold text-emerald-700 mt-1">
@@ -718,221 +966,7 @@ export default function OfferClient() {
           </div>
         </section>
 
-        {/* ─── 4. PROBLEM SECTION ─── */}
-        <section className="py-10 px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="mb-6">
-              <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
-                Why Businesses Switch to AuraLink
-              </span>
-              <h2 className="font-display font-black text-2xl sm:text-3xl text-slate-900 mt-1">
-                Stop losing ready-to-buy customers every day.
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {PROBLEMS.map((item) => {
-                const IconComp = item.icon;
-                return (
-                  <div
-                    key={item.title}
-                    className="rounded-2xl bg-white/75 backdrop-blur-xl border border-white shadow-[0_10px_30px_rgba(15,23,42,0.05),0_0_0_1px_rgba(148,163,184,0.16)] p-5 sm:p-6"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-slate-900 text-[#ffffff] flex items-center justify-center mb-4 shadow-sm">
-                      <IconComp size={18} />
-                    </div>
-                    <h3 className="font-bold text-base sm:text-lg text-slate-900 mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── 5. REAL CAPABILITIES & SMART E-COMMERCE ADMIN SHOWCASE ─── */}
-        <section className="py-10 px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="rounded-3xl bg-white/75 backdrop-blur-2xl border border-white shadow-[0_18px_48px_rgba(15,23,42,0.06),0_0_0_1px_rgba(148,163,184,0.18)] p-6 sm:p-9">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-7 pb-5 border-b border-slate-200/80">
-                <div>
-                  <span className="text-xs font-extrabold uppercase tracking-widest text-amber-700">
-                    Real Business Control • Built for Profit
-                  </span>
-                  <h2 className="font-display font-black text-2xl sm:text-3xl text-slate-900 mt-1">
-                    Full Admin Panel, Smart Stock Count & Technical SEO
-                  </h2>
-                </div>
-                <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-extrabold self-start">
-                  <Layers size={15} />
-                  Owner Controlled System
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-7">
-                {REAL_CAPABILITIES.map((cap) => {
-                  const IconComp = cap.icon;
-                  return (
-                    <div
-                      key={cap.title}
-                      className="rounded-2xl bg-white/85 border border-slate-200/80 p-5 shadow-sm"
-                    >
-                      <div className="flex items-center justify-between gap-2 mb-3">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-emerald-600 text-[#ffffff] flex items-center justify-center shadow-sm">
-                          <IconComp size={18} />
-                        </div>
-                        <span className="px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-[10px] font-black uppercase">
-                          {cap.badge}
-                        </span>
-                      </div>
-                      <h3 className="font-bold text-base text-slate-900 mb-1.5">
-                        {cap.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        {cap.desc}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {PACKAGE_INCLUDES.map((point) => (
-                  <div
-                    key={point}
-                    className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50/85 border border-slate-200/70"
-                  >
-                    <CheckCircle2 size={17} className="text-emerald-600 shrink-0 mt-0.5" />
-                    <span className="text-xs sm:text-sm font-semibold text-slate-800">
-                      {point}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── 6. HOW IT WORKS (4 STEPS — 2-DAY LAUNCH) ─── */}
-        <section className="py-10 px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="mb-6">
-              <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
-                Simple 4-Step Launch
-              </span>
-              <h2 className="font-display font-black text-2xl sm:text-3xl text-slate-900 mt-1">
-                From WhatsApp message to live site in 2 days.
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {PROCESS_STEPS.map((step) => (
-                <div
-                  key={step.num}
-                  className="rounded-2xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_28px_rgba(15,23,42,0.05),0_0_0_1px_rgba(148,163,184,0.16)] p-5"
-                >
-                  <div className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-mono text-xs font-black mb-3">
-                    STEP {step.num}
-                  </div>
-                  <h3 className="font-bold text-base sm:text-lg text-slate-900 mb-1.5">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{step.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── 7. TRUST & GUARANTEE BLOCK ─── */}
-        <section className="py-8 px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="rounded-3xl bg-white/80 backdrop-blur-2xl border border-white shadow-[0_14px_38px_rgba(15,23,42,0.06),0_0_0_1px_rgba(148,163,184,0.18)] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="space-y-3 max-w-2xl">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-900 p-2 shadow-md shrink-0 relative">
-                    <Image src="/logo.png" alt="AuraLink Digital Agency" fill className="object-contain p-1.5" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
-                      AuraLink Digital Agency
-                    </span>
-                    <h2 className="font-display font-black text-xl sm:text-2xl text-slate-900">
-                      Built Direct by Engineers — No Middlemen
-                    </h2>
-                  </div>
-                </div>
-                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                  Whether you run a local business or a nationwide D2C E-Commerce brand, you work directly with <strong>AuraLink Digital Agency</strong> — combining modern React/Next.js speed, clean Admin Dashboards, Smart Stock Control, and WhatsApp automation.
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-gradient-to-br from-emerald-50 to-amber-50/70 border border-emerald-200 p-5 shrink-0 w-full md:w-80">
-                <div className="flex items-center gap-3 mb-2">
-                  <Award size={22} className="text-emerald-700 shrink-0" />
-                  <span className="font-black text-sm sm:text-base text-emerald-950">
-                    Zero-Risk Sample Guarantee
-                  </span>
-                </div>
-                <p className="text-xs text-emerald-900 leading-relaxed">
-                  &ldquo;No payment until you see and approve your sample.&rdquo; Launch live in 2 days once approved.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── 8. FAQ ACCORDION ─── */}
-        <section className="py-10 px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-7">
-              <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
-                Quick Answers
-              </span>
-              <h2 className="font-display font-black text-2xl sm:text-3xl text-slate-900 mt-1">
-                Common Questions
-              </h2>
-            </div>
-
-            <div className="space-y-3">
-              {FAQS.map((faq, idx) => {
-                const isOpen = openFaq === idx;
-                return (
-                  <div
-                    key={faq.q}
-                    className="rounded-2xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_6px_22px_rgba(15,23,42,0.04),0_0_0_1px_rgba(148,163,184,0.16)] overflow-hidden"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setOpenFaq(isOpen ? -1 : idx)}
-                      aria-expanded={isOpen}
-                      className="w-full flex items-center justify-between gap-4 p-4 sm:p-5 text-left min-h-[54px]"
-                    >
-                      <span className="font-bold text-sm sm:text-base text-slate-900">
-                        {faq.q}
-                      </span>
-                      <ChevronDown
-                        size={18}
-                        className={`text-slate-500 shrink-0 transition-transform duration-200 ${
-                          isOpen ? 'rotate-180 text-emerald-600' : ''
-                        }`}
-                      />
-                    </button>
-                    {isOpen && (
-                      <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                        {faq.a}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── 9. FINAL CTA + 4-FIELD SAMPLE FORM ─── */}
+        {/* ─── 10. FINAL READY-TO-BUY CTA + 4-FIELD SAMPLE FORM ─── */}
         <section id="sample-form" className="py-12 px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="rounded-3xl bg-white/85 backdrop-blur-2xl border border-white shadow-[0_24px_64px_rgba(15,23,42,0.08),0_0_0_1px_rgba(148,163,184,0.2)] p-6 sm:p-10">
@@ -940,10 +974,10 @@ export default function OfferClient() {
                 {/* Left Direct WhatsApp Pitch */}
                 <div className="md:col-span-5 space-y-4">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-[11px] font-black uppercase tracking-wider">
-                    2-Day Launch • Sale Live
+                    Offer Live Now • Delivered in 2 Days
                   </span>
-                  <h2 className="font-display font-black text-2xl sm:text-3xl text-slate-900 leading-tight">
-                    Ready to launch your business website in 2 days?
+                  <h2 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 leading-tight">
+                    Ready to get your customized business website delivered in 2 days?
                   </h2>
                   <p className="text-sm text-slate-600 leading-relaxed">
                     Message us on WhatsApp now for the fastest reply, or fill in 4 quick details to claim your free sample & Year-End Sale rate.
@@ -966,7 +1000,7 @@ export default function OfferClient() {
                       <div className="w-12 h-12 rounded-2xl bg-[#16A34A] text-[#ffffff] flex items-center justify-center mx-auto">
                         <CheckCircle2 size={24} />
                       </div>
-                      <h3 className="font-display font-black text-xl text-slate-900">
+                      <h3 className="font-sans font-black text-xl text-slate-900">
                         Sample Request Received!
                       </h3>
                       <p className="text-sm text-slate-700">
