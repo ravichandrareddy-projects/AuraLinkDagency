@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -9,12 +9,9 @@ import {
   CheckCircle2,
   Clock,
   Smartphone,
-  ShieldCheck,
   Search,
   AlertCircle,
   ChevronDown,
-  ChevronLeft,
-  ChevronRight,
   Globe,
   Sparkles,
   Award,
@@ -31,6 +28,7 @@ import { useCurrency } from '@/lib/currency-context';
 import { formatCurrencyAmount } from '@/lib/pricing-data';
 import ClickGrowthPop from '@/components/offer/ClickGrowthPop';
 import ClientDeliveryAndResultsSwiper from '@/components/offer/ClientDeliveryAndResultsSwiper';
+import SwipeStickTrack from '@/components/offer/SwipeStickTrack';
 
 const WHATSAPP_NUMBER = '919440336396';
 const HERO_WA_TEXT = encodeURIComponent(
@@ -176,35 +174,6 @@ export default function OfferClient() {
   const { currency, setCurrency } = useCurrency();
   const [mounted, setMounted] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
-  const [activePlanIndex, setActivePlanIndex] = useState(0);
-  const pricingTrackRef = useRef(null);
-
-  const scrollToPlan = (idx) => {
-    const clamped = Math.max(0, Math.min(GOLDEN_PRICING_PLANS.length - 1, idx));
-    setActivePlanIndex(clamped);
-    const track = pricingTrackRef.current;
-    if (!track || !track.children?.[clamped]) return;
-    const card = track.children[clamped];
-    const targetLeft = Math.max(0, card.offsetLeft - 16);
-    track.scrollTo({ left: targetLeft, behavior: 'smooth' });
-  };
-
-  const handlePricingScroll = () => {
-    const track = pricingTrackRef.current;
-    if (!track) return;
-    const center = track.scrollLeft + track.clientWidth / 2;
-    let closestIdx = 0;
-    let minDist = Infinity;
-    Array.from(track.children).forEach((child, idx) => {
-      const childCenter = child.offsetLeft + child.offsetWidth / 2;
-      const dist = Math.abs(center - childCenter);
-      if (dist < minDist) {
-        minDist = dist;
-        closestIdx = idx;
-      }
-    });
-    setActivePlanIndex(closestIdx);
-  };
 
   const [formState, setFormState] = useState({
     name: '',
@@ -702,57 +671,12 @@ export default function OfferClient() {
               <CurrencySelector light />
             </div>
 
-            {/* Mobile Horizontal Scroll Controls & Quick Plan Switcher */}
-            <div className="lg:hidden mb-4 space-y-2.5">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-[11px] font-extrabold text-amber-800 uppercase tracking-wider">
-                  Swipe cards left ↔ right
-                </span>
-                <div className="flex items-center gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => scrollToPlan(activePlanIndex - 1)}
-                    disabled={activePlanIndex === 0}
-                    aria-label="Previous Pricing Plan"
-                    className="w-8 h-8 rounded-full bg-white/90 border border-amber-300 text-slate-800 flex items-center justify-center shadow-sm disabled:opacity-40"
-                  >
-                    <ChevronLeft size={16} />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => scrollToPlan(activePlanIndex + 1)}
-                    disabled={activePlanIndex === GOLDEN_PRICING_PLANS.length - 1}
-                    aria-label="Next Pricing Plan"
-                    className="w-8 h-8 rounded-full bg-white/90 border border-amber-300 text-slate-800 flex items-center justify-center shadow-sm disabled:opacity-40"
-                  >
-                    <ChevronRight size={16} />
-                  </button>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-white/80 backdrop-blur-md border border-amber-200/80 shadow-sm">
-                {GOLDEN_PRICING_PLANS.map((plan, idx) => (
-                  <button
-                    key={plan.id}
-                    type="button"
-                    onClick={() => scrollToPlan(idx)}
-                    className={`py-2 px-2 rounded-xl text-[11px] font-extrabold transition-all truncate ${
-                      activePlanIndex === idx
-                        ? 'bg-gradient-to-r from-amber-600 to-yellow-600 text-[#ffffff] shadow-sm'
-                        : 'text-slate-700 hover:bg-amber-50'
-                    }`}
-                  >
-                    {plan.id === 'business' ? 'Business' : plan.id === 'ecommerce' ? 'E-Commerce' : 'Starter'}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Horizontal Scroll Track on Mobile/Tablet -> 3-Column Grid on Desktop */}
-            <div
-              ref={pricingTrackRef}
-              onScroll={handlePricingScroll}
-              className="flex lg:grid lg:grid-cols-3 gap-4 sm:gap-6 items-stretch overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 pb-3 lg:pb-0"
+            <SwipeStickTrack
+              itemCount={GOLDEN_PRICING_PLANS.length}
+              stickVariant="gold"
+              mobileOnlyStick={true}
+              stickLabel="Swipe Packages Left or Right"
+              trackClassName="flex lg:grid lg:grid-cols-3 gap-4 sm:gap-6 items-stretch overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 pb-3 lg:pb-0 cursor-grab active:cursor-grabbing lg:cursor-default"
             >
               {GOLDEN_PRICING_PLANS.map((plan) => (
                 <div
@@ -835,22 +759,7 @@ export default function OfferClient() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Mobile Scroll Indicator Dots */}
-            <div className="flex lg:hidden items-center justify-center gap-2 mt-3">
-              {GOLDEN_PRICING_PLANS.map((plan, idx) => (
-                <button
-                  key={plan.id}
-                  type="button"
-                  onClick={() => scrollToPlan(idx)}
-                  aria-label={`View ${plan.name}`}
-                  className={`h-2 rounded-full transition-all ${
-                    activePlanIndex === idx ? 'w-7 bg-amber-600' : 'w-2 bg-slate-300'
-                  }`}
-                />
-              ))}
-            </div>
+            </SwipeStickTrack>
           </div>
         </section>
 

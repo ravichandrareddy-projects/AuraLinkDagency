@@ -1,22 +1,20 @@
 'use client';
 
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo } from 'react';
 import {
   TrendingUp,
   Clock,
   CheckCircle2,
   ShieldCheck,
-  Sparkles,
   ArrowRight,
   MessageSquare,
   Zap,
   Quote,
   Award,
-  ChevronLeft,
-  ChevronRight,
   XCircle,
 } from 'lucide-react';
 import { ourClients, clientCategories } from '@/lib/clients-data';
+import SwipeStickTrack from '@/components/offer/SwipeStickTrack';
 
 const WHATSAPP_NUMBER = '919440336396';
 
@@ -72,39 +70,11 @@ const RESULTS_SLIDES = [
 
 export default function ClientDeliveryAndResultsSwiper() {
   const [selectedCategory, setSelectedCategory] = useState('All Clients');
-  const [activeSlide, setActiveSlide] = useState(0);
-  const swiperRef = useRef(null);
 
   const filteredClients = useMemo(() => {
     if (selectedCategory === 'All Clients') return ourClients;
     return ourClients.filter((c) => c.category === selectedCategory);
   }, [selectedCategory]);
-
-  const scrollToSlide = (idx) => {
-    const clamped = Math.max(0, Math.min(RESULTS_SLIDES.length - 1, idx));
-    setActiveSlide(clamped);
-    const track = swiperRef.current;
-    if (!track || !track.children?.[clamped]) return;
-    const card = track.children[clamped];
-    track.scrollTo({ left: Math.max(0, card.offsetLeft - 8), behavior: 'smooth' });
-  };
-
-  const handleSwiperScroll = () => {
-    const track = swiperRef.current;
-    if (!track) return;
-    const center = track.scrollLeft + track.clientWidth / 2;
-    let closest = 0;
-    let minDist = Infinity;
-    Array.from(track.children).forEach((child, idx) => {
-      const childCenter = child.offsetLeft + child.offsetWidth / 2;
-      const dist = Math.abs(center - childCenter);
-      if (dist < minDist) {
-        minDist = dist;
-        closest = idx;
-      }
-    });
-    setActiveSlide(closest);
-  };
 
   return (
     <section id="client-delivery" className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
@@ -234,69 +204,24 @@ export default function ClientDeliveryAndResultsSwiper() {
 
         {/* ─── PART B: SMART SWIPEABLE "SEE WHAT CHANGES IN 2 DAYS" RESULTS SWIPER ─── */}
         <div className="rounded-3xl bg-white/80 backdrop-blur-2xl border border-white/95 shadow-[0_20px_56px_rgba(15,23,42,0.07),0_0_0_1px_rgba(148,163,184,0.18)] p-5 sm:p-8 lg:p-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
-            <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-[#ffffff] text-[11px] font-black uppercase tracking-wider">
-                <Zap size={11} className="text-amber-400" />
-                Swipe Left ↔ Right to Compare Results
-              </span>
-              <h3 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 mt-2">
-                See What Changes in 2 Days
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                Interactive side-by-side transformation from generic online presence to customized brand growth.
-              </p>
-            </div>
-
-            {/* Smart Swiper Controls (Desktop & Mobile) */}
-            <div className="flex items-center gap-2 self-start md:self-auto">
-              <button
-                type="button"
-                onClick={() => scrollToSlide(activeSlide - 1)}
-                disabled={activeSlide === 0}
-                aria-label="Previous Result Slide"
-                className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-900 hover:bg-slate-50 shadow-sm disabled:opacity-40 transition-all"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <span className="text-xs font-extrabold text-slate-700 px-2">
-                {activeSlide + 1} / {RESULTS_SLIDES.length}
-              </span>
-              <button
-                type="button"
-                onClick={() => scrollToSlide(activeSlide + 1)}
-                disabled={activeSlide === RESULTS_SLIDES.length - 1}
-                aria-label="Next Result Slide"
-                className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-900 hover:bg-slate-50 shadow-sm disabled:opacity-40 transition-all"
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
+          <div className="mb-5">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-[#ffffff] text-[11px] font-black uppercase tracking-wider">
+              <Zap size={11} className="text-amber-400" />
+              Drag or Slide Stick Left ↔ Right
+            </span>
+            <h3 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 mt-2">
+              See What Changes in 2 Days
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              Interactive side-by-side transformation from generic online presence to customized brand growth.
+            </p>
           </div>
 
-          {/* Quick Topic Jump Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-5">
-            {RESULTS_SLIDES.map((slide, idx) => (
-              <button
-                key={slide.id}
-                type="button"
-                onClick={() => scrollToSlide(idx)}
-                className={`px-3.5 py-2 rounded-full text-xs font-extrabold whitespace-nowrap transition-all ${
-                  activeSlide === idx
-                    ? 'bg-emerald-600 text-[#ffffff] shadow-sm'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200/80'
-                }`}
-              >
-                {slide.tag}
-              </button>
-            ))}
-          </div>
-
-          {/* Horizontal Interactive Swiper Track (All Screens — Smooth Swipe Left/Right) */}
-          <div
-            ref={swiperRef}
-            onScroll={handleSwiperScroll}
-            className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 cursor-grab active:cursor-grabbing"
+          <SwipeStickTrack
+            itemCount={RESULTS_SLIDES.length}
+            stickVariant="emerald"
+            stickLabel="Swipe Left or Right to Compare 2-Day Results"
+            trackClassName="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 cursor-grab active:cursor-grabbing"
           >
             {RESULTS_SLIDES.map((slide) => (
               <div
@@ -358,22 +283,7 @@ export default function ClientDeliveryAndResultsSwiper() {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Swiper Progress Dots */}
-          <div className="flex items-center justify-center gap-2 mt-4">
-            {RESULTS_SLIDES.map((slide, idx) => (
-              <button
-                key={slide.id}
-                type="button"
-                onClick={() => scrollToSlide(idx)}
-                aria-label={`Slide ${idx + 1}: ${slide.title}`}
-                className={`h-2 rounded-full transition-all ${
-                  activeSlide === idx ? 'w-8 bg-emerald-600' : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
-              />
-            ))}
-          </div>
+          </SwipeStickTrack>
         </div>
       </div>
     </section>
