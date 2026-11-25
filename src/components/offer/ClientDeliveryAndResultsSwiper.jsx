@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { ourClients, clientCategories } from '@/lib/clients-data';
 import ReminiBeforeAfterSlider from '@/components/offer/ReminiBeforeAfterSlider';
+import RevealOnScroll from '@/components/offer/RevealOnScroll';
 
 const DELIVERY_STATS = [
   { value: '99.4%', label: 'On-Time Delivery Rate', sub: 'Across Active Builds', icon: ShieldCheck },
@@ -31,7 +32,8 @@ export default function ClientDeliveryAndResultsSwiper() {
     <section id="client-delivery" className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
         {/* ─── PART A: OUR CLIENTS & DELIVERY RATE ─── */}
-        <div className="rounded-3xl bg-white/75 backdrop-blur-2xl border border-white/95 shadow-[0_20px_56px_rgba(15,23,42,0.07),0_0_0_1px_rgba(148,163,184,0.18)] p-5 sm:p-8 lg:p-10">
+        <RevealOnScroll>
+          <div className="rounded-3xl bg-white/75 backdrop-blur-2xl border border-white/95 shadow-[0_20px_56px_rgba(15,23,42,0.07),0_0_0_1px_rgba(148,163,184,0.18)] p-5 sm:p-8 lg:p-10">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6">
             <div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/90 border border-emerald-300 text-emerald-900 text-[11px] font-black uppercase tracking-widest">
@@ -152,9 +154,12 @@ export default function ClientDeliveryAndResultsSwiper() {
             ))}
           </div>
         </div>
+        </RevealOnScroll>
 
         {/* ─── PART B: REMINI-STYLE BEFORE / AFTER SCANNER SLIDER ─── */}
-        <ReminiBeforeAfterSlider />
+        <RevealOnScroll delay={0.08}>
+          <ReminiBeforeAfterSlider />
+        </RevealOnScroll>
       </div>
     </section>
   );

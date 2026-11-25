@@ -29,6 +29,7 @@ import { formatCurrencyAmount } from '@/lib/pricing-data';
 import ClickGrowthPop from '@/components/offer/ClickGrowthPop';
 import ClientDeliveryAndResultsSwiper from '@/components/offer/ClientDeliveryAndResultsSwiper';
 import SwipeStickTrack from '@/components/offer/SwipeStickTrack';
+import RevealOnScroll from '@/components/offer/RevealOnScroll';
 
 const WHATSAPP_NUMBER = '919440336396';
 const HERO_WA_TEXT = encodeURIComponent(
@@ -620,7 +621,7 @@ export default function OfferClient() {
 
         {/* ─── 4. WHY BUSINESSES SWITCH TO AURALINK ─── */}
         <section className="py-10 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <RevealOnScroll className="max-w-7xl mx-auto">
             <div className="mb-6">
               <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
                 Why Businesses Switch to AuraLink
@@ -649,12 +650,12 @@ export default function OfferClient() {
                 );
               })}
             </div>
-          </div>
+          </RevealOnScroll>
         </section>
 
         {/* ─── 5. PACKAGES & PRICING (RIGHT AFTER WHY BUSINESSES SWITCH) ─── */}
         <section id="pricing" className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <RevealOnScroll className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5 sm:mb-8">
               <div>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/90 border border-amber-300 text-amber-900 text-xs font-black uppercase tracking-widest">
@@ -760,12 +761,12 @@ export default function OfferClient() {
                 </div>
               ))}
             </SwipeStickTrack>
-          </div>
+          </RevealOnScroll>
         </section>
 
         {/* ─── 6. FULL ADMIN PANEL, SMART STOCK COUNT & TECHNICAL SEO (AFTER P&P) ─── */}
         <section className="py-10 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <RevealOnScroll className="max-w-7xl mx-auto">
             <div className="rounded-3xl bg-white/75 backdrop-blur-2xl border border-white shadow-[0_18px_48px_rgba(15,23,42,0.06),0_0_0_1px_rgba(148,163,184,0.18)] p-5 sm:p-8 lg:p-10">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-7 pb-5 border-b border-slate-200/80">
                 <div>
@@ -823,12 +824,12 @@ export default function OfferClient() {
                 ))}
               </div>
             </div>
-          </div>
+          </RevealOnScroll>
         </section>
 
         {/* ─── 7. HOW IT WORKS (4 STEPS — 2-DAY DELIVERY) ─── */}
         <section className="py-10 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <RevealOnScroll className="max-w-7xl mx-auto">
             <div className="mb-6">
               <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
                 Simple 4-Step Delivery
@@ -854,12 +855,12 @@ export default function OfferClient() {
                 </div>
               ))}
             </div>
-          </div>
+          </RevealOnScroll>
         </section>
 
         {/* ─── 8. TRUST & GUARANTEE BLOCK ─── */}
         <section className="py-8 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <RevealOnScroll className="max-w-7xl mx-auto">
             <div className="rounded-3xl bg-white/80 backdrop-blur-2xl border border-white shadow-[0_14px_38px_rgba(15,23,42,0.06),0_0_0_1px_rgba(148,163,184,0.18)] p-6 sm:p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="space-y-3 max-w-3xl">
                 <div className="flex items-center gap-3">
@@ -892,12 +893,12 @@ export default function OfferClient() {
                 </p>
               </div>
             </div>
-          </div>
+          </RevealOnScroll>
         </section>
 
         {/* ─── 9. FAQ ACCORDION ─── */}
         <section className="py-10 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto">
+          <RevealOnScroll className="max-w-5xl mx-auto">
             <div className="text-center mb-7">
               <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
                 Quick Answers
@@ -940,12 +941,12 @@ export default function OfferClient() {
                 );
               })}
             </div>
-          </div>
+          </RevealOnScroll>
         </section>
 
         {/* ─── 10. FINAL READY-TO-BUY CTA + 4-FIELD SAMPLE FORM ─── */}
         <section id="sample-form" className="py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <RevealOnScroll className="max-w-7xl mx-auto">
             <div className="rounded-3xl bg-white/85 backdrop-blur-2xl border border-white shadow-[0_24px_64px_rgba(15,23,42,0.08),0_0_0_1px_rgba(148,163,184,0.2)] p-6 sm:p-10 lg:p-12">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 {/* Left Direct WhatsApp Pitch */}
@@ -1074,7 +1075,7 @@ export default function OfferClient() {
                 </div>
               </div>
             </div>
-          </div>
+          </RevealOnScroll>
         </section>
       </main>
 
