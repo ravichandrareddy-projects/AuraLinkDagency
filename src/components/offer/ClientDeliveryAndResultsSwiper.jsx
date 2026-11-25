@@ -4,68 +4,19 @@ import { useState, useMemo } from 'react';
 import {
   TrendingUp,
   Clock,
-  CheckCircle2,
   ShieldCheck,
   ArrowRight,
-  MessageSquare,
-  Zap,
   Quote,
   Award,
-  XCircle,
 } from 'lucide-react';
 import { ourClients, clientCategories } from '@/lib/clients-data';
-import SwipeStickTrack from '@/components/offer/SwipeStickTrack';
-
-const WHATSAPP_NUMBER = '919440336396';
+import ReminiBeforeAfterSlider from '@/components/offer/ReminiBeforeAfterSlider';
 
 const DELIVERY_STATS = [
   { value: '99.4%', label: 'On-Time Delivery Rate', sub: 'Across Active Builds', icon: ShieldCheck },
   { value: '2 Days', label: 'Express Delivery', sub: 'Offer Live Now', icon: Clock },
   { value: '3.4x', label: 'Avg Client Lead Lift', sub: 'Direct WhatsApp & Web', icon: TrendingUp },
   { value: '100%', label: 'Approved Before Pay', sub: 'Zero-Risk Sample Rule', icon: Award },
-];
-
-const RESULTS_SLIDES = [
-  {
-    id: 'brand-authority',
-    tag: '01 • Brand Authority',
-    title: 'Look Customized & Best — Never Cheap',
-    metric: '3x Higher Trust',
-    beforeTitle: 'Before AuraLink',
-    beforeText: 'Generic links or social pages make premium businesses look unorganized and cheap.',
-    afterTitle: 'After AuraLink (2 Days)',
-    afterText: 'Customized high-trust glass design that proves your brand quality the instant visitors land.',
-  },
-  {
-    id: 'direct-leads',
-    tag: '02 • Instant Enquiries',
-    title: 'WhatsApp & UPI Direct Conversion',
-    metric: '2.8x More Enquiries',
-    beforeTitle: 'Before AuraLink',
-    beforeText: 'Sending rates, photos & details manually in DMs loses impatient mobile buyers.',
-    afterTitle: 'After AuraLink (2 Days)',
-    afterText: 'Clear service rates, instant WhatsApp tap, and frictionless UPI/Card checkout convert buyers fast.',
-  },
-  {
-    id: 'smart-admin',
-    tag: '03 • Smart Store Admin',
-    title: 'Product & Smart Stock Count Control',
-    metric: '100% Owner Control',
-    beforeTitle: 'Before AuraLink',
-    beforeText: 'Waiting on developers for small edits and accidentally taking orders for out-of-stock items.',
-    afterTitle: 'After AuraLink (2 Days)',
-    afterText: 'Add/remove products anytime with real-time Smart Stock Count alerts from your phone.',
-  },
-  {
-    id: 'seo-speed',
-    tag: '04 • Google & Mobile Speed',
-    title: 'Built for Google Search & 360px Phones',
-    metric: '< 1.5s Load Speed',
-    beforeTitle: 'Before AuraLink',
-    beforeText: 'Invisible on Google searches and heavy pages that lag on mobile data.',
-    afterTitle: 'After AuraLink (2 Days)',
-    afterText: 'Full Technical SEO, schema markup, and blazing-fast mobile speed that wins ad clicks.',
-  },
 ];
 
 export default function ClientDeliveryAndResultsSwiper() {
@@ -202,89 +153,8 @@ export default function ClientDeliveryAndResultsSwiper() {
           </div>
         </div>
 
-        {/* ─── PART B: SMART SWIPEABLE "SEE WHAT CHANGES IN 2 DAYS" RESULTS SWIPER ─── */}
-        <div className="rounded-3xl bg-white/80 backdrop-blur-2xl border border-white/95 shadow-[0_20px_56px_rgba(15,23,42,0.07),0_0_0_1px_rgba(148,163,184,0.18)] p-5 sm:p-8 lg:p-10">
-          <div className="mb-5">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-[#ffffff] text-[11px] font-black uppercase tracking-wider">
-              <Zap size={11} className="text-amber-400" />
-              Drag or Slide Stick Left ↔ Right
-            </span>
-            <h3 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 mt-2">
-              See What Changes in 2 Days
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Interactive side-by-side transformation from generic online presence to customized brand growth.
-            </p>
-          </div>
-
-          <SwipeStickTrack
-            itemCount={RESULTS_SLIDES.length}
-            stickVariant="emerald"
-            stickLabel="Swipe Left or Right to Compare 2-Day Results"
-            trackClassName="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 cursor-grab active:cursor-grabbing"
-          >
-            {RESULTS_SLIDES.map((slide) => (
-              <div
-                key={slide.id}
-                className="w-[85vw] max-w-[340px] sm:w-[440px] lg:w-[560px] lg:max-w-none shrink-0 snap-center rounded-2xl bg-gradient-to-br from-white via-slate-50/70 to-emerald-50/50 border border-slate-200/90 p-5 sm:p-6 shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[11px] font-black uppercase tracking-wider text-amber-700">
-                      {slide.tag}
-                    </span>
-                    <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-black">
-                      {slide.metric}
-                    </span>
-                  </div>
-
-                  <h4 className="font-sans font-bold text-lg sm:text-xl text-slate-900 mb-4">
-                    {slide.title}
-                  </h4>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                    <div className="rounded-xl bg-rose-50/80 border border-rose-200/80 p-3.5">
-                      <div className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-rose-700 mb-1.5">
-                        <XCircle size={13} />
-                        <span>{slide.beforeTitle}</span>
-                      </div>
-                      <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-                        {slide.beforeText}
-                      </p>
-                    </div>
-
-                    <div className="rounded-xl bg-emerald-50/90 border border-emerald-200 p-3.5">
-                      <div className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-emerald-800 mb-1.5">
-                        <CheckCircle2 size={13} />
-                        <span>{slide.afterTitle}</span>
-                      </div>
-                      <p className="text-xs sm:text-sm text-slate-900 leading-relaxed font-semibold">
-                        {slide.afterText}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-3 border-t border-slate-200/70">
-                  <span className="text-[11px] font-bold text-slate-500">
-                    Delivered in 2 Days by AuraLink
-                  </span>
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                      `Hi AuraLink Digital Agency! I liked "${slide.title}" — I want a customized website delivered in 2 days.`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-extrabold text-emerald-700 hover:text-emerald-800"
-                  >
-                    <MessageSquare size={13} />
-                    <span>Get Free Sample →</span>
-                  </a>
-                </div>
-              </div>
-            ))}
-          </SwipeStickTrack>
-        </div>
+        {/* ─── PART B: REMINI-STYLE BEFORE / AFTER SCANNER SLIDER ─── */}
+        <ReminiBeforeAfterSlider />
       </div>
     </section>
   );
