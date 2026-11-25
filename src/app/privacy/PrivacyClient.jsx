@@ -71,8 +71,8 @@ export default function PrivacyPolicyPage() {
           </p>
           <div className="space-y-1 text-sm text-[hsl(230,15%,70%)] font-mono">
             <p>Email: <a href="mailto:hello@auralinkdigitalagency.indevs.in" className="text-cyan-300 hover:underline">hello@auralinkdigitalagency.indevs.in</a></p>
-            <p>WhatsApp / Phone: <a href="tel:+919440336396" className="text-cyan-300 hover:underline">+91 9440336396</a></p>
-            <p>Official Address: AuraLink Digital Agency, Andhra Pradesh, India</p>
+            <p>WhatsApp / Phone: <a href="tel:+918309264018" className="text-cyan-300 hover:underline">+91 83092 64018</a></p>
+            <p>Official Address: AuraLink Digital Agency, Hyderabad, Telangana, India</p>
           </div>
         </GlassCard>
       </section>

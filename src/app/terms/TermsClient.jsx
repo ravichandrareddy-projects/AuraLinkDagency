@@ -52,7 +52,7 @@ export default function TermsOfServicePage() {
           <ul className="list-disc pl-5 text-sm text-[hsl(230,15%,70%)] space-y-2">
             <li><strong>Pre-Development Cancellations:</strong> Orders canceled within 24 hours of payment before discovery phase kickoff are eligible for a full refund via Razorpay.</li>
             <li><strong>Milestone Payments:</strong> Once discovery, design wireframes, or custom software code development has commenced, fees are non-refundable for completed milestones.</li>
-            <li><strong>Dispute Resolution:</strong> Payment queries, refund requests, or billing issues should be directed to <strong>hello@auralinkdigitalagency.indevs.in</strong> or WhatsApp <strong>+91 9440336396</strong> before initiating payment gateway chargebacks.</li>
+            <li><strong>Dispute Resolution:</strong> Payment queries, refund requests, or billing issues should be directed to <strong>hello@auralinkdigitalagency.indevs.in</strong> or WhatsApp <strong>+91 83092 64018</strong> before initiating payment gateway chargebacks.</li>
           </ul>
         </GlassCard>
 
@@ -70,8 +70,8 @@ export default function TermsOfServicePage() {
           </p>
           <div className="space-y-1 text-sm text-[hsl(230,15%,70%)] font-mono">
             <p>Email: <a href="mailto:hello@auralinkdigitalagency.indevs.in" className="text-cyan-300 hover:underline">hello@auralinkdigitalagency.indevs.in</a></p>
-            <p>Phone / WhatsApp: <a href="tel:+919440336396" className="text-cyan-300 hover:underline">+91 9440336396</a></p>
-            <p>Jurisdiction: Andhra Pradesh, India</p>
+            <p>Phone / WhatsApp: <a href="tel:+918309264018" className="text-cyan-300 hover:underline">+91 83092 64018</a></p>
+            <p>Jurisdiction: Hyderabad, Telangana, India</p>
           </div>
         </GlassCard>
       </section>

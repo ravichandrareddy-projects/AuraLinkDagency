@@ -36,7 +36,7 @@ export default function OfferLandingPage() {
       '@type': 'Organization',
       name: 'AuraLink Digital Agency',
       url: 'https://auralinkdigitalagency.indevs.in',
-      telephone: '+91-9440336396',
+      telephone: '+91-8309264018',
       email: 'hello@auralinkdigitalagency.indevs.in',
     },
     areaServed: 'Worldwide',

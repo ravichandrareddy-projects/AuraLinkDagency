@@ -101,10 +101,10 @@ export const metadata = {
     google: 'BLCoj7t3clNNzjNjxx-TCqtkFgfFCvXQq2dFvUjGuBA',
   },
   other: {
-    'geo.region': 'IN-AP',
-    'geo.placename': 'Andhra Pradesh, India',
-    'geo.position': '16.5062;80.6480',
-    'ICBM': '16.5062, 80.6480',
+    'geo.region': 'IN-TG',
+    'geo.placename': 'Hyderabad, Telangana, India',
+    'geo.position': '17.3850;78.4867',
+    'ICBM': '17.3850, 78.4867',
   },
 };
 

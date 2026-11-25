@@ -143,15 +143,15 @@ export default function Footer() {
                 <span>hello@auralinkdigitalagency.indevs.in</span>
               </a>
               <a
-                href="tel:+919440336396"
+                href="tel:+918309264018"
                 className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm hover:text-white transition-colors"
               >
                 <Phone size={14} />
-                <span>+91 9440336396</span>
+                <span>+91 83092 64018</span>
               </a>
               <div className="flex items-center gap-3 text-[hsl(230,15%,55%)] text-sm">
                 <MapPin size={14} />
-                <span>Andhra Pradesh, India</span>
+                <span>Hyderabad, Telangana, India</span>
               </div>
             </div>
           </div>

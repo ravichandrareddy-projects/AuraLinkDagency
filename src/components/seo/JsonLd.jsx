@@ -20,7 +20,7 @@ export default function JsonLd() {
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+919440336396',
+      telephone: '+918309264018',
       email: 'hello@auralinkdigitalagency.indevs.in',
       contactType: 'sales & customer support',
       areaServed: 'Worldwide',
@@ -53,11 +53,12 @@ export default function JsonLd() {
     image: 'https://auralinkdigitalagency.indevs.in/logo.png',
     '@id': 'https://auralinkdigitalagency.indevs.in/#organization',
     url: 'https://auralinkdigitalagency.indevs.in',
-    telephone: '+919440336396',
+    telephone: '+918309264018',
     email: 'hello@auralinkdigitalagency.indevs.in',
     address: {
       '@type': 'PostalAddress',
-      addressRegion: 'Andhra Pradesh',
+      addressLocality: 'Hyderabad',
+      addressRegion: 'Telangana',
       addressCountry: 'IN',
     },
     openingHoursSpecification: {
@@ -110,7 +111,7 @@ export default function JsonLd() {
         name: 'I need a website for my business — how do I get started with AuraLink?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'If you need a website for your business, AuraLink Digital Agency provides turnkey design, development, domain setup, and cloud hosting delivered in just 48 hours. Choose between Local Starter Sites, Landing Pages, or full E-Commerce Stores. Message AuraLink on WhatsApp at +91 9440336396 or email hello@auralinkdigitalagency.indevs.in to launch your business online immediately.',
+          text: 'If you need a website for your business, AuraLink Digital Agency provides turnkey design, development, domain setup, and cloud hosting delivered in just 48 hours. Choose between Local Starter Sites, Landing Pages, or full E-Commerce Stores. Message AuraLink on WhatsApp at +91 83092 64018 or email hello@auralinkdigitalagency.indevs.in to launch your business online immediately.',
         },
       },
       {

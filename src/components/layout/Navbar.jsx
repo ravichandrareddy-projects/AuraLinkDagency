@@ -297,8 +297,8 @@ export default function Navbar() {
 
                       <div className="mt-1 pt-2 border-t border-white/[0.08] px-2 py-1 flex items-center justify-between text-[11px] text-slate-400 font-mono">
                         <span>Direct Dial:</span>
-                        <a href="tel:+919440336396" className="text-cyan-300 hover:underline">
-                          +91 9440336396
+                        <a href="tel:+918309264018" className="text-cyan-300 hover:underline">
+                          +91 83092 64018
                         </a>
                       </div>
                     </motion.div>

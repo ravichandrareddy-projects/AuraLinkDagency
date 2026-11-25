@@ -81,7 +81,7 @@ export async function POST(request) {
     const waText = encodeURIComponent(
       `Hi AuraLink! I requested a free website sample:\n• Name: ${leadRecord.name}\n• Business: ${leadRecord.businessType}\n• Area: ${leadRecord.area}\n• Phone: ${leadRecord.phone}\nPlease share my free sample preview.`
     );
-    const whatsappUrl = `https://wa.me/919440336396?text=${waText}`;
+    const whatsappUrl = `https://wa.me/918309264018?text=${waText}`;
 
     return NextResponse.json({
       success: true,

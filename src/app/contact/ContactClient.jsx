@@ -50,7 +50,7 @@ const supportCards = [
   {
     icon: MessageSquare,
     title: 'WhatsApp & Direct Call',
-    detail: '+91 9440336396',
+    detail: '+91 83092 64018',
     sub: 'Call or chat with us instantly',
     gradient: 'from-accent-blue to-accent-cyan',
   },
@@ -65,7 +65,7 @@ const supportCards = [
 ]
 
 const officeInfo = [
-  { icon: MapPin, text: 'Andhra Pradesh, India' },
+  { icon: MapPin, text: 'Hyderabad, Telangana, India' },
   { icon: Clock, text: 'Mon-Sat, 10AM - 7PM IST' },
   { icon: Globe, text: 'Serving clients worldwide' },
 ]

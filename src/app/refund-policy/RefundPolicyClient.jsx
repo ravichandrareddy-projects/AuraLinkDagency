@@ -39,7 +39,7 @@ export default function RefundPolicyClient() {
           </p>
           <ul className="list-disc pl-5 text-sm text-[hsl(230,15%,70%)] space-y-2">
             <li><strong>24-Hour Notice:</strong> If you cancel an order within 24 hours of payment and before discovery/design kickoff, you are eligible for a <strong>100% full refund</strong> with no cancellation fee.</li>
-            <li><strong>How to Cancel:</strong> Submit your cancellation request via email to <strong className="text-white">hello@auralinkdigitalagency.indevs.in</strong> or send an urgent WhatsApp notice to <strong className="text-white">+91 9440336396</strong> citing your invoice / transaction ID.</li>
+            <li><strong>How to Cancel:</strong> Submit your cancellation request via email to <strong className="text-white">hello@auralinkdigitalagency.indevs.in</strong> or send an urgent WhatsApp notice to <strong className="text-white">+91 83092 64018</strong> citing your invoice / transaction ID.</li>
           </ul>
         </GlassCard>
 
@@ -107,11 +107,11 @@ export default function RefundPolicyClient() {
             <p className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-cyan-400" />
               <span>WhatsApp / Call:</span>
-              <a href="tel:+919440336396" className="text-cyan-300 hover:underline">
-                +91 9440336396
+              <a href="tel:+918309264018" className="text-cyan-300 hover:underline">
+                +91 83092 64018
               </a>
             </p>
-            <p>AuraLink Digital Agency, Andhra Pradesh, India</p>
+            <p>AuraLink Digital Agency, Hyderabad, Telangana, India</p>
           </div>
         </GlassCard>
       </section>

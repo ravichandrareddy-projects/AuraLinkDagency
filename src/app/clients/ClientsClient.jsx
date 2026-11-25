@@ -32,7 +32,7 @@ export default function ClientsClient() {
               Deploy Your System <ArrowRight size={16} />
             </Button>
             <a
-              href="https://wa.me/919440336396?text=Hi%20AuraLink,%20I'm%20interested%20in%20becoming%20a%20client!"
+              href="https://wa.me/918309264018?text=Hi%20AuraLink,%20I'm%20interested%20in%20becoming%20a%20client!"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.12] text-white font-medium border border-white/[0.15] transition-all"

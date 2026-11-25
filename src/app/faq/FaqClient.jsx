@@ -21,7 +21,7 @@ const faqCategories = [
       {
         question: 'I need a website for my business — how do I start with AuraLink?',
         answer:
-          'If you need a website for your business, AuraLink Digital Agency delivers complete turnkey websites in just 48 hours. Simply choose your business model (Local Business, E-Commerce, or Service Brand) and message us directly on WhatsApp (+91 9440336396) or email hello@auralinkdigitalagency.indevs.in. We take care of design, domain, cloud hosting, and WhatsApp lead capture.',
+          'If you need a website for your business, AuraLink Digital Agency delivers complete turnkey websites in just 48 hours. Simply choose your business model (Local Business, E-Commerce, or Service Brand) and message us directly on WhatsApp (+91 83092 64018) or email hello@auralinkdigitalagency.indevs.in. We take care of design, domain, cloud hosting, and WhatsApp lead capture.',
       },
       {
         question: 'How to build a website for my business?',

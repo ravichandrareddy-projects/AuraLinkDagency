@@ -12,7 +12,7 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 
-const WHATSAPP_NUMBER = '919440336396';
+const WHATSAPP_NUMBER = '918309264018';
 const WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   'Hi AuraLink Digital Agency! I saw your Before vs After 2-Day transformation — I want a customized digital presence delivered in 2 days.'
 )}`;
@@ -295,7 +295,7 @@ export default function ReminiBeforeAfterSlider() {
           </a>
 
           <a
-            href="tel:+919440336396"
+            href="tel:+918309264018"
             className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-900 text-xs sm:text-sm font-extrabold shadow-sm min-h-[44px]"
           >
             <Phone size={14} className="text-emerald-600" />

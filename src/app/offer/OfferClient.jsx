@@ -30,7 +30,7 @@ import ClickGrowthPop from '@/components/offer/ClickGrowthPop';
 import ClientDeliveryAndResultsSwiper from '@/components/offer/ClientDeliveryAndResultsSwiper';
 import SwipeStickTrack from '@/components/offer/SwipeStickTrack';
 
-const WHATSAPP_NUMBER = '919440336396';
+const WHATSAPP_NUMBER = '918309264018';
 const HERO_WA_TEXT = encodeURIComponent(
   'Hi AuraLink Digital Agency! Your Year-End Sale offer is live — I want a customized website delivered in 2 days for my business. Please share a free sample.'
 );
@@ -407,12 +407,12 @@ export default function OfferClient() {
           {/* Right Controls: Phone Tap + Currency Selector + Green WhatsApp CTA */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             <a
-              href="tel:+919440336396"
+              href="tel:+918309264018"
               className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl bg-white/85 border border-slate-200/90 text-slate-800 hover:bg-white text-xs font-bold shadow-sm transition-all min-h-[40px]"
-              aria-label="Call +91 94403 36396"
+              aria-label="Call +91 83092 64018"
             >
               <Phone size={14} className="text-emerald-600 shrink-0" />
-              <span className="hidden md:inline">+91 94403 36396</span>
+              <span className="hidden md:inline">+91 83092 64018</span>
               <span className="md:hidden text-[11px]">Call</span>
             </a>
 
@@ -1058,7 +1058,7 @@ export default function OfferClient() {
       <footer className="relative z-10 border-t border-slate-200 bg-white/80 backdrop-blur-xl pt-8 pb-24 sm:py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-600">
         <div className="max-w-7xl mx-auto space-y-3">
           <div className="font-bold text-slate-800">
-            AuraLink Digital Agency • Customized Digital Presence, E-Commerce &amp; AI Growth Systems Delivered in 2 Days
+            AuraLink Digital Agency • Hyderabad, Telangana, India • Express 2-Day Delivery
           </div>
           <div>
             Email:{' '}
@@ -1069,8 +1069,8 @@ export default function OfferClient() {
               hello@auralinkdigitalagency.indevs.in
             </a>{' '}
             • Phone / WhatsApp:{' '}
-            <a href="tel:+919440336396" className="font-semibold text-emerald-700 hover:underline">
-              +91 94403 36396
+            <a href="tel:+918309264018" className="font-semibold text-emerald-700 hover:underline">
+              +91 83092 64018
             </a>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 text-slate-500 pt-1">
@@ -1097,7 +1097,7 @@ export default function OfferClient() {
       <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-white/90 backdrop-blur-2xl border-t border-slate-200/90 px-3 py-2.5 shadow-[0_-8px_28px_rgba(15,23,42,0.08)]">
         <div className="flex items-center gap-2 max-w-md mx-auto">
           <a
-            href="tel:+919440336396"
+            href="tel:+918309264018"
             className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-900 font-extrabold text-xs min-h-[46px] shrink-0"
           >
             <Phone size={15} className="text-emerald-600" />
