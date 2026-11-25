@@ -55,16 +55,6 @@ const PROBLEMS = [
   },
 ];
 
-const PACKAGE_INCLUDES = [
-  'Customized mobile-first website engineered for speed & conversions',
-  'Direct WhatsApp enquiry & quick-order integration',
-  'Google Map embed, opening hours & instant call tap',
-  'Full Technical SEO, schema markup & speed optimization',
-  'Lead capture enquiry form synced straight to your inbox',
-  'Admin Panel & Smart Stock Control (in E-Commerce tier)',
-  '1-year domain guidance, cloud SSL & 2-day delivery guarantee',
-];
-
 const GOLDEN_PRICING_PLANS = [
   {
     id: 'starter',
@@ -783,7 +773,7 @@ export default function OfferClient() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-7">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {REAL_CAPABILITIES.map((cap) => {
                   const IconComp = cap.icon;
                   return (
@@ -808,20 +798,6 @@ export default function OfferClient() {
                     </div>
                   );
                 })}
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {PACKAGE_INCLUDES.map((point) => (
-                  <div
-                    key={point}
-                    className="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50/85 border border-slate-200/70"
-                  >
-                    <CheckCircle2 size={17} className="text-emerald-600 shrink-0 mt-0.5" />
-                    <span className="text-xs sm:text-sm font-semibold text-slate-800">
-                      {point}
-                    </span>
-                  </div>
-                ))}
               </div>
             </div>
           </RevealOnScroll>

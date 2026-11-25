@@ -67,6 +67,7 @@ export default function ReminiBeforeAfterSlider() {
   const [isDragging, setIsDragging] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const stageRef = useRef(null);
+  const touchOriginRef = useRef({ x: 0, y: 0, axis: null });
 
   // Remini-style continuous scan sweep until visitor hovers/touches the stage
   useEffect(() => {
@@ -95,25 +96,48 @@ export default function ReminiBeforeAfterSlider() {
   }, []);
 
   const handlePointerDown = (e) => {
-    setHasInteracted(true);
-    setIsDragging(true);
-    if (e.pointerType !== 'mouse') {
-      e.currentTarget.setPointerCapture?.(e.pointerId);
+    if (e.pointerType === 'mouse') {
+      setHasInteracted(true);
+      setIsDragging(true);
+      updateSplitFromClientX(e.clientX);
+      return;
     }
-    updateSplitFromClientX(e.clientX);
+    // On touch/pen: record start position without blocking native vertical scroll
+    touchOriginRef.current = { x: e.clientX, y: e.clientY, axis: null };
   };
 
   const handlePointerMove = (e) => {
-    // Moving mouse over card glides scanner smoothly without holding/clicking
-    if (e.pointerType === 'mouse' || isDragging) {
+    if (e.pointerType === 'mouse') {
       if (!hasInteracted) setHasInteracted(true);
+      updateSplitFromClientX(e.clientX);
+      return;
+    }
+
+    // Touch gesture axis detection so vertical page scrolling ALWAYS stays buttery smooth
+    const origin = touchOriginRef.current;
+    const dx = Math.abs(e.clientX - origin.x);
+    const dy = Math.abs(e.clientY - origin.y);
+
+    if (!origin.axis) {
+      if (dy > 6 && dy > dx) {
+        origin.axis = 'y';
+        return;
+      }
+      if (dx > 8 && dx > dy) {
+        origin.axis = 'x';
+        setHasInteracted(true);
+        setIsDragging(true);
+      }
+    }
+
+    if (origin.axis === 'x') {
       updateSplitFromClientX(e.clientX);
     }
   };
 
-  const handlePointerUp = (e) => {
+  const handlePointerUp = () => {
     setIsDragging(false);
-    e.currentTarget.releasePointerCapture?.(e.pointerId);
+    touchOriginRef.current = { x: 0, y: 0, axis: null };
   };
 
   return (
@@ -148,39 +172,39 @@ export default function ReminiBeforeAfterSlider() {
         aria-valuemax={97}
         aria-valuenow={Math.round(splitPct)}
         tabIndex={0}
-        className="relative w-full rounded-3xl overflow-hidden border-2 border-white shadow-[0_22px_60px_rgba(15,23,42,0.12)] select-none touch-none cursor-ew-resize"
+        className="relative w-full rounded-3xl overflow-hidden border-2 border-white shadow-[0_22px_60px_rgba(15,23,42,0.12)] select-none touch-pan-y cursor-ew-resize"
       >
         {/* ─── RIGHT / BASE LAYER: AFTER AURALINK (RELATIVE SO IT SETS EXACT CONTAINER HEIGHT) ─── */}
-        <div className="w-full bg-gradient-to-br from-emerald-50 via-white to-amber-50 p-4 sm:p-7 lg:p-9">
+        <div className="w-full bg-gradient-to-br from-emerald-50 via-white to-amber-50 p-3.5 sm:p-7 lg:p-9">
           {/* Top Bar */}
-          <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-emerald-200/80">
-            <span className="text-xs sm:text-sm font-extrabold text-slate-800">
-              AuraLink Custom Digital Presence
+          <div className="flex flex-wrap items-center justify-between gap-2 pb-3 sm:pb-4 mb-3.5 sm:mb-5 border-b border-emerald-200/80">
+            <span className="text-[11px] sm:text-sm font-extrabold text-slate-800">
+              AuraLink Custom Presence
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 text-[#ffffff] text-[10px] sm:text-xs font-black tracking-wider uppercase shadow-sm">
-              <CheckCircle2 size={12} />
-              AFTER AURALINK • DELIVERED IN 2 DAYS
+            <span className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full bg-emerald-600 text-[#ffffff] text-[9.5px] sm:text-xs font-black tracking-wider uppercase shadow-sm">
+              <CheckCircle2 size={11} />
+              AFTER • DELIVERED IN 2 DAYS
             </span>
           </div>
 
-          {/* 6 Symmetrical Feature Boxes */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          {/* 6 Symmetrical Feature Boxes (Compact 2-Col Mobile / 3-Col Desktop) */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
             {FEATURE_BOXES.map((box) => (
               <div
                 key={box.category}
-                className="rounded-2xl bg-white/95 border border-emerald-200 p-4 sm:p-5 shadow-sm flex flex-col justify-between"
+                className="rounded-xl sm:rounded-2xl bg-white/95 border border-emerald-200 p-3 sm:p-5 shadow-sm flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700">
+                  <div className="flex items-center justify-between gap-1.5 mb-1.5 sm:mb-2">
+                    <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-emerald-700 truncate">
                       {box.category}
                     </span>
-                    <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
+                    <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
                   </div>
-                  <div className="font-sans font-extrabold text-base sm:text-lg text-slate-950 mb-1">
+                  <div className="font-sans font-extrabold text-xs sm:text-lg text-slate-950 mb-0.5 sm:mb-1 leading-snug">
                     {box.afterTitle}
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-snug font-medium">
+                  <p className="text-[11px] sm:text-sm text-slate-700 leading-snug font-medium">
                     {box.afterDesc}
                   </p>
                 </div>
@@ -192,37 +216,37 @@ export default function ReminiBeforeAfterSlider() {
         {/* ─── LEFT / CLIPPED OVERLAY LAYER: BEFORE AURALINK (EXACT SAME GRID GEOMETRY) ─── */}
         <div
           style={{ clipPath: `inset(0 ${100 - splitPct}% 0 0)` }}
-          className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-rose-100/85 p-4 sm:p-7 lg:p-9"
+          className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-rose-100/85 p-3.5 sm:p-7 lg:p-9"
         >
           {/* Top Bar */}
-          <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-300/80">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 text-[#ffffff] text-[10px] sm:text-xs font-black tracking-wider uppercase shadow-sm">
-              <XCircle size={12} className="text-rose-400" />
+          <div className="flex flex-wrap items-center justify-between gap-2 pb-3 sm:pb-4 mb-3.5 sm:mb-5 border-b border-slate-300/80">
+            <span className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full bg-slate-800 text-[#ffffff] text-[9.5px] sm:text-xs font-black tracking-wider uppercase shadow-sm">
+              <XCircle size={11} className="text-rose-400" />
               BEFORE AURALINK
             </span>
-            <span className="text-xs sm:text-sm font-bold text-slate-500">
-              Unoptimized Generic Setup
+            <span className="text-[11px] sm:text-sm font-bold text-slate-500">
+              Unoptimized Setup
             </span>
           </div>
 
           {/* Exact Matching 6 Symmetrical Feature Boxes */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 opacity-90 grayscale-[45%]">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4 opacity-90 grayscale-[45%]">
             {FEATURE_BOXES.map((box) => (
               <div
                 key={box.category}
-                className="rounded-2xl bg-white/75 border border-slate-300/90 p-4 sm:p-5 shadow-inner flex flex-col justify-between"
+                className="rounded-xl sm:rounded-2xl bg-white/75 border border-slate-300/90 p-3 sm:p-5 shadow-inner flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-rose-600">
+                  <div className="flex items-center justify-between gap-1.5 mb-1.5 sm:mb-2">
+                    <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-rose-600 truncate">
                       {box.category}
                     </span>
-                    <XCircle size={16} className="text-rose-500 shrink-0" />
+                    <XCircle size={14} className="text-rose-500 shrink-0" />
                   </div>
-                  <div className="font-sans font-extrabold text-base sm:text-lg text-slate-700 mb-1">
+                  <div className="font-sans font-extrabold text-xs sm:text-lg text-slate-700 mb-0.5 sm:mb-1 leading-snug">
                     {box.beforeTitle}
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-snug font-medium">
+                  <p className="text-[11px] sm:text-sm text-slate-600 leading-snug font-medium">
                     {box.beforeDesc}
                   </p>
                 </div>
