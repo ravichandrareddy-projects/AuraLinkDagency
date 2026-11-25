@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -13,6 +13,8 @@ import {
   Search,
   AlertCircle,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Globe,
   Sparkles,
   Award,
@@ -173,6 +175,35 @@ export default function OfferClient() {
   const { currency, setCurrency } = useCurrency();
   const [mounted, setMounted] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const [activePlanIndex, setActivePlanIndex] = useState(0);
+  const pricingTrackRef = useRef(null);
+
+  const scrollToPlan = (idx) => {
+    const clamped = Math.max(0, Math.min(GOLDEN_PRICING_PLANS.length - 1, idx));
+    setActivePlanIndex(clamped);
+    const track = pricingTrackRef.current;
+    if (!track || !track.children?.[clamped]) return;
+    const card = track.children[clamped];
+    const targetLeft = Math.max(0, card.offsetLeft - 16);
+    track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+  };
+
+  const handlePricingScroll = () => {
+    const track = pricingTrackRef.current;
+    if (!track) return;
+    const center = track.scrollLeft + track.clientWidth / 2;
+    let closestIdx = 0;
+    let minDist = Infinity;
+    Array.from(track.children).forEach((child, idx) => {
+      const childCenter = child.offsetLeft + child.offsetWidth / 2;
+      const dist = Math.abs(center - childCenter);
+      if (dist < minDist) {
+        minDist = dist;
+        closestIdx = idx;
+      }
+    });
+    setActivePlanIndex(closestIdx);
+  };
 
   const [formState, setFormState] = useState({
     name: '',
@@ -296,6 +327,13 @@ export default function OfferClient() {
         .smoke-drift-center {
           animation: rainbowSmokeCenter 24s ease-in-out infinite alternate;
         }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
       `}</style>
 
       {/* Interactive Tap / Click "WOW" Floating Curved Glass Cards (Non-Button Only) */}
@@ -415,20 +453,20 @@ export default function OfferClient() {
 
       <main className="relative z-10">
         {/* ─── 2. HERO SECTION (MONOPOLY / MAXIMIZATION + 2-DAY LAUNCH) ─── */}
-        <section className="pt-8 pb-10 sm:pt-12 sm:pb-14 px-4 sm:px-6">
+        <section className="pt-5 pb-8 sm:pt-12 sm:pb-14 px-3.5 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <div className="rounded-3xl bg-white/70 backdrop-blur-2xl border border-white/90 shadow-[0_20px_60px_rgba(15,23,42,0.08),0_0_0_1px_rgba(255,255,255,0.8)_inset] p-5 sm:p-10 md:p-12">
+            <div className="rounded-3xl bg-white/70 backdrop-blur-2xl border border-white/90 shadow-[0_20px_60px_rgba(15,23,42,0.08),0_0_0_1px_rgba(255,255,255,0.8)_inset] p-4 sm:p-10 md:p-12">
               {/* Top Sale & Global Reach Strip */}
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 text-[#ffffff] text-[11px] font-black tracking-wider uppercase shadow-md shadow-amber-600/20">
-                  <Tag size={12} />
-                  <span>End of Year Winter & Season Sale • Live in 2 Days</span>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-6">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 text-[#ffffff] text-[10px] sm:text-[11px] font-black tracking-wider uppercase shadow-md shadow-amber-600/20">
+                  <Tag size={11} />
+                  <span>End of Year Sale • Live in 2 Days</span>
                 </span>
 
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 border border-slate-200 text-[11px] font-bold text-slate-700">
-                    <Globe size={12} className="text-emerald-600" />
-                    <span>Serving India & Global Businesses</span>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-white/90 border border-slate-200 text-[10px] sm:text-[11px] font-bold text-slate-700">
+                    <Globe size={11} className="text-emerald-600" />
+                    <span>India & Global</span>
                   </span>
                   <div className="sm:hidden">
                     <CurrencySelector compact light />
@@ -437,7 +475,7 @@ export default function OfferClient() {
               </div>
 
               {/* Single H1 */}
-              <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl tracking-tight text-slate-900 leading-[1.08] mb-5">
+              <h1 className="font-display font-black text-[28px] sm:text-5xl md:text-6xl tracking-tight text-slate-900 leading-[1.12] sm:leading-[1.08] mb-4 sm:mb-5">
                 A website for your business,{' '}
                 <span className="bg-gradient-to-r from-emerald-700 via-amber-600 to-slate-900 bg-clip-text text-transparent">
                   live in 2 days.
@@ -510,9 +548,9 @@ export default function OfferClient() {
         </section>
 
         {/* ─── 3. GOLDEN PREMIUM LIQUID GLASS PRICING SECTION ─── */}
-        <section id="pricing" className="py-10 sm:py-14 px-4 sm:px-6">
+        <section id="pricing" className="py-8 sm:py-14 px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5 sm:mb-8">
               <div>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/90 border border-amber-300 text-amber-900 text-xs font-black uppercase tracking-widest">
                   <Sparkles size={12} className="text-amber-600" />
@@ -521,50 +559,101 @@ export default function OfferClient() {
                 <h2 className="font-display font-black text-2xl sm:text-4xl text-slate-900 mt-2">
                   Golden Liquid Glass Sale Pricing
                 </h2>
-                <p className="text-sm sm:text-base text-slate-600 mt-1">
+                <p className="text-xs sm:text-base text-slate-600 mt-1">
                   Transparent seasonal pricing in Indian Rupees (auto-adapts globally). Launch in 2 days with zero hidden surprises.
                 </p>
               </div>
               <CurrencySelector light />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+            {/* Mobile Horizontal Scroll Controls & Quick Plan Switcher */}
+            <div className="lg:hidden mb-4 space-y-2.5">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[11px] font-extrabold text-amber-800 uppercase tracking-wider">
+                  Swipe cards left ↔ right
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => scrollToPlan(activePlanIndex - 1)}
+                    disabled={activePlanIndex === 0}
+                    aria-label="Previous Pricing Plan"
+                    className="w-8 h-8 rounded-full bg-white/90 border border-amber-300 text-slate-800 flex items-center justify-center shadow-sm disabled:opacity-40"
+                  >
+                    <ChevronLeft size={16} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => scrollToPlan(activePlanIndex + 1)}
+                    disabled={activePlanIndex === GOLDEN_PRICING_PLANS.length - 1}
+                    aria-label="Next Pricing Plan"
+                    className="w-8 h-8 rounded-full bg-white/90 border border-amber-300 text-slate-800 flex items-center justify-center shadow-sm disabled:opacity-40"
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-white/80 backdrop-blur-md border border-amber-200/80 shadow-sm">
+                {GOLDEN_PRICING_PLANS.map((plan, idx) => (
+                  <button
+                    key={plan.id}
+                    type="button"
+                    onClick={() => scrollToPlan(idx)}
+                    className={`py-2 px-2 rounded-xl text-[11px] font-extrabold transition-all truncate ${
+                      activePlanIndex === idx
+                        ? 'bg-gradient-to-r from-amber-600 to-yellow-600 text-[#ffffff] shadow-sm'
+                        : 'text-slate-700 hover:bg-amber-50'
+                    }`}
+                  >
+                    {plan.id === 'business' ? 'Business' : plan.id === 'ecommerce' ? 'E-Commerce' : 'Starter'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Horizontal Scroll Track on Mobile/Tablet -> 3-Column Grid on Desktop */}
+            <div
+              ref={pricingTrackRef}
+              onScroll={handlePricingScroll}
+              className="flex lg:grid lg:grid-cols-3 gap-4 sm:gap-6 items-stretch overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 pb-3 lg:pb-0"
+            >
               {GOLDEN_PRICING_PLANS.map((plan) => (
                 <div
                   key={plan.id}
-                  className={`relative rounded-3xl p-[1.5px] transition-all duration-300 hover:-translate-y-1 ${
+                  className={`relative rounded-3xl p-[1.5px] transition-all duration-300 hover:-translate-y-1 w-[84vw] max-w-[340px] sm:w-[360px] lg:w-auto lg:max-w-none shrink-0 snap-center ${
                     plan.featured
                       ? 'bg-gradient-to-br from-amber-400 via-yellow-200 to-amber-500 shadow-[0_24px_60px_rgba(217,119,6,0.22)]'
                       : 'bg-gradient-to-br from-amber-300/80 via-white/90 to-amber-400/75 shadow-[0_18px_45px_rgba(180,83,9,0.12)]'
                   }`}
                 >
                   {/* Inner Liquid Glass Surface */}
-                  <div className="h-full rounded-[22.5px] bg-gradient-to-br from-white/90 via-amber-50/75 to-white/85 backdrop-blur-2xl p-6 sm:p-7 flex flex-col justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.95)]">
+                  <div className="h-full rounded-[22.5px] bg-gradient-to-br from-white/90 via-amber-50/75 to-white/85 backdrop-blur-2xl p-5 sm:p-7 flex flex-col justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.95)]">
                     <div>
                       {/* Top Gold Sale Tag */}
-                      <div className="flex items-center justify-between gap-2 mb-4">
-                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 text-[#ffffff] text-[10px] font-black tracking-wider uppercase shadow-sm">
+                      <div className="flex items-center justify-between gap-2 mb-3.5 sm:mb-4">
+                        <span className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 text-[#ffffff] text-[9.5px] sm:text-[10px] font-black tracking-wider uppercase shadow-sm">
                           <Tag size={10} />
                           {plan.saleBadge}
                         </span>
                         {plan.featured && (
-                          <span className="px-2.5 py-0.5 rounded-full bg-slate-900 text-[#ffffff] text-[10px] font-extrabold uppercase tracking-wider">
+                          <span className="px-2.5 py-0.5 rounded-full bg-slate-900 text-[#ffffff] text-[10px] font-extrabold uppercase tracking-wider shrink-0">
                             Best Value
                           </span>
                         )}
                       </div>
 
-                      <h3 className="font-display font-black text-2xl text-slate-950">
+                      <h3 className="font-display font-black text-xl sm:text-2xl text-slate-950">
                         {plan.name}
                       </h3>
-                      <p className="text-xs sm:text-sm font-medium text-slate-600 mt-1 mb-5">
+                      <p className="text-xs sm:text-sm font-medium text-slate-600 mt-1 mb-4 sm:mb-5">
                         {plan.tagline}
                       </p>
 
                       {/* Strike-Through Original + Sale Price */}
-                      <div className="rounded-2xl bg-gradient-to-r from-amber-100/70 via-white/85 to-amber-50/80 border border-amber-300/70 p-4 mb-5 shadow-inner">
+                      <div className="rounded-2xl bg-gradient-to-r from-amber-100/70 via-white/85 to-amber-50/80 border border-amber-300/70 p-3.5 sm:p-4 mb-4 sm:mb-5 shadow-inner">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">
                             Regular Price:
                           </span>
                           <span className="text-sm sm:text-base font-extrabold text-slate-400 line-through decoration-red-500 decoration-2">
@@ -580,11 +669,11 @@ export default function OfferClient() {
                       </div>
 
                       {/* Features List */}
-                      <ul className="space-y-2.5 mb-6">
+                      <ul className="space-y-2 sm:space-y-2.5 mb-5 sm:mb-6">
                         {plan.includes.map((inc) => (
                           <li
                             key={inc}
-                            className="flex items-start gap-2.5 text-sm text-slate-800 font-semibold"
+                            className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-800 font-semibold"
                           >
                             <CheckCircle2
                               size={16}
@@ -602,13 +691,28 @@ export default function OfferClient() {
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl bg-[#16A34A] hover:bg-[#15803D] text-[#ffffff] font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition-all min-h-[50px]"
+                      className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl bg-[#16A34A] hover:bg-[#15803D] text-[#ffffff] font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition-all min-h-[48px]"
                     >
                       <MessageSquare size={17} />
                       <span>Claim {plan.name} Offer</span>
                     </a>
                   </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Mobile Scroll Indicator Dots */}
+            <div className="flex lg:hidden items-center justify-center gap-2 mt-3">
+              {GOLDEN_PRICING_PLANS.map((plan, idx) => (
+                <button
+                  key={plan.id}
+                  type="button"
+                  onClick={() => scrollToPlan(idx)}
+                  aria-label={`View ${plan.name}`}
+                  className={`h-2 rounded-full transition-all ${
+                    activePlanIndex === idx ? 'w-7 bg-amber-600' : 'w-2 bg-slate-300'
+                  }`}
+                />
               ))}
             </div>
           </div>
@@ -964,7 +1068,7 @@ export default function OfferClient() {
       </main>
 
       {/* ─── DEDICATED MINIMAL FOOTER ─── */}
-      <footer className="relative z-10 border-t border-slate-200 bg-white/80 backdrop-blur-xl py-8 px-4 sm:px-6 text-center text-xs text-slate-600">
+      <footer className="relative z-10 border-t border-slate-200 bg-white/80 backdrop-blur-xl pt-8 pb-24 sm:py-8 px-4 sm:px-6 text-center text-xs text-slate-600">
         <div className="max-w-5xl mx-auto space-y-3">
           <div className="font-bold text-slate-800">
             AuraLink Digital Agency • Express 2-Day Business Websites, E-Commerce & AI Growth Systems
@@ -1001,6 +1105,28 @@ export default function OfferClient() {
           </div>
         </div>
       </footer>
+
+      {/* ─── MOBILE STICKY BOTTOM CONVERSION BAR ─── */}
+      <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-white/90 backdrop-blur-2xl border-t border-slate-200/90 px-3 py-2.5 shadow-[0_-8px_28px_rgba(15,23,42,0.08)]">
+        <div className="flex items-center gap-2 max-w-md mx-auto">
+          <a
+            href="tel:+919440336396"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-900 font-extrabold text-xs min-h-[46px] shrink-0"
+          >
+            <Phone size={15} className="text-emerald-600" />
+            <span>Call</span>
+          </a>
+          <a
+            href={HERO_WA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#16A34A] hover:bg-[#15803D] text-[#ffffff] font-extrabold text-sm shadow-md shadow-emerald-600/25 min-h-[46px]"
+          >
+            <MessageSquare size={16} />
+            <span>Free Sample on WhatsApp</span>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
