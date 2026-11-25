@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { ArrowRight, Mail, MapPin, Phone, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -26,6 +27,13 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Hide global agency Footer on standalone campaign routes
+  if (pathname?.startsWith('/offer')) {
+    return null;
+  }
+
   return (
     <footer className="relative bg-[hsl(230,20%,6%)] border-t border-white/[0.06]">
       {/* Gradient glow at top */}

@@ -145,6 +145,11 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [isMobileMenuOpen]);
 
+  // Hide global agency Navbar on standalone campaign routes
+  if (pathname?.startsWith('/offer')) {
+    return null;
+  }
+
   return (
     <>
       <motion.header

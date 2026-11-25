@@ -50,7 +50,7 @@ export async function POST(request) {
   try {
     const body = await request.json();
 
-    const { name, phone, email, businessType, goal, budget, utmSource, utmCampaign } = body;
+    const { name, phone, email, businessType, area, goal, budget, utmSource, utmCampaign } = body;
 
     if (!name || !phone) {
       return NextResponse.json({ error: 'Name and Phone/WhatsApp number are required.' }, { status: 400 });
@@ -66,10 +66,11 @@ export async function POST(request) {
       phone: phone.trim(),
       email: (email || '').trim(),
       businessType: businessType || 'General Business',
-      goal: goal || 'Grow Online Revenue & Automation',
+      area: (area || 'India / Global').trim(),
+      goal: goal || 'Free Website Sample Request',
       budget: budget || 'Standard Package',
-      utmSource: utmSource || 'meta_instagram_ads',
-      utmCampaign: utmCampaign || 'q1_growth',
+      utmSource: utmSource || 'offer_ads_subdomain',
+      utmCampaign: utmCampaign || 'year_end_winter_sale',
       createdAt: new Date().toISOString(),
       ip: clientIp,
     };
@@ -78,7 +79,7 @@ export async function POST(request) {
 
     // Pre-build WhatsApp quick connect link
     const waText = encodeURIComponent(
-      `Hi AuraLink! I submitted my details on your Instagram ad page:\n• Name: ${leadRecord.name}\n• Business: ${leadRecord.businessType}\n• Goal: ${leadRecord.goal}\n• Phone: ${leadRecord.phone}\nI would like to schedule my free 15-min growth audit.`
+      `Hi AuraLink! I requested a free website sample:\n• Name: ${leadRecord.name}\n• Business: ${leadRecord.businessType}\n• Area: ${leadRecord.area}\n• Phone: ${leadRecord.phone}\nPlease share my free sample preview.`
     );
     const whatsappUrl = `https://wa.me/919440336396?text=${waText}`;
 

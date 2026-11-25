@@ -35,6 +35,7 @@ AuraLink (AURA) is an engineering and growth agency founded to provide autonomou
 
 ## Official Sitemap Routes
 - Homepage: https://auralinkdigitalagency.indevs.in/
+- Express 2-Day Ads Offer & Year-End Sale: https://auralinkdigitalagency.indevs.in/offer
 - Services: https://auralinkdigitalagency.indevs.in/services
 - Websites: https://auralinkdigitalagency.indevs.in/websites
 - AI Agents: https://auralinkdigitalagency.indevs.in/ai-agents
