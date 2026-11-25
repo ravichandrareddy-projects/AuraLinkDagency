@@ -1,14 +1,14 @@
 import OfferClient from './OfferClient';
 
 export const metadata = {
-  title: 'AuraLink Digital Agency | Customized Websites & E-Commerce Delivered in 2 Days — Offer Live',
+  title: 'AuraLink Digital Agency | Customized Digital Presence Delivered in 2 Days — Offer Live',
   description:
-    'Do not make your website look cheap — make it customized and the best. Your website proves your brand. Delivered in 2 days with E-Commerce Admin Panel, Smart Stock Count & Technical SEO. Year-End Offer live now starting at ₹8,000.',
+    'Do not make your website look cheap — make it customized and the best. Your website proves your brand. Customized digital presence & E-Commerce delivered in 2 days with Admin Panel, Smart Stock Count & Technical SEO.',
   keywords: [
     'AuraLink Digital Agency',
-    'Website Delivered in 2 Days',
+    'Customized Digital Presence for Business',
+    'Delivered in 2 Days',
     '48 Hour Website Delivery',
-    'Customized Business Website',
     'E-Commerce Website with Admin Panel',
     'Smart Stock Count E-Commerce India',
     'WhatsApp Business Website',
@@ -18,7 +18,7 @@ export const metadata = {
     canonical: 'https://auralinkdigitalagency.indevs.in/offer',
   },
   openGraph: {
-    title: 'Customized Business Website Delivered in 2 Days | AuraLink Digital Agency',
+    title: 'A Customized Digital Presence for Your Business, Delivered in 2 Days | AuraLink',
     description:
       'Your website proves your brand. Starter ₹8,000–₹10,000 • Business Winter Sale ₹17,000–₹20,000 • E-Commerce Season Sale ₹23,000–₹25,000.',
     url: 'https://auralinkdigitalagency.indevs.in/offer',
