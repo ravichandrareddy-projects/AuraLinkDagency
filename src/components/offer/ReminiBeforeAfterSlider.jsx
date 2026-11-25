@@ -8,113 +8,51 @@ import {
   Sparkles,
   Zap,
   MessageSquare,
-  ShoppingBag,
-  Search,
+  Phone,
   ShieldAlert,
   TrendingUp,
-  PackageCheck,
+  ArrowDown,
+  ShoppingBag,
 } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '919440336396';
+const WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  'Hi AuraLink Digital Agency! I saw your Before vs After 2-Day transformation — I want a customized digital presence delivered in 2 days.'
+)}`;
 
-const SCENARIOS = [
-  {
-    id: 'brand',
-    label: 'Brand Look',
-    beforeTag: 'BEFORE AURALINK',
-    afterTag: 'AFTER AURALINK • 2 DAYS',
-    beforeHeadline: 'Generic Link-in-Bio / Cheap Look',
-    beforeMetrics: ['High Bounce Rate (74%)', 'Slow 6.8s Load Time', 'Low Customer Trust'],
-    beforeItems: [
-      'Cluttered random text & blurry screenshots',
-      'No custom brand identity or structure',
-      'Visitors leave in 5 seconds for competitors',
-    ],
-    afterHeadline: 'Customized Premium Brand Storefront',
-    afterMetrics: ['3.4x Higher Trust', 'Sub-1.5s Mobile Speed', '100% Brand Identity'],
-    afterItems: [
-      'Customized Liquid Glass UI built for your brand',
-      'Clear services, rates, gallery & verified badge',
-      'Proves your business quality from the first second',
-    ],
-    icon: Sparkles,
-  },
-  {
-    id: 'leads',
-    label: 'WhatsApp & UPI',
-    beforeTag: 'BEFORE AURALINK',
-    afterTag: 'AFTER AURALINK • 2 DAYS',
-    beforeHeadline: 'Manual DM Chaos & Lost Orders',
-    beforeMetrics: ['Missed Late-Night DMs', 'Zero Direct Checkout', 'Heavy Commission Cuts'],
-    beforeItems: [
-      'Replying manually to "Price please?" all day',
-      'Losing impatient buyers waiting for rate photos',
-      'Paying third-party apps 20–30% commission',
-    ],
-    afterHeadline: '1-Tap WhatsApp & UPI Checkout',
-    afterMetrics: ['+180% Direct Enquiries', '0% Middleman Fee', '24/7 Instant Capture'],
-    afterItems: [
-      'Prefilled WhatsApp order button on every screen',
-      'Instant UPI, Card & Razorpay payment acceptance',
-      'Clean 4-field sample/enquiry form captures leads',
-    ],
-    icon: MessageSquare,
-  },
-  {
-    id: 'admin',
-    label: 'Smart Stock Admin',
-    beforeTag: 'BEFORE AURALINK',
-    afterTag: 'AFTER AURALINK • 2 DAYS',
-    beforeHeadline: 'No Inventory Control or Owner Panel',
-    beforeMetrics: ['Developer Dependency', 'Sold-Out Order Mixups', 'Manual Price Edits'],
-    beforeItems: [
-      'Paying extra just to add 1 new product photo',
-      'Customers ordering out-of-stock items',
-      'Zero centralized dashboard for stock counts',
-    ],
-    afterHeadline: 'Owner Admin + Smart Stock Count',
-    afterMetrics: ['Add/Remove in 10s', 'Live Smart Stock Count', 'Auto Low-Stock Alerts'],
-    afterItems: [
-      'Owner Admin Panel to add/remove products easily',
-      'Smart Stock Count automatically tracks quantities',
-      'Edit prices, offers & photos anytime on mobile',
-    ],
-    icon: PackageCheck,
-  },
-  {
-    id: 'seo',
-    label: 'Google & SEO',
-    beforeTag: 'BEFORE AURALINK',
-    afterTag: 'AFTER AURALINK • 2 DAYS',
-    beforeHeadline: 'Invisible on Google & AI Search',
-    beforeMetrics: ['Unindexed Social Links', 'Zero Schema Markup', 'Zero Organic Traffic'],
-    beforeItems: [
-      'Instagram posts do not rank on Google Search',
-      'No map directions, hours, or structured metadata',
-      'Relying 100% on expensive cold ads forever',
-    ],
-    afterHeadline: 'Technical SEO & Google Authority',
-    afterMetrics: ['Google + AI Ready', 'Structured JSON-LD', 'Local & Global Reach'],
-    afterItems: [
-      'Clean semantic structure & Technical SEO baked in',
-      'Google Maps & verified contact trust signals',
-      'Built to convert search + Meta/Instagram ad traffic',
-    ],
-    icon: Search,
-  },
+const BEFORE_POINTS = [
+  'Generic link-in-bio or cheap layout hurts customer trust',
+  'Manual "Price please?" DMs & missed late-night orders',
+  'No Owner Admin Panel or Smart Stock Count (sold-out mixups)',
+  'Invisible on Google Search with slow 6.8s mobile loading',
+];
+
+const AFTER_POINTS = [
+  'Customized Liquid Glass brand design proves your quality',
+  '1-Tap WhatsApp Enquiry + instant UPI/Card Checkout (0% fee)',
+  'Owner Admin Panel to add/remove products + Smart Stock Count',
+  'Full Technical SEO, Google Maps & sub-1.5s mobile speed',
+];
+
+const BEFORE_CARDS = [
+  { label: 'Load Speed', value: '6.8s Slow' },
+  { label: 'Store Control', value: 'No Stock Count' },
+  { label: 'Google Rank', value: 'Unindexed' },
+];
+
+const AFTER_CARDS = [
+  { label: 'Delivery Time', value: '2 Days Express' },
+  { label: 'Store Control', value: 'Smart Stock Admin' },
+  { label: 'Conversion Lift', value: '3.4x Direct Leads' },
 ];
 
 export default function ReminiBeforeAfterSlider() {
-  const [selectedIdx, setSelectedIdx] = useState(0);
   const [splitPct, setSplitPct] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const stageRef = useRef(null);
 
-  const scenario = SCENARIOS[selectedIdx] || SCENARIOS[0];
-  const ScenarioIcon = scenario.icon;
-
-  // Remini-style initial scan animation sweep until user interacts
+  // Remini-style continuous scan sweep until visitor grabs or clicks the stage
   useEffect(() => {
     if (hasInteracted) return;
     let frameId;
@@ -122,7 +60,6 @@ export default function ReminiBeforeAfterSlider() {
 
     const animateScan = (now) => {
       const elapsed = (now - start) / 1000;
-      // Smooth continuous Remini-style horizontal scan oscillation between 22% and 78%
       const wave = 50 + Math.sin(elapsed * 1.45) * 28;
       setSplitPct(wave);
       frameId = requestAnimationFrame(animateScan);
@@ -130,7 +67,7 @@ export default function ReminiBeforeAfterSlider() {
 
     frameId = requestAnimationFrame(animateScan);
     return () => cancelAnimationFrame(frameId);
-  }, [hasInteracted, selectedIdx]);
+  }, [hasInteracted]);
 
   const updateSplitFromClientX = useCallback((clientX) => {
     const el = stageRef.current;
@@ -144,13 +81,18 @@ export default function ReminiBeforeAfterSlider() {
   const handlePointerDown = (e) => {
     setHasInteracted(true);
     setIsDragging(true);
-    e.currentTarget.setPointerCapture?.(e.pointerId);
+    if (e.pointerType !== 'mouse') {
+      e.currentTarget.setPointerCapture?.(e.pointerId);
+    }
     updateSplitFromClientX(e.clientX);
   };
 
   const handlePointerMove = (e) => {
-    if (!isDragging) return;
-    updateSplitFromClientX(e.clientX);
+    // On desktop mouse, moving anywhere over the card moves the scanner beam without holding/clicking!
+    if (e.pointerType === 'mouse' || isDragging) {
+      if (!hasInteracted) setHasInteracted(true);
+      updateSplitFromClientX(e.clientX);
+    }
   };
 
   const handlePointerUp = (e) => {
@@ -159,45 +101,25 @@ export default function ReminiBeforeAfterSlider() {
   };
 
   return (
-    <div className="rounded-3xl bg-white/80 backdrop-blur-2xl border border-white/95 shadow-[0_20px_56px_rgba(15,23,42,0.07),0_0_0_1px_rgba(148,163,184,0.18)] p-4 sm:p-8 lg:p-10">
-      {/* Section Header */}
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5">
-        <div>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-[#ffffff] text-[11px] font-black uppercase tracking-wider">
-            <Zap size={11} className="text-amber-400" />
-            Before vs After Scan • Drag Left ↔ Right
-          </span>
-          <h3 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 mt-2">
-            See What Changes in 2 Days
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1">
-            Slide the vertical scanner beam left or right to inspect the Before vs After transformation.
-          </p>
-        </div>
-
-        {/* Clean Topic Selector Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
-          {SCENARIOS.map((item, idx) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => {
-                setSelectedIdx(idx);
-                setHasInteracted(false);
-              }}
-              className={`px-3.5 py-2 rounded-full text-xs font-extrabold whitespace-nowrap transition-all ${
-                selectedIdx === idx
-                  ? 'bg-emerald-600 text-[#ffffff] shadow-sm'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200/80'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+    <div
+      data-no-growth-pop="true"
+      className="rounded-3xl bg-white/80 backdrop-blur-2xl border border-white/95 shadow-[0_20px_56px_rgba(15,23,42,0.07),0_0_0_1px_rgba(148,163,184,0.18)] p-4 sm:p-8 lg:p-10"
+    >
+      {/* Section Header (No Tabs — Single Unified View) */}
+      <div className="mb-5">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-[#ffffff] text-[11px] font-black uppercase tracking-wider">
+          <Zap size={11} className="text-amber-400" />
+          Before vs After Scan • Drag Left ↔ Right
+        </span>
+        <h3 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 mt-2">
+          See What Changes in 2 Days
+        </h3>
+        <p className="text-xs sm:text-sm text-slate-600 mt-1">
+          Everything you get in one customized build — drag the glowing vertical scanner left or right to compare Before vs After AuraLink.
+        </p>
       </div>
 
-      {/* ─── REMINI-STYLE SPLIT-SCREEN BEFORE / AFTER SCANNER STAGE ─── */}
+      {/* ─── SINGLE REMINI-STYLE SPLIT-SCREEN BEFORE / AFTER SCANNER STAGE ─── */}
       <div
         ref={stageRef}
         onPointerDown={handlePointerDown}
@@ -210,31 +132,34 @@ export default function ReminiBeforeAfterSlider() {
         aria-valuemax={96}
         aria-valuenow={Math.round(splitPct)}
         tabIndex={0}
-        className="relative w-full min-h-[370px] sm:min-h-[340px] lg:min-h-[360px] rounded-3xl overflow-hidden border-2 border-white shadow-[0_22px_60px_rgba(15,23,42,0.12)] select-none touch-none cursor-ew-resize"
+        className="relative w-full min-h-[430px] sm:min-h-[380px] lg:min-h-[390px] rounded-3xl overflow-hidden border-2 border-white shadow-[0_22px_60px_rgba(15,23,42,0.12)] select-none touch-none cursor-ew-resize"
       >
-        {/* ─── RIGHT / BOTTOM LAYER: AFTER AURALINK (CRYSTAL CLEAR, VIBRANT, CUSTOMIZED) ─── */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-amber-50 p-5 sm:p-8 lg:p-10 flex flex-col justify-between">
-          {/* Top Bar inside After Layer */}
-          <div className="flex items-center justify-between gap-2">
+        {/* ─── RIGHT / BOTTOM LAYER: AFTER AURALINK (COMPLETE CUSTOMIZED EXPERIENCE) ─── */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-amber-50 p-4 sm:p-8 lg:p-10 flex flex-col justify-between">
+          {/* Mock Top Bar Preview + After Tag */}
+          <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-emerald-200/70">
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-white/95 border border-emerald-200 text-xs font-extrabold text-slate-900 shadow-sm">
+              <Sparkles size={13} className="text-amber-600" />
+              <span>Your Brand • Verified Official Storefront</span>
+            </div>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 text-[#ffffff] text-[10px] sm:text-xs font-black tracking-wider uppercase shadow-sm ml-auto">
               <CheckCircle2 size={12} />
-              {scenario.afterTag}
+              AFTER AURALINK • DELIVERED IN 2 DAYS
             </span>
           </div>
 
-          {/* Main After Content (Right Aligned / Full Crisp UI) */}
+          {/* Main After Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center my-auto py-3">
             <div className="lg:col-span-7 space-y-3">
-              <div className="inline-flex items-center gap-2 text-emerald-700 text-xs font-extrabold uppercase tracking-wider">
-                <ScenarioIcon size={15} />
-                <span>Customized Digital Presence</span>
-              </div>
               <h4 className="font-sans font-black text-xl sm:text-3xl text-slate-950 leading-tight">
-                {scenario.afterHeadline}
+                Customized Digital Presence, Admin Panel &amp; Direct Sales
               </h4>
               <ul className="space-y-2">
-                {scenario.afterItems.map((pt) => (
-                  <li key={pt} className="flex items-start gap-2 text-xs sm:text-sm font-bold text-slate-800">
+                {AFTER_POINTS.map((pt) => (
+                  <li
+                    key={pt}
+                    className="flex items-start gap-2 text-xs sm:text-sm font-bold text-slate-800"
+                  >
                     <CheckCircle2 size={16} className="text-emerald-600 shrink-0 mt-0.5" />
                     <span>{pt}</span>
                   </li>
@@ -243,51 +168,58 @@ export default function ReminiBeforeAfterSlider() {
             </div>
 
             <div className="hidden sm:grid lg:col-span-5 grid-cols-1 gap-2.5">
-              {scenario.afterMetrics.map((m) => (
+              {AFTER_CARDS.map((card) => (
                 <div
-                  key={m}
-                  className="rounded-2xl bg-white/95 border border-emerald-200 px-4 py-3 shadow-sm flex items-center justify-between"
+                  key={card.label}
+                  className="rounded-2xl bg-white/95 border border-emerald-200 px-4 py-3 shadow-sm flex items-center justify-between gap-3"
                 >
-                  <span className="text-xs sm:text-sm font-extrabold text-slate-900">{m}</span>
-                  <TrendingUp size={15} className="text-emerald-600 shrink-0" />
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                      {card.label}
+                    </div>
+                    <div className="text-sm font-extrabold text-slate-950">{card.value}</div>
+                  </div>
+                  <TrendingUp size={16} className="text-emerald-600 shrink-0" />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Bottom Bar inside After Layer */}
           <div className="flex items-center justify-between text-[11px] font-bold text-emerald-800 pt-3 border-t border-emerald-200/70">
-            <span>AuraLink Digital Agency • Delivered in 2 Days</span>
-            <span className="hidden sm:inline">High-Trust Conversion Architecture</span>
+            <span>AuraLink Digital Agency • Customized &amp; Best</span>
+            <span className="hidden sm:inline">0% Middleman Fee • Google + AI SEO Ready</span>
           </div>
         </div>
 
-        {/* ─── LEFT / TOP CLIPPED LAYER: BEFORE AURALINK (MUTED / UNOPTIMIZED / CLUTTERED) ─── */}
+        {/* ─── LEFT / TOP CLIPPED LAYER: BEFORE AURALINK ─── */}
         <div
           style={{ clipPath: `inset(0 ${100 - splitPct}% 0 0)` }}
-          className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-rose-100/80 p-5 sm:p-8 lg:p-10 flex flex-col justify-between"
+          className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-rose-100/80 p-4 sm:p-8 lg:p-10 flex flex-col justify-between"
         >
-          {/* Subtle desaturated / blurred overlay feel like Remini "Before" */}
-          <div className="flex items-center justify-between gap-2">
+          {/* Mock Top Bar Preview + Before Tag */}
+          <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-300/70">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 text-[#ffffff] text-[10px] sm:text-xs font-black tracking-wider uppercase shadow-sm">
               <XCircle size={12} className="text-rose-400" />
-              {scenario.beforeTag}
+              BEFORE AURALINK
             </span>
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-white/60 border border-slate-300 text-xs font-bold text-slate-600">
+              <ShieldAlert size={13} className="text-rose-500" />
+              <span>Generic / Unoptimized Link</span>
+            </div>
           </div>
 
-          {/* Main Before Content (Exact matching geometry so split line aligns seamlessly!) */}
+          {/* Main Before Grid (Aligned Geometry) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center my-auto py-3 opacity-85 grayscale-[45%]">
             <div className="lg:col-span-7 space-y-3">
-              <div className="inline-flex items-center gap-2 text-rose-700 text-xs font-extrabold uppercase tracking-wider">
-                <ShieldAlert size={15} />
-                <span>Unoptimized Setup</span>
-              </div>
               <h4 className="font-sans font-black text-xl sm:text-3xl text-slate-700 leading-tight">
-                {scenario.beforeHeadline}
+                Slow, Unorganized Setup Losing Ready Buyers
               </h4>
               <ul className="space-y-2">
-                {scenario.beforeItems.map((pt) => (
-                  <li key={pt} className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-slate-600">
+                {BEFORE_POINTS.map((pt) => (
+                  <li
+                    key={pt}
+                    className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-slate-600"
+                  >
                     <XCircle size={16} className="text-rose-500 shrink-0 mt-0.5" />
                     <span>{pt}</span>
                   </li>
@@ -296,21 +228,26 @@ export default function ReminiBeforeAfterSlider() {
             </div>
 
             <div className="hidden sm:grid lg:col-span-5 grid-cols-1 gap-2.5">
-              {scenario.beforeMetrics.map((m) => (
+              {BEFORE_CARDS.map((card) => (
                 <div
-                  key={m}
-                  className="rounded-2xl bg-white/70 border border-slate-300/80 px-4 py-3 shadow-inner flex items-center justify-between"
+                  key={card.label}
+                  className="rounded-2xl bg-white/70 border border-slate-300/80 px-4 py-3 shadow-inner flex items-center justify-between gap-3"
                 >
-                  <span className="text-xs sm:text-sm font-bold text-slate-600">{m}</span>
-                  <XCircle size={15} className="text-rose-500 shrink-0" />
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                      {card.label}
+                    </div>
+                    <div className="text-sm font-bold text-slate-600">{card.value}</div>
+                  </div>
+                  <XCircle size={16} className="text-rose-500 shrink-0" />
                 </div>
               ))}
             </div>
           </div>
 
           <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 pt-3 border-t border-slate-300/70">
-            <span>Generic / Slow Digital Setup</span>
-            <span className="hidden sm:inline">Losing Ready-to-Buy Customers</span>
+            <span>Cheap Look • Missed Enquiries</span>
+            <span className="hidden sm:inline">Losing Ready-to-Buy Customers Daily</span>
           </div>
         </div>
 
@@ -319,13 +256,8 @@ export default function ReminiBeforeAfterSlider() {
           style={{ left: `${splitPct}%` }}
           className="absolute inset-y-0 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center justify-center"
         >
-          {/* Soft Scan Aura Trailing Behind Line */}
           <div className="absolute inset-y-0 w-10 -translate-x-1/2 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent blur-sm" />
-
-          {/* Crisp Vertical Light Line */}
           <div className="w-[3px] h-full bg-gradient-to-b from-emerald-400 via-white to-amber-400 shadow-[0_0_16px_rgba(16,185,129,0.95),0_0_32px_rgba(251,191,36,0.75)]" />
-
-          {/* Center Tactile Circular Scanner Knob */}
           <div
             className={`absolute top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-emerald-500 shadow-[0_8px_28px_rgba(15,23,42,0.28)] flex items-center justify-center transition-transform ${
               isDragging ? 'scale-110 ring-4 ring-emerald-400/40' : 'scale-100'
@@ -336,28 +268,44 @@ export default function ReminiBeforeAfterSlider() {
         </div>
       </div>
 
-      {/* Bottom Interactive Hint & CTA */}
-      <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      {/* Unified Bottom Action Bar — All Required Buttons in 1 Place */}
+      <div className="mt-5 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
         <div className="flex items-center gap-2 text-xs font-bold text-slate-600">
           <ShoppingBag size={14} className="text-emerald-600 shrink-0" />
           <span>
             {hasInteracted
-              ? 'Drag anywhere on the comparison card to rescan Left ↔ Right'
-              : 'Auto-scanning Before → After • Touch or drag anywhere to control manually'}
+              ? 'Move mouse or swipe across the card to rescan Left ↔ Right'
+              : 'Auto-scanning Before → After • Hover mouse or swipe anywhere to control'}
           </span>
         </div>
 
-        <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-            `Hi AuraLink Digital Agency! I tested the "${scenario.label}" Before/After scanner — I want my customized digital presence delivered in 2 days.`
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#16A34A] hover:bg-[#15803D] text-[#ffffff] text-xs sm:text-sm font-extrabold shadow-md shadow-emerald-600/20 self-start sm:self-auto"
-        >
-          <MessageSquare size={15} />
-          <span>Upgrade My Business in 2 Days</span>
-        </a>
+        <div className="flex flex-wrap items-center gap-2.5">
+          <a
+            href={WA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#16A34A] hover:bg-[#15803D] text-[#ffffff] text-xs sm:text-sm font-extrabold shadow-md shadow-emerald-600/20 min-h-[44px]"
+          >
+            <MessageSquare size={15} />
+            <span>Get Free Sample on WhatsApp</span>
+          </a>
+
+          <a
+            href="tel:+919440336396"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-900 text-xs sm:text-sm font-extrabold shadow-sm min-h-[44px]"
+          >
+            <Phone size={14} className="text-emerald-600" />
+            <span>Call Now</span>
+          </a>
+
+          <a
+            href="#pricing"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-amber-50 border border-amber-300 hover:bg-amber-100 text-amber-950 text-xs sm:text-sm font-extrabold shadow-sm min-h-[44px]"
+          >
+            <span>Packages &amp; Pricing</span>
+            <ArrowDown size={14} />
+          </a>
+        </div>
       </div>
     </div>
   );

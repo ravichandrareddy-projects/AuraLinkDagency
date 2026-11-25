@@ -38,9 +38,9 @@ export default function ClickGrowthPop() {
 
   useEffect(() => {
     const handlePageInteraction = (e) => {
-      // Strictly ignore any clickable buttons, links, form controls, or interactive menus
+      // Strictly ignore any clickable buttons, links, form controls, interactive menus, or the Remini scanner
       const interactiveEl = e.target?.closest?.(
-        'button, a, [role="button"], input, textarea, select, option, label'
+        'button, a, [role="button"], input, textarea, select, option, label, [data-no-growth-pop="true"]'
       );
       if (interactiveEl) return;
 
