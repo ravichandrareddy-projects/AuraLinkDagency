@@ -20,7 +20,7 @@ const WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
 const FEATURE_BOXES = [
   {
     category: 'Brand Design',
-    beforeTitle: 'Cheap Generic Look',
+    beforeTitle: 'Generic Look',
     beforeDesc: 'Link-in-bio or basic templates lower customer trust.',
     afterTitle: 'Customized & Best',
     afterDesc: 'Bespoke Glass UI that proves your brand authority.',
