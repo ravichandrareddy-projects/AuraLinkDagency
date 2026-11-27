@@ -1,7 +1,12 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { defaultCurrency, currencies, formatCurrencyAmount } from './pricing-data';
+import {
+  defaultCurrency,
+  currencies,
+  formatCurrencyAmount,
+  countryToCurrency,
+} from './pricing-data';
 
 const CurrencyContext = createContext({
   currency: defaultCurrency,
@@ -11,18 +16,18 @@ const CurrencyContext = createContext({
   isAutoDetected: false,
 });
 
-// Fast client-side timezone-based currency detection
+// Client-side timezone/locale fallback (used only when live IP geo is unavailable)
 function detectCurrencyFromClient() {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') return defaultCurrency;
 
   try {
     const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
     const lang = (navigator.language || '').toLowerCase();
 
-    // India detection
+    // India (any city/state timezone or Indian locale) -> INR
     if (
-      tz.includes('calcutta') ||
-      tz.includes('kolkata') ||
+      tz === 'asia/kolkata' ||
+      tz === 'asia/calcutta' ||
       tz.includes('india') ||
       lang.endsWith('-in') ||
       lang === 'hi'
@@ -30,36 +35,49 @@ function detectCurrencyFromClient() {
       return 'INR';
     }
 
-    // UK and Europe detection
+    // United Kingdom -> EUR
     if (
-      tz.startsWith('europe/') ||
-      tz.includes('london') ||
-      tz.includes('dublin') ||
-      tz.includes('paris') ||
-      tz.includes('berlin') ||
-      tz.includes('rome') ||
-      tz.includes('madrid') ||
-      tz.includes('amsterdam') ||
-      tz.includes('brussels') ||
-      tz.includes('vienna') ||
-      tz.includes('stockholm') ||
-      tz.includes('warsaw') ||
-      tz.includes('athens') ||
-      tz.includes('lisbon') ||
+      tz === 'europe/london' ||
+      tz === 'europe/belfast' ||
       lang.endsWith('-gb') ||
-      lang.endsWith('-de') ||
-      lang.endsWith('-fr') ||
-      lang.endsWith('-it') ||
-      lang.endsWith('-es')
+      lang === 'cy' ||
+      lang === 'gd'
     ) {
       return 'EUR';
     }
 
-    // Americas / USA / Canada / Global default
-    return 'USD';
+    // USA and all other countries -> USD
+    return defaultCurrency;
   } catch {
-    return 'USD';
+    return defaultCurrency;
   }
+}
+
+async function resolvePublicCountryFromBrowser() {
+  const providers = [
+    async () => {
+      const res = await fetch('https://ipwho.is/', { cache: 'no-store', signal: AbortSignal.timeout(3000) });
+      if (!res.ok) return '';
+      const d = await res.json();
+      return d?.success && d.country_code ? String(d.country_code).toUpperCase() : '';
+    },
+    async () => {
+      const res = await fetch('https://api.country.is/', { cache: 'no-store', signal: AbortSignal.timeout(3000) });
+      if (!res.ok) return '';
+      const d = await res.json();
+      return d?.country ? String(d.country).toUpperCase() : '';
+    },
+  ];
+
+  for (const probe of providers) {
+    try {
+      const code = await probe();
+      if (code && code !== 'UNKNOWN') return code;
+    } catch {
+      // Try next provider
+    }
+  }
+  return '';
 }
 
 export function CurrencyProvider({ children }) {
@@ -67,45 +85,76 @@ export function CurrencyProvider({ children }) {
   const [isAutoDetected, setIsAutoDetected] = useState(false);
 
   useEffect(() => {
-    try {
-      // 1. Check if user already chose a preference in previous sessions
-      const saved = localStorage.getItem('auralink_currency');
-      if (saved && currencies[saved]) {
-        setCurrencyState(saved);
-        return;
-      }
+    let active = true;
 
-      // 2. Instant client-side timezone & locale detection
-      const clientDetected = detectCurrencyFromClient();
-      if (clientDetected && currencies[clientDetected]) {
-        setCurrencyState(clientDetected);
-        setIsAutoDetected(true);
+    async function initLocationCurrency() {
+      try {
+        // Optional query override (?country=GB or ?currency=EUR) for quick testing
+        const params = new URLSearchParams(window.location.search);
+        const queryCurrency = (params.get('currency') || '').toUpperCase();
+        const queryCountry = (params.get('country') || '').toUpperCase();
+        if (queryCurrency && currencies[queryCurrency]) {
+          if (active) setCurrencyState(queryCurrency);
+          return;
+        }
+        if (queryCountry) {
+          if (active) {
+            setCurrencyState(countryToCurrency(queryCountry));
+            setIsAutoDetected(true);
+          }
+          return;
+        }
+
+        // 1. Honor explicit user click selection only (never let old auto-cache lock location)
+        const isManual = localStorage.getItem('auralink_currency_manual') === 'true';
+        const saved = localStorage.getItem('auralink_currency');
+        if (isManual && saved && currencies[saved]) {
+          if (active) setCurrencyState(saved);
+          return;
+        }
+
+        // 2. Fast initial fallback via timezone/locale while IP geo resolves
+        const clientDetected = detectCurrencyFromClient();
+        if (active && clientDetected && currencies[clientDetected]) {
+          setCurrencyState(clientDetected);
+          setIsAutoDetected(true);
+        }
+
+        // 3. Authoritative server Geo-IP check, falling back to browser HTTPS Geo-IP if Unknown
+        let resolvedCountry = '';
         try {
-          localStorage.setItem('auralink_currency', clientDetected);
-        } catch {}
-      }
-
-      // 3. Asynchronous IP/Network Geo-verification via /api/geo
-      fetch('/api/geo')
-        .then((res) => res.json())
-        .then((data) => {
-          if (data?.success && data.currency && currencies[data.currency]) {
-            // Only update if user hasn't explicitly clicked a manual selection
-            const currentSaved = localStorage.getItem('auralink_currency_manual');
-            if (!currentSaved) {
-              setCurrencyState(data.currency);
-              try {
-                localStorage.setItem('auralink_currency', data.currency);
-              } catch {}
+          const geoRes = await fetch('/api/geo', { cache: 'no-store' });
+          if (geoRes.ok) {
+            const geoData = await geoRes.json();
+            if (geoData?.country && geoData.country !== 'Unknown') {
+              resolvedCountry = String(geoData.country).toUpperCase();
             }
           }
-        })
-        .catch(() => {
-          // Keep timezone detected value on network error
-        });
-    } catch {
-      // Ignore errors in SSR or restricted environments
+        } catch {
+          // Ignore server geo error and fallback to browser IP check
+        }
+
+        if (!resolvedCountry) {
+          resolvedCountry = await resolvePublicCountryFromBrowser();
+        }
+
+        if (!active) return;
+        if (localStorage.getItem('auralink_currency_manual') === 'true') return;
+
+        if (resolvedCountry) {
+          const mapped = countryToCurrency(resolvedCountry);
+          setCurrencyState(mapped);
+          setIsAutoDetected(true);
+        }
+      } catch {
+        // Keep default USD on unexpected error
+      }
     }
+
+    initLocationCurrency();
+    return () => {
+      active = false;
+    };
   }, []);
 
   const setCurrency = (code) => {

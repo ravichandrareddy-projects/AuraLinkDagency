@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { sendAuraLinkLeadEmail, AURALINK_CONTACT_EMAIL } from '@/lib/mailer';
 
 export const dynamic = 'force-dynamic';
 
@@ -50,10 +51,30 @@ export async function POST(request) {
   try {
     const body = await request.json();
 
-    const { name, phone, email, businessType, area, goal, budget, utmSource, utmCampaign } = body;
+    const {
+      name,
+      phone,
+      email,
+      company,
+      businessType,
+      area,
+      goal,
+      budget,
+      projectType,
+      message,
+      utmSource,
+      utmCampaign,
+    } = body;
 
-    if (!name || !phone) {
-      return NextResponse.json({ error: 'Name and Phone/WhatsApp number are required.' }, { status: 400 });
+    const cleanName = (name || '').trim();
+    const cleanPhone = (phone || '').trim();
+    const cleanEmail = (email || '').trim();
+
+    if (!cleanName || (!cleanPhone && !cleanEmail)) {
+      return NextResponse.json(
+        { error: 'Name and either Phone/WhatsApp number or Email are required.' },
+        { status: 400 }
+      );
     }
 
     const forwarded = request.headers.get('x-forwarded-for');
@@ -62,13 +83,16 @@ export async function POST(request) {
 
     const leadRecord = {
       id: 'lead_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 6),
-      name: name.trim(),
-      phone: phone.trim(),
-      email: (email || '').trim(),
-      businessType: businessType || 'General Business',
+      name: cleanName,
+      phone: cleanPhone,
+      email: cleanEmail,
+      company: (company || '').trim(),
+      businessType: businessType || (company || '').trim() || 'General Business',
       area: (area || 'India / Global').trim(),
       goal: goal || 'Free Website Sample Request',
+      projectType: (projectType || '').trim(),
       budget: budget || 'Standard Package',
+      message: (message || '').trim(),
       utmSource: utmSource || 'offer_ads_subdomain',
       utmCampaign: utmCampaign || 'year_end_winter_sale',
       createdAt: new Date().toISOString(),
@@ -77,15 +101,21 @@ export async function POST(request) {
 
     saveLead(leadRecord);
 
+    const mailResult = await sendAuraLinkLeadEmail(leadRecord);
+
     // Pre-build WhatsApp quick connect link
     const waText = encodeURIComponent(
-      `Hi AuraLink! I requested a free website sample:\n• Name: ${leadRecord.name}\n• Business: ${leadRecord.businessType}\n• Area: ${leadRecord.area}\n• Phone: ${leadRecord.phone}\nPlease share my free sample preview.`
+      `Hi AuraLink! I submitted an enquiry:\n• Name: ${leadRecord.name}\n• Business: ${leadRecord.businessType}\n• Area: ${leadRecord.area}\n• Phone: ${leadRecord.phone || leadRecord.email}\nPlease share my free sample / connect with me.`
     );
     const whatsappUrl = `https://wa.me/918309264018?text=${waText}`;
 
     return NextResponse.json({
       success: true,
-      message: 'Lead received successfully. Our team will connect shortly.',
+      mailSent: mailResult.sent,
+      recipientEmail: AURALINK_CONTACT_EMAIL,
+      message: mailResult.sent
+        ? `Lead received and sent to ${AURALINK_CONTACT_EMAIL}.`
+        : 'Lead received and saved successfully. Our team will connect shortly.',
       leadId: leadRecord.id,
       whatsappUrl,
     });

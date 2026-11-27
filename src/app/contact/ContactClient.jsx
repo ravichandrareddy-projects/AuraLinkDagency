@@ -88,6 +88,8 @@ export default function ContactPage() {
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [ticketId, setTicketId] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -95,6 +97,7 @@ export default function ContactPage() {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }))
     }
+    if (submitError) setSubmitError('')
   }
 
   const validate = () => {
@@ -109,16 +112,45 @@ export default function ContactPage() {
     return newErrors
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const validationErrors = validate()
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
       return
     }
-    const generatedTicket = 'TICK-' + Math.floor(10000 + Math.random() * 90000)
-    setTicketId(generatedTicket)
-    setSubmitted(true)
+    setSubmitError('')
+    setIsSubmitting(true)
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          businessType: formData.company || formData.projectType || 'Website / Software Enquiry',
+          budget: formData.budget || 'Not specified',
+          projectType: formData.projectType || 'General Project',
+          message: formData.message,
+          goal: 'Contact Page Enquiry',
+          utmSource: 'contact_page',
+          utmCampaign: 'direct_contact',
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setSubmitError(data.error || 'Could not send enquiry right now. Please email hello@auralinkdigitalagency.indevs.in.')
+      } else {
+        setTicketId(data.leadId || 'TICK-' + Math.floor(10000 + Math.random() * 90000))
+        setSubmitted(true)
+      }
+    } catch {
+      setSubmitError('Network error while sending. Please email hello@auralinkdigitalagency.indevs.in or WhatsApp +91 83092 64018.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -317,9 +349,20 @@ export default function ContactPage() {
                           )}
                         </div>
 
+                        {submitError && (
+                          <p className="text-red-400 text-xs bg-red-500/10 border border-red-500/30 rounded-lg px-3 py-2">
+                            {submitError}
+                          </p>
+                        )}
+
                         {/* Submit */}
-                        <Button variant="primary" type="submit" className="w-full">
-                          Send Message
+                        <Button
+                          variant="primary"
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full"
+                        >
+                          {isSubmitting ? 'Sending...' : 'Send Message'}
                           <ArrowRight className="w-4 h-4" />
                         </Button>
                       </form>

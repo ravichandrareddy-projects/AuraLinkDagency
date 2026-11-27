@@ -148,7 +148,7 @@ const FAQS = [
   },
   {
     q: 'Are End of Year Winter Sale & End of Season Sale prices fixed?',
-    a: 'Yes! Starter (₹8,000–₹10,000), Business Growth (₹17,000–₹20,000), and E-Commerce Store (₹23,000–₹25,000) are locked seasonal sale rates with clear scope and zero hidden fees.',
+    a: 'Yes! Starter, Business Growth, and E-Commerce Store offer locked seasonal sale rates displayed automatically in your regional currency (INR, USD, or EUR) with clear scope and zero hidden fees.',
   },
   {
     q: 'Do you support international currencies and clients outside India?',
@@ -161,7 +161,7 @@ const FAQS = [
 ];
 
 export default function OfferClient() {
-  const { currency, setCurrency } = useCurrency();
+  const { currency } = useCurrency();
   const [mounted, setMounted] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
 
@@ -175,23 +175,11 @@ export default function OfferClient() {
   const [submitResult, setSubmitResult] = useState(null);
   const [submitError, setSubmitError] = useState('');
 
-  // Ensure Indian currency (INR) is the clean default on initial render,
-  // while still honoring geo-auto-detection (USA->USD, UK/EU->EUR) and manual switcher clicks.
   useEffect(() => {
     setMounted(true);
-    try {
-      const manual = localStorage.getItem('auralink_currency_manual');
-      const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
-      const isIndiaTz = tz.includes('calcutta') || tz.includes('kolkata') || tz.includes('india');
-      if (!manual && isIndiaTz && currency !== 'INR') {
-        setCurrency('INR');
-        // Clear manual flag set by setCurrency so future geo checks still work naturally
-        localStorage.removeItem('auralink_currency_manual');
-      }
-    } catch {}
-  }, [currency, setCurrency]);
+  }, []);
 
-  const activeCurrency = mounted ? currency : 'INR';
+  const activeCurrency = mounted ? currency : 'USD';
   const formatOfferPrice = (amountObj) => formatCurrencyAmount(amountObj, activeCurrency);
 
   const handleFormSubmit = async (e) => {

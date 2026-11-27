@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -28,11 +29,44 @@ const socialLinks = [
 
 export default function Footer() {
   const pathname = usePathname();
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterStatus, setNewsletterStatus] = useState('idle');
 
   // Hide global agency Footer on standalone campaign routes
   if (pathname?.startsWith('/offer')) {
     return null;
   }
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    const email = newsletterEmail.trim();
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      setNewsletterStatus('error');
+      return;
+    }
+    setNewsletterStatus('sending');
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Newsletter Subscriber',
+          email,
+          goal: 'Newsletter Subscription',
+          utmSource: 'footer_newsletter',
+          utmCampaign: 'newsletter',
+        }),
+      });
+      if (res.ok) {
+        setNewsletterStatus('done');
+        setNewsletterEmail('');
+      } else {
+        setNewsletterStatus('error');
+      }
+    } catch {
+      setNewsletterStatus('error');
+    }
+  };
 
   return (
     <footer className="relative bg-[hsl(230,20%,6%)] border-t border-white/[0.06]">
@@ -120,19 +154,32 @@ export default function Footer() {
             <p className="text-[hsl(230,15%,55%)] text-sm mb-4">
               Get the latest updates on AI, software, and web development.
             </p>
-            <form onSubmit={(e) => e.preventDefault()} className="flex gap-2">
+            <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
               <input
                 type="email"
+                required
+                value={newsletterEmail}
+                onChange={(e) => {
+                  setNewsletterEmail(e.target.value);
+                  if (newsletterStatus !== 'idle') setNewsletterStatus('idle');
+                }}
                 placeholder="your@email.com"
                 className="flex-1 px-4 py-2.5 text-sm bg-white/[0.04] border border-white/[0.08] rounded-xl text-white placeholder:text-[hsl(230,10%,40%)] focus:outline-none focus:border-[hsl(270,95%,65%)]/50 focus:ring-1 focus:ring-[hsl(270,95%,65%)]/25 transition-all"
               />
               <button
                 type="submit"
-                className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] text-white text-sm font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                disabled={newsletterStatus === 'sending'}
+                className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[hsl(270,95%,65%)] to-[hsl(210,100%,60%)] text-white text-sm font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
               >
                 <ArrowRight size={16} />
               </button>
             </form>
+            {newsletterStatus === 'done' && (
+              <p className="text-emerald-400 text-xs mt-2">Subscribed! Sent to our team inbox.</p>
+            )}
+            {newsletterStatus === 'error' && (
+              <p className="text-red-400 text-xs mt-2">Please enter a valid email address.</p>
+            )}
 
             <div className="mt-6 space-y-3">
               <a

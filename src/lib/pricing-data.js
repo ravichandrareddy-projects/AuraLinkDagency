@@ -8,6 +8,19 @@ export const currencies = {
 
 export const defaultCurrency = 'USD';
 
+/**
+ * Map ISO 3166-1 alpha-2 country code to supported currency:
+ * - IN (India, any region) -> INR
+ * - GB / UK (United Kingdom) -> EUR
+ * - US & all other countries / fallback -> USD
+ */
+export function countryToCurrency(countryCode) {
+  const code = String(countryCode || '').trim().toUpperCase();
+  if (code === 'IN') return 'INR';
+  if (code === 'GB' || code === 'UK') return 'EUR';
+  return defaultCurrency;
+}
+
 // Helper to format currency values or ranges [min, max]
 export function formatCurrencyAmount(amount, currencyCode = 'USD', isStarting = false, period = '') {
   if (!amount || amount === 'Custom Quote') return 'Custom Quote';

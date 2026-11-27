@@ -291,7 +291,7 @@ export default function FAQPage() {
                     Contact Us
                     <ArrowRight className="w-4 h-4" />
                   </Button>
-                  <Button variant="ghost" href="mailto:hello@auralink.agency">
+                  <Button variant="ghost" href="mailto:hello@auralinkdigitalagency.indevs.in">
                     Email Us
                   </Button>
                 </div>
